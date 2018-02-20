@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        is-multidex="false"
+        jar="C:\Users\Jan\.android\build-cache\440eba1b35f1e2025982ebdfe3cdf44b10e64ae3\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="27.0.3"
+        sha1="746274223beb11b1cda7854d7eec3038695c2c93">
+        <dex dex="D:\nativescript-projects\Warehouse_mobile\WarehouseMobileApp\platforms\android\app\build\intermediates\pre-dexed\debug\classes_5a44c076e5d5747a8ca226dbb26a053401d4d9df.jar" />
+    </item>
+
+</items>

@@ -1,0 +1,14 @@
+[
+    {
+        "merged": "D:\\nativescript-projects\\Warehouse_mobile\\WarehouseMobileApp\\platforms\\android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi\\background.png",
+        "source": "D:\\nativescript-projects\\Warehouse_mobile\\WarehouseMobileApp\\platforms\\android\\app\\src\\main\\res\\drawable-xxhdpi\\background.png"
+    },
+    {
+        "merged": "D:\\nativescript-projects\\Warehouse_mobile\\WarehouseMobileApp\\platforms\\android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi\\logo.png",
+        "source": "D:\\nativescript-projects\\Warehouse_mobile\\WarehouseMobileApp\\platforms\\android\\app\\src\\main\\res\\drawable-xxhdpi\\logo.png"
+    },
+    {
+        "merged": "D:\\nativescript-projects\\Warehouse_mobile\\WarehouseMobileApp\\platforms\\android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi\\icon.png",
+        "source": "D:\\nativescript-projects\\Warehouse_mobile\\WarehouseMobileApp\\platforms\\android\\app\\src\\main\\res\\drawable-xxhdpi\\icon.png"
+    }
+]
