@@ -2,53 +2,198 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4efa8395-bb10-4ed9-8c9f-51cf87187cec" name="Default" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/WarehouseMobileApp/app/pages/login/login.component.ts" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/WarehouseMobileApp/app/pages/login/login.html" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/WarehouseMobileApp/app/platform.android.css" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/WarehouseMobileApp/app/platform.ios.css" />
-      <change beforePath="$PROJECT_DIR$/WarehouseMobileApp/app/app.component.html" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/WarehouseMobileApp/app/app.component.js" afterPath="$PROJECT_DIR$/WarehouseMobileApp/app/app.component.js" />
-      <change beforePath="$PROJECT_DIR$/WarehouseMobileApp/app/app.component.ts" afterPath="$PROJECT_DIR$/WarehouseMobileApp/app/app.component.ts" />
-      <change beforePath="$PROJECT_DIR$/WarehouseMobileApp/app/app.css" afterPath="$PROJECT_DIR$/WarehouseMobileApp/app/app.css" />
-      <change beforePath="$PROJECT_DIR$/WarehouseMobileApp/app/app.module.js" afterPath="$PROJECT_DIR$/WarehouseMobileApp/app/app.module.js" />
-      <change beforePath="$PROJECT_DIR$/WarehouseMobileApp/app/app.module.ngfactory.d.ts" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/WarehouseMobileApp/app/app.module.ts" afterPath="$PROJECT_DIR$/WarehouseMobileApp/app/app.module.ts" />
-      <change beforePath="$PROJECT_DIR$/WarehouseMobileApp/app/app.routing.js" afterPath="$PROJECT_DIR$/WarehouseMobileApp/app/app.routing.js" />
-      <change beforePath="$PROJECT_DIR$/WarehouseMobileApp/app/app.routing.ts" afterPath="$PROJECT_DIR$/WarehouseMobileApp/app/app.routing.ts" />
-      <change beforePath="$PROJECT_DIR$/WarehouseMobileApp/app/item/item-detail.component.html" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/WarehouseMobileApp/app/item/item-detail.component.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/WarehouseMobileApp/app/item/item-detail.component.ts" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/WarehouseMobileApp/app/item/item.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/WarehouseMobileApp/app/item/item.service.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/WarehouseMobileApp/app/item/item.service.ts" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/WarehouseMobileApp/app/item/item.ts" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/WarehouseMobileApp/app/item/items.component.html" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/WarehouseMobileApp/app/item/items.component.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/WarehouseMobileApp/app/item/items.component.ts" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/WarehouseMobileApp/app/main.aot.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/WarehouseMobileApp/app/main.aot.ts" afterPath="" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/WarehouseMobileApp/app/App_Resources/Android/drawable-hdpi/login_logo.png" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/WarehouseMobileApp/app/App_Resources/Android/drawable-ldpi/login_logo.png" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/WarehouseMobileApp/app/App_Resources/Android/drawable-mdpi/login_logo.png" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/WarehouseMobileApp/app/App_Resources/Android/drawable-xhdpi/login_logo.png" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/WarehouseMobileApp/app/App_Resources/Android/drawable-xxhdpi/login_logo.png" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/WarehouseMobileApp/app/App_Resources/Android/drawable-xxxhdpi/login_logo.png" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/WarehouseMobileApp/app/App_Resources/iOS/login_logo.png" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/WarehouseMobileApp/app/App_Resources/iOS/login_logo@2x.png" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/WarehouseMobileApp/app/App_Resources/iOS/login_logo@3x.png" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/WarehouseMobileApp/app/pages/login/login-common.css" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change beforePath="$PROJECT_DIR$/WarehouseMobileApp/app/App_Resources/Android/drawable-nodpi/splash_screen.xml" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/WarehouseMobileApp/app/pages/login/login.component.js" afterPath="$PROJECT_DIR$/WarehouseMobileApp/app/pages/login/login.component.js" />
+      <change beforePath="$PROJECT_DIR$/WarehouseMobileApp/app/pages/login/login.component.ts" afterPath="$PROJECT_DIR$/WarehouseMobileApp/app/pages/login/login.component.ts" />
+      <change beforePath="$PROJECT_DIR$/WarehouseMobileApp/app/pages/login/login.html" afterPath="$PROJECT_DIR$/WarehouseMobileApp/app/pages/login/login.html" />
+      <change beforePath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/.gradle/4.1/fileContent/fileContent.lock" afterPath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/.gradle/4.1/fileContent/fileContent.lock" />
+      <change beforePath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/.gradle/4.1/fileHashes/fileHashes.bin" afterPath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/.gradle/4.1/fileHashes/fileHashes.bin" />
+      <change beforePath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/.gradle/4.1/fileHashes/fileHashes.lock" afterPath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/.gradle/4.1/fileHashes/fileHashes.lock" />
+      <change beforePath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/.gradle/4.1/taskHistory/fileSnapshots.bin" afterPath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/.gradle/4.1/taskHistory/fileSnapshots.bin" />
+      <change beforePath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/.gradle/4.1/taskHistory/taskHistory.bin" afterPath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/.gradle/4.1/taskHistory/taskHistory.bin" />
+      <change beforePath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/.gradle/4.1/taskHistory/taskHistory.lock" afterPath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/.gradle/4.1/taskHistory/taskHistory.lock" />
       <change beforePath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/.nsprepareinfo" afterPath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/.nsprepareinfo" />
-      <change beforePath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/src/main/assets/app/app.component.html" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/src/main/assets/app/app.component.js" afterPath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/src/main/assets/app/app.component.js" />
-      <change beforePath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/src/main/assets/app/app.component.ts" afterPath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/src/main/assets/app/app.component.ts" />
-      <change beforePath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/src/main/assets/app/app.css" afterPath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/src/main/assets/app/app.css" />
-      <change beforePath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/src/main/assets/app/app.module.js" afterPath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/src/main/assets/app/app.module.js" />
-      <change beforePath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/src/main/assets/app/app.module.ngfactory.d.ts" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/src/main/assets/app/app.module.ts" afterPath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/src/main/assets/app/app.module.ts" />
-      <change beforePath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/src/main/assets/app/app.routing.js" afterPath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/src/main/assets/app/app.routing.js" />
-      <change beforePath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/src/main/assets/app/app.routing.ts" afterPath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/src/main/assets/app/app.routing.ts" />
-      <change beforePath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/src/main/assets/app/item/item-detail.component.html" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/src/main/assets/app/item/item-detail.component.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/src/main/assets/app/item/item-detail.component.ts" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/src/main/assets/app/item/item.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/src/main/assets/app/item/item.service.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/src/main/assets/app/item/item.service.ts" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/src/main/assets/app/item/item.ts" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/src/main/assets/app/item/items.component.html" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/src/main/assets/app/item/items.component.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/src/main/assets/app/item/items.component.ts" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/src/main/assets/app/main.aot.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/src/main/assets/app/main.aot.ts" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/build/generated/source/r/debug/android/support/design/R.java" afterPath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/build/generated/source/r/debug/android/support/design/R.java" />
+      <change beforePath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/build/generated/source/r/debug/android/support/v7/appcompat/R.java" afterPath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/build/generated/source/r/debug/android/support/v7/appcompat/R.java" />
+      <change beforePath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/build/generated/source/r/debug/com/tns/android_runtime/R.java" afterPath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/build/generated/source/r/debug/com/tns/android_runtime/R.java" />
+      <change beforePath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/build/generated/source/r/debug/org/nativescript/WarehouseMobileApp/R.java" afterPath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/build/generated/source/r/debug/org/nativescript/WarehouseMobileApp/R.java" />
+      <change beforePath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/build/intermediates/assets/debug/app/app.component.html" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/build/intermediates/assets/debug/app/app.component.js" afterPath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/build/intermediates/assets/debug/app/app.component.js" />
+      <change beforePath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/build/intermediates/assets/debug/app/app.component.ts" afterPath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/build/intermediates/assets/debug/app/app.component.ts" />
+      <change beforePath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/build/intermediates/assets/debug/app/app.css" afterPath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/build/intermediates/assets/debug/app/app.css" />
+      <change beforePath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/build/intermediates/assets/debug/app/app.module.js" afterPath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/build/intermediates/assets/debug/app/app.module.js" />
+      <change beforePath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/build/intermediates/assets/debug/app/app.module.ngfactory.d.ts" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/build/intermediates/assets/debug/app/app.module.ts" afterPath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/build/intermediates/assets/debug/app/app.module.ts" />
+      <change beforePath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/build/intermediates/assets/debug/app/app.routing.js" afterPath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/build/intermediates/assets/debug/app/app.routing.js" />
+      <change beforePath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/build/intermediates/assets/debug/app/app.routing.ts" afterPath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/build/intermediates/assets/debug/app/app.routing.ts" />
+      <change beforePath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/build/intermediates/assets/debug/app/item/item-detail.component.html" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/build/intermediates/assets/debug/app/item/item-detail.component.js" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/build/intermediates/assets/debug/app/item/item-detail.component.ts" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/build/intermediates/assets/debug/app/item/item.js" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/build/intermediates/assets/debug/app/item/item.service.js" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/build/intermediates/assets/debug/app/item/item.service.ts" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/build/intermediates/assets/debug/app/item/item.ts" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/build/intermediates/assets/debug/app/item/items.component.html" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/build/intermediates/assets/debug/app/item/items.component.js" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/build/intermediates/assets/debug/app/item/items.component.ts" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/build/intermediates/assets/debug/app/main.aot.js" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/build/intermediates/assets/debug/app/main.aot.ts" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/build/intermediates/assets/debug/metadata/treeNodeStream.dat" afterPath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/build/intermediates/assets/debug/metadata/treeNodeStream.dat" />
+      <change beforePath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/build/intermediates/assets/debug/metadata/treeStringsStream.dat" afterPath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/build/intermediates/assets/debug/metadata/treeStringsStream.dat" />
+      <change beforePath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/build/intermediates/assets/debug/metadata/treeValueStream.dat" afterPath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/build/intermediates/assets/debug/metadata/treeValueStream.dat" />
+      <change beforePath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/build/intermediates/blame/res/debug/single/drawable-hdpi.json" afterPath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/build/intermediates/blame/res/debug/single/drawable-hdpi.json" />
+      <change beforePath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/build/intermediates/blame/res/debug/single/drawable-ldpi.json" afterPath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/build/intermediates/blame/res/debug/single/drawable-ldpi.json" />
+      <change beforePath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/build/intermediates/blame/res/debug/single/drawable-mdpi.json" afterPath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/build/intermediates/blame/res/debug/single/drawable-mdpi.json" />
+      <change beforePath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/build/intermediates/blame/res/debug/single/drawable-xhdpi.json" afterPath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/build/intermediates/blame/res/debug/single/drawable-xhdpi.json" />
+      <change beforePath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/build/intermediates/blame/res/debug/single/drawable-xxhdpi.json" afterPath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/build/intermediates/blame/res/debug/single/drawable-xxhdpi.json" />
+      <change beforePath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/build/intermediates/blame/res/debug/single/drawable-xxxhdpi.json" afterPath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/build/intermediates/blame/res/debug/single/drawable-xxxhdpi.json" />
+      <change beforePath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/build/intermediates/classes/debug/android/support/design/R$drawable.class" afterPath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/build/intermediates/classes/debug/android/support/design/R$drawable.class" />
+      <change beforePath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/build/intermediates/classes/debug/android/support/v7/appcompat/R$drawable.class" afterPath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/build/intermediates/classes/debug/android/support/v7/appcompat/R$drawable.class" />
+      <change beforePath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/build/intermediates/classes/debug/com/tns/android_runtime/R$drawable.class" afterPath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/build/intermediates/classes/debug/com/tns/android_runtime/R$drawable.class" />
+      <change beforePath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/build/intermediates/classes/debug/org/nativescript/WarehouseMobileApp/R$drawable.class" afterPath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/build/intermediates/classes/debug/org/nativescript/WarehouseMobileApp/R$drawable.class" />
+      <change beforePath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/build/intermediates/classes/debug/org/nativescript/WarehouseMobileApp/R$id.class" afterPath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/build/intermediates/classes/debug/org/nativescript/WarehouseMobileApp/R$id.class" />
+      <change beforePath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/build/intermediates/classes/debug/org/nativescript/WarehouseMobileApp/R$integer.class" afterPath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/build/intermediates/classes/debug/org/nativescript/WarehouseMobileApp/R$integer.class" />
+      <change beforePath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/build/intermediates/classes/debug/org/nativescript/WarehouseMobileApp/R$layout.class" afterPath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/build/intermediates/classes/debug/org/nativescript/WarehouseMobileApp/R$layout.class" />
+      <change beforePath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/build/intermediates/classes/debug/org/nativescript/WarehouseMobileApp/R$string.class" afterPath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/build/intermediates/classes/debug/org/nativescript/WarehouseMobileApp/R$string.class" />
+      <change beforePath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/build/intermediates/classes/debug/org/nativescript/WarehouseMobileApp/R$style.class" afterPath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/build/intermediates/classes/debug/org/nativescript/WarehouseMobileApp/R$style.class" />
+      <change beforePath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/build/intermediates/classes/debug/org/nativescript/WarehouseMobileApp/R$styleable.class" afterPath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/build/intermediates/classes/debug/org/nativescript/WarehouseMobileApp/R$styleable.class" />
+      <change beforePath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/build/intermediates/incremental/mergeDebugAssets/merger.xml" afterPath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/build/intermediates/incremental/mergeDebugAssets/merger.xml" />
+      <change beforePath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/build/intermediates/incremental/mergeDebugResources/compile-file-map.properties" afterPath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/build/intermediates/incremental/mergeDebugResources/compile-file-map.properties" />
+      <change beforePath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-af/values-af.xml" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-am/values-am.xml" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-ar/values-ar.xml" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-az/values-az.xml" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-b+sr+Latn/values-b+sr+Latn.xml" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-be/values-be.xml" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-bg/values-bg.xml" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-bn/values-bn.xml" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-bs/values-bs.xml" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-ca/values-ca.xml" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-cs/values-cs.xml" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-da/values-da.xml" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-de/values-de.xml" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-el/values-el.xml" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-en-rAU/values-en-rAU.xml" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-en-rGB/values-en-rGB.xml" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-en-rIN/values-en-rIN.xml" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-es-rUS/values-es-rUS.xml" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-es/values-es.xml" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-et/values-et.xml" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-eu/values-eu.xml" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-fa/values-fa.xml" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-fi/values-fi.xml" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-fr-rCA/values-fr-rCA.xml" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-fr/values-fr.xml" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-gl/values-gl.xml" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-gu/values-gu.xml" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-h720dp-v13/values-h720dp-v13.xml" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-hdpi-v4/values-hdpi-v4.xml" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-hi/values-hi.xml" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-hr/values-hr.xml" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-hu/values-hu.xml" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-hy/values-hy.xml" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-in/values-in.xml" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-is/values-is.xml" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-it/values-it.xml" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-iw/values-iw.xml" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-ja/values-ja.xml" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-ka/values-ka.xml" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-kk/values-kk.xml" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-km/values-km.xml" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-kn/values-kn.xml" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-ko/values-ko.xml" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-ky/values-ky.xml" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-land/values-land.xml" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-large-v4/values-large-v4.xml" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-ldltr-v21/values-ldltr-v21.xml" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-lo/values-lo.xml" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-lt/values-lt.xml" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-lv/values-lv.xml" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-mk/values-mk.xml" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-ml/values-ml.xml" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-mn/values-mn.xml" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-mr/values-mr.xml" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-ms/values-ms.xml" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-my/values-my.xml" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-nb/values-nb.xml" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-ne/values-ne.xml" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-night-v8/values-night-v8.xml" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-nl/values-nl.xml" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-pa/values-pa.xml" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-pl/values-pl.xml" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-port/values-port.xml" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-pt-rBR/values-pt-rBR.xml" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-pt-rPT/values-pt-rPT.xml" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-pt/values-pt.xml" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-ro/values-ro.xml" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-ru/values-ru.xml" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-si/values-si.xml" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-sk/values-sk.xml" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-sl/values-sl.xml" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-sq/values-sq.xml" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-sr/values-sr.xml" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-sv/values-sv.xml" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-sw/values-sw.xml" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-sw600dp-v13/values-sw600dp-v13.xml" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-ta/values-ta.xml" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-te/values-te.xml" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-th/values-th.xml" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-tl/values-tl.xml" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-tr/values-tr.xml" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-uk/values-uk.xml" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-ur/values-ur.xml" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-uz/values-uz.xml" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-v11/values-v11.xml" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-v12/values-v12.xml" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-v13/values-v13.xml" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-v14/values-v14.xml" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-v16/values-v16.xml" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-v17/values-v17.xml" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-v18/values-v18.xml" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-v21/values-v21.xml" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-v22/values-v22.xml" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-v23/values-v23.xml" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-v24/values-v24.xml" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-v25/values-v25.xml" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-vi/values-vi.xml" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-xlarge-v4/values-xlarge-v4.xml" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-zh-rCN/values-zh-rCN.xml" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-zh-rHK/values-zh-rHK.xml" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-zh-rTW/values-zh-rTW.xml" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-zu/values-zu.xml" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values/values.xml" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/build/intermediates/incremental/mergeDebugResources/merger.xml" afterPath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/build/intermediates/incremental/mergeDebugResources/merger.xml" />
+      <change beforePath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/build/intermediates/incremental/packageDebug/dex-renamer-state.txt" afterPath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/build/intermediates/incremental/packageDebug/dex-renamer-state.txt" />
+      <change beforePath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/build/intermediates/incremental/packageDebug/file-input-save-data.txt" afterPath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/build/intermediates/incremental/packageDebug/file-input-save-data.txt" />
+      <change beforePath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/build/intermediates/incremental/packageDebug/zip-cache/epCz8Hv3N+v6mC1FwWqBPNWntv0=" afterPath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/build/intermediates/incremental/packageDebug/zip-cache/epCz8Hv3N+v6mC1FwWqBPNWntv0=" />
+      <change beforePath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/build/intermediates/pre-dexed/debug/debug_543b68d279be0f0897daa9425d0859cd5fb04e9f.jar" afterPath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/build/intermediates/pre-dexed/debug/debug_543b68d279be0f0897daa9425d0859cd5fb04e9f.jar" />
+      <change beforePath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/build/intermediates/res/resources-debug.ap_" afterPath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/build/intermediates/res/resources-debug.ap_" />
+      <change beforePath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/build/intermediates/symbols/debug/R.txt" afterPath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/build/intermediates/symbols/debug/R.txt" />
+      <change beforePath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/build/intermediates/transforms/dex/debug/folders/1000/1f/main/classes.dex" afterPath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/build/intermediates/transforms/dex/debug/folders/1000/1f/main/classes.dex" />
+      <change beforePath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/build/outputs/apk/.nsbuildinfo" afterPath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/build/outputs/apk/.nsbuildinfo" />
+      <change beforePath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/build/outputs/apk/WarehouseMobileApp-debug.apk" afterPath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/build/outputs/apk/WarehouseMobileApp-debug.apk" />
+      <change beforePath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/metadata/output/assets/metadata/treeNodeStream.dat" afterPath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/metadata/output/assets/metadata/treeNodeStream.dat" />
+      <change beforePath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/metadata/output/assets/metadata/treeStringsStream.dat" afterPath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/metadata/output/assets/metadata/treeStringsStream.dat" />
+      <change beforePath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/metadata/output/assets/metadata/treeValueStream.dat" afterPath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/metadata/output/assets/metadata/treeValueStream.dat" />
+      <change beforePath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/src/main/assets/app/pages/login/login.component.js" afterPath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/src/main/assets/app/pages/login/login.component.js" />
+      <change beforePath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/src/main/assets/app/pages/login/login.component.ts" afterPath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/src/main/assets/app/pages/login/login.component.ts" />
+      <change beforePath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/src/main/assets/app/pages/login/login.html" afterPath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/src/main/assets/app/pages/login/login.html" />
+      <change beforePath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/src/main/assets/metadata/treeNodeStream.dat" afterPath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/src/main/assets/metadata/treeNodeStream.dat" />
+      <change beforePath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/src/main/assets/metadata/treeStringsStream.dat" afterPath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/src/main/assets/metadata/treeStringsStream.dat" />
+      <change beforePath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/src/main/assets/metadata/treeValueStream.dat" afterPath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/src/main/assets/metadata/treeValueStream.dat" />
+      <change beforePath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/build-tools/android-static-binding-generator/bindings.txt" afterPath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/build-tools/android-static-binding-generator/bindings.txt" />
+      <change beforePath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/build-tools/android-static-binding-generator/jsFilesParameters.txt" afterPath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/build-tools/android-static-binding-generator/jsFilesParameters.txt" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -62,84 +207,44 @@
       <file leaf-file-name="main.ts" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/WarehouseMobileApp/app/main.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="68">
-              <caret line="6" column="26" lean-forward="false" selection-start-line="6" selection-start-column="26" selection-end-line="6" selection-end-column="26" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="app.routing.ts" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/WarehouseMobileApp/app/app.routing.ts">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="102">
-              <caret line="6" column="38" lean-forward="false" selection-start-line="6" selection-start-column="38" selection-end-line="6" selection-end-column="38" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="app.module.ts" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/WarehouseMobileApp/app/app.module.ts">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="442">
-              <caret line="26" column="2" lean-forward="false" selection-start-line="26" selection-start-column="2" selection-end-line="26" selection-end-column="2" />
-              <folding>
-                <element signature="e#0#41#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Info.plist" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/WarehouseMobileApp/app/App_Resources/iOS/Info.plist">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="app.component.ts" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/WarehouseMobileApp/app/app.component.ts">
-          <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="136">
-              <caret line="8" column="0" lean-forward="false" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
+              <caret line="10" column="0" lean-forward="false" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="login.component.ts" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/WarehouseMobileApp/app/pages/login/login.component.ts">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="85">
-              <caret line="5" column="43" lean-forward="false" selection-start-line="5" selection-start-column="43" selection-end-line="5" selection-end-column="43" />
-              <folding>
-                <element signature="e#0#48#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="login.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="login.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/WarehouseMobileApp/app/pages/login/login.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="37" lean-forward="true" selection-start-line="0" selection-start-column="37" selection-end-line="0" selection-end-column="37" />
+            <state relative-caret-position="17">
+              <caret line="1" column="77" lean-forward="false" selection-start-line="1" selection-start-column="77" selection-end-line="1" selection-end-column="77" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="app.css" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/WarehouseMobileApp/app/app.css">
+      <file leaf-file-name="login-common.css" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/WarehouseMobileApp/app/pages/login/login-common.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="187">
-              <caret line="11" column="0" lean-forward="false" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
+            <state relative-caret-position="255">
+              <caret line="15" column="1" lean-forward="false" selection-start-line="15" selection-start-column="1" selection-end-line="15" selection-end-column="1" />
               <folding />
             </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="logo.png" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/WarehouseMobileApp/app/App_Resources/Android/drawable-xxxhdpi/logo.png">
+          <provider selected="true" editor-type-id="images">
+            <state />
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="logo.png" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/WarehouseMobileApp/app/App_Resources/Android/drawable-mdpi/logo.png">
+          <provider selected="true" editor-type-id="images">
+            <state />
           </provider>
         </entry>
       </file>
@@ -148,9 +253,9 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="CSS File" />
         <option value="TypeScript File" />
         <option value="HTML File" />
+        <option value="CSS File" />
       </list>
     </option>
   </component>
@@ -169,11 +274,13 @@
         <option value="$PROJECT_DIR$/WarehouseMobileApp/app/platform.ios.css" />
         <option value="$PROJECT_DIR$/WarehouseMobileApp/app/item/item.service.ts" />
         <option value="$PROJECT_DIR$/WarehouseMobileApp/app/app.component.ts" />
-        <option value="$PROJECT_DIR$/WarehouseMobileApp/app/pages/login/login.component.ts" />
         <option value="$PROJECT_DIR$/WarehouseMobileApp/app/app.routing.ts" />
         <option value="$PROJECT_DIR$/WarehouseMobileApp/app/app.module.ts" />
         <option value="$PROJECT_DIR$/WarehouseMobileApp/app/app.css" />
+        <option value="$PROJECT_DIR$/WarehouseMobileApp/app/pages/login/login.component.ts" />
+        <option value="$PROJECT_DIR$/WarehouseMobileApp/app/main.ts" />
         <option value="$PROJECT_DIR$/WarehouseMobileApp/app/pages/login/login.html" />
+        <option value="$PROJECT_DIR$/WarehouseMobileApp/app/pages/login/login-common.css" />
       </list>
     </option>
   </component>
@@ -184,8 +291,8 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-7" />
-    <option name="width" value="1185" />
+    <option name="x" value="1164" />
+    <option name="width" value="763" />
     <option name="height" value="1047" />
   </component>
   <component name="ProjectView">
@@ -203,8 +310,10 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="AndroidView" />
       <pane id="PackagesPane" />
+      <pane id="AndroidView" />
+      <pane id="Scratches" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -235,6 +344,14 @@
               <item name="Warehouse_mobile" type="462c0819:PsiDirectoryNode" />
               <item name="WarehouseMobileApp" type="462c0819:PsiDirectoryNode" />
               <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="App_Resources" type="462c0819:PsiDirectoryNode" />
+              <item name="iOS" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Warehouse_mobile" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Warehouse_mobile" type="462c0819:PsiDirectoryNode" />
+              <item name="WarehouseMobileApp" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
               <item name="pages" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -249,8 +366,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
-      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -260,6 +375,15 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../Groceries" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\nativescript-projects\Warehouse_mobile\WarehouseMobileApp\app\App_Resources\iOS" />
+      <recent name="D:\nativescript-projects\Warehouse_mobile\WarehouseMobileApp\app\App_Resources\Android\drawable-xxxhdpi" />
+      <recent name="D:\nativescript-projects\Warehouse_mobile\WarehouseMobileApp\app\App_Resources\Android\drawable-xxhdpi" />
+      <recent name="D:\nativescript-projects\Warehouse_mobile\WarehouseMobileApp\app\App_Resources\Android\drawable-xhdpi" />
+      <recent name="D:\nativescript-projects\Warehouse_mobile\WarehouseMobileApp\app\App_Resources\Android\drawable-mdpi" />
+    </key>
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -370,12 +494,14 @@
       <option name="presentableId" value="Default" />
       <updated>1519165121534</updated>
       <workItem from="1519165122762" duration="85000" />
-      <workItem from="1519656265644" duration="2975000" />
+      <workItem from="1519656265644" duration="3542000" />
+      <workItem from="1519924895175" duration="2287000" />
+      <workItem from="1519929628340" duration="4029000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="3060000" />
+    <option name="totallyTimeSpent" value="9943000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -396,7 +522,6 @@
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.14114584" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32979852" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -408,6 +533,7 @@
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32979852" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
     <layout-to-restore>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -443,24 +569,17 @@
     <option name="version" value="1" />
     <option name="exactExcludedFiles">
       <list>
-        <option value="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/src/main/assets/app/main.js" />
-        <option value="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/src/main/assets/app/app.module.js" />
-        <option value="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/src/main/assets/app/app.component.js" />
-        <option value="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/src/main/assets/app/app.routing.js" />
         <option value="$PROJECT_DIR$/WarehouseMobileApp/app/main.js" />
         <option value="$PROJECT_DIR$/WarehouseMobileApp/app/app.module.js" />
         <option value="$PROJECT_DIR$/WarehouseMobileApp/app/app.component.js" />
         <option value="$PROJECT_DIR$/WarehouseMobileApp/app/app.routing.js" />
         <option value="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/build/intermediates/assets/debug/app/app.routing.js" />
-        <option value="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/build/intermediates/assets/debug/app/main.aot.js" />
         <option value="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/build/intermediates/assets/debug/app/app.component.js" />
         <option value="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/build/intermediates/assets/debug/app/app.module.js" />
         <option value="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/build/intermediates/assets/debug/app/main.js" />
-        <option value="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/build/intermediates/assets/debug/app/item/item-detail.component.js" />
-        <option value="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/build/intermediates/assets/debug/app/item/item.js" />
-        <option value="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/build/intermediates/assets/debug/app/item/items.component.js" />
-        <option value="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/build/intermediates/assets/debug/app/item/item.service.js" />
         <option value="$PROJECT_DIR$/WarehouseMobileApp/app/pages/login/login.component.js" />
+        <option value="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/src/main/assets/app/app.routing.js" />
+        <option value="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/src/main/assets/app/app.module.js" />
       </list>
     </option>
   </component>
@@ -478,7 +597,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="17">
           <caret line="1" column="21" lean-forward="false" selection-start-line="1" selection-start-column="21" selection-end-line="1" selection-end-column="21" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -494,7 +612,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -503,7 +620,7 @@
         <state relative-caret-position="306">
           <caret line="25" column="21" lean-forward="true" selection-start-line="25" selection-start-column="21" selection-end-line="25" selection-end-column="21" />
           <folding>
-            <element signature="e#0#41#0" expanded="true" />
+            <element signature="e#0#41#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -513,7 +630,6 @@
         <state split_layout="SPLIT">
           <first_editor relative-caret-position="0">
             <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-            <folding />
           </first_editor>
           <second_editor />
         </state>
@@ -523,31 +639,15 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="17">
           <caret line="1" column="21" lean-forward="false" selection-start-line="1" selection-start-column="21" selection-end-line="1" selection-end-column="21" />
-          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/WarehouseMobileApp/app/app.module.ngfactory.d.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="3" column="37" lean-forward="false" selection-start-line="3" selection-start-column="37" selection-end-line="3" selection-end-column="37" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/WarehouseMobileApp/app/main.aot.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="106" lean-forward="false" selection-start-line="0" selection-start-column="106" selection-end-line="0" selection-end-column="106" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/WarehouseMobileApp/app/app.module.ngfactory.d.ts" />
+    <entry file="file://$PROJECT_DIR$/WarehouseMobileApp/app/main.aot.ts" />
     <entry file="file://$PROJECT_DIR$/WarehouseMobileApp/app/platform.ios.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -556,7 +656,6 @@
         <state split_layout="SPLIT">
           <first_editor relative-caret-position="0">
             <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-            <folding />
           </first_editor>
           <second_editor />
         </state>
@@ -566,7 +665,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-2369">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -575,7 +673,6 @@
         <state split_layout="SPLIT">
           <first_editor relative-caret-position="0">
             <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-            <folding />
           </first_editor>
           <second_editor />
         </state>
@@ -585,23 +682,14 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/WarehouseMobileApp/app/item/item.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="5" column="0" lean-forward="false" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/WarehouseMobileApp/app/item/item.ts" />
     <entry file="file://$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/build/intermediates/assets/debug/app/tns_modules/nativescript-theme-core/scss/skins/purple/_action-bar.scss">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="1" lean-forward="false" selection-start-line="0" selection-start-column="1" selection-end-line="0" selection-end-column="1" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -609,66 +697,15 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="306">
           <caret line="35" column="12" lean-forward="false" selection-start-line="35" selection-start-column="12" selection-end-line="35" selection-end-column="12" />
-          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/WarehouseMobileApp/app/item/item-detail.component.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="20" column="20" lean-forward="false" selection-start-line="20" selection-start-column="20" selection-end-line="20" selection-end-column="20" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/WarehouseMobileApp/app/item/item-detail.component.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="8" column="0" lean-forward="true" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/WarehouseMobileApp/app/item/items.component.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/WarehouseMobileApp/app/item/item.service.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="578">
-          <caret line="34" column="59" lean-forward="false" selection-start-line="34" selection-start-column="59" selection-end-line="34" selection-end-column="59" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/WarehouseMobileApp/app/item/items.component.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/WarehouseMobileApp/app/app.component.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="1" column="0" lean-forward="false" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="41" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/WarehouseMobileApp/app/main.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="6" column="26" lean-forward="false" selection-start-line="6" selection-start-column="26" selection-end-line="6" selection-end-column="26" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/WarehouseMobileApp/app/item/item-detail.component.ts" />
+    <entry file="file://$PROJECT_DIR$/WarehouseMobileApp/app/item/item-detail.component.html" />
+    <entry file="file://$PROJECT_DIR$/WarehouseMobileApp/app/item/items.component.html" />
+    <entry file="file://$PROJECT_DIR$/WarehouseMobileApp/app/item/item.service.ts" />
+    <entry file="file://$PROJECT_DIR$/WarehouseMobileApp/app/item/items.component.ts" />
+    <entry file="file://$PROJECT_DIR$/WarehouseMobileApp/app/app.component.html" />
     <entry file="file://$PROJECT_DIR$/WarehouseMobileApp/app/app.component.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="136">
@@ -685,17 +722,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/WarehouseMobileApp/app/App_Resources/Android/drawable-hdpi/background.png">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/WarehouseMobileApp/app/app.module.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="442">
+        <state relative-caret-position="374">
           <caret line="26" column="2" lean-forward="false" selection-start-line="26" selection-start-column="2" selection-end-line="26" selection-end-column="2" />
           <folding>
-            <element signature="e#0#41#0" expanded="true" />
+            <element signature="e#0#41#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -717,7 +749,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -729,20 +760,127 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/.idea/workspace.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/WarehouseMobileApp/app/images/skautIS_Logo.jpg" />
     <entry file="file://$PROJECT_DIR$/WarehouseMobileApp/app/pages/login/login.component.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="5" column="43" lean-forward="false" selection-start-line="5" selection-start-column="43" selection-end-line="5" selection-end-column="43" />
+        <state relative-caret-position="238">
+          <caret line="15" column="1" lean-forward="false" selection-start-line="15" selection-start-column="1" selection-end-line="15" selection-end-column="1" />
           <folding>
-            <element signature="e#0#48#0" expanded="true" />
+            <element signature="e#0#48#0" expanded="false" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/WarehouseMobileApp/app/App_Resources/Android/drawable-hdpi/logo.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/WarehouseMobileApp/app/App_Resources/Android/drawable-hdpi/background.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/WarehouseMobileApp/app/App_Resources/Android/drawable-hdpi/icon.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/WarehouseMobileApp/app/App_Resources/Android/drawable-mdpi/icon.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/WarehouseMobileApp/app/App_Resources/Android/drawable-mdpi/logo.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/WarehouseMobileApp/app/App_Resources/Android/drawable-xxxhdpi/logo.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/WarehouseMobileApp/app/App_Resources/Android/drawable-nodpi/splash_screen.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/WarehouseMobileApp/app/App_Resources/Android/drawable-ldpi/login_logo.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/WarehouseMobileApp/app/App_Resources/Android/drawable-mdpi/login_logo.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/WarehouseMobileApp/app/App_Resources/Android/drawable-xhdpi/login_logo.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/WarehouseMobileApp/app/App_Resources/Android/drawable-xxhdpi/login_logo.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/WarehouseMobileApp/app/App_Resources/Android/drawable-hdpi/login_logo.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/WarehouseMobileApp/app/App_Resources/Android/drawable-xxxhdpi/login_logo.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/WarehouseMobileApp/app/App_Resources/iOS/login_logo@3x.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/WarehouseMobileApp/app/App_Resources/iOS/login_logo@2x.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/WarehouseMobileApp/app/App_Resources/iOS/login_logo.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/WarehouseMobileApp/app/main.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="10" column="0" lean-forward="false" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/WarehouseMobileApp/app/pages/login/login.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="37" lean-forward="true" selection-start-line="0" selection-start-column="37" selection-end-line="0" selection-end-column="37" />
+        <state relative-caret-position="17">
+          <caret line="1" column="77" lean-forward="false" selection-start-line="1" selection-start-column="77" selection-end-line="1" selection-end-column="77" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/WarehouseMobileApp/app/pages/login/login-common.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="15" column="1" lean-forward="false" selection-start-line="15" selection-start-column="1" selection-end-line="15" selection-end-column="1" />
           <folding />
         </state>
       </provider>

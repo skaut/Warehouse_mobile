@@ -1,5 +1,9 @@
 [
     {
+        "merged": "D:\\nativescript-projects\\Warehouse_mobile\\WarehouseMobileApp\\platforms\\android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi\\login_logo.png",
+        "source": "D:\\nativescript-projects\\Warehouse_mobile\\WarehouseMobileApp\\platforms\\android\\app\\src\\main\\res\\drawable-hdpi\\login_logo.png"
+    },
+    {
         "merged": "D:\\nativescript-projects\\Warehouse_mobile\\WarehouseMobileApp\\platforms\\android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi\\icon.png",
         "source": "D:\\nativescript-projects\\Warehouse_mobile\\WarehouseMobileApp\\platforms\\android\\app\\src\\main\\res\\drawable-hdpi\\icon.png"
     },

@@ -1,1 +1,7 @@
-<Button text="Hello World!"></Button>
+<StackLayout>
+    <Image src="res://login_logo" stretch="none" horizontalAlignment="center"></Image>
+    <TextField #email hint="Uživatelské jméno (skautIS)" keyboardType="email" [(ngModel)]="user.email"
+               autocorrect="false" autocapitalizationType="none"></TextField>
+    <TextField #password hint="Heslo" secure="true" [(ngModel)]="user.password"></TextField>
+    <Button text="Přihlásit se"></Button>
+</StackLayout>

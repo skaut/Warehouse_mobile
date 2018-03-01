@@ -1,0 +1,16 @@
+Image {
+    margin-top: 40;
+    margin-bottom: 40;
+}
+TextField {
+    margin-top: 10;
+    margin-left: 30;
+    margin-right: 30;
+}
+Button {
+    margin-top: 30;
+    margin-left: 30;
+    margin-right: 30;
+    background-color: royalblue;
+    color: white;
+}

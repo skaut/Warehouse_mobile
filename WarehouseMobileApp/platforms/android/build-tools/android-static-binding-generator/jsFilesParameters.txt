@@ -1,12 +1,8 @@
 D:\nativescript-projects\Warehouse_mobile\WarehouseMobileApp\platforms\android\app\src\main\assets\app\app.component.js
 D:\nativescript-projects\Warehouse_mobile\WarehouseMobileApp\platforms\android\app\src\main\assets\app\app.module.js
 D:\nativescript-projects\Warehouse_mobile\WarehouseMobileApp\platforms\android\app\src\main\assets\app\app.routing.js
-D:\nativescript-projects\Warehouse_mobile\WarehouseMobileApp\platforms\android\app\src\main\assets\app\main.aot.js
 D:\nativescript-projects\Warehouse_mobile\WarehouseMobileApp\platforms\android\app\src\main\assets\app\main.js
-D:\nativescript-projects\Warehouse_mobile\WarehouseMobileApp\platforms\android\app\src\main\assets\app\item\item-detail.component.js
-D:\nativescript-projects\Warehouse_mobile\WarehouseMobileApp\platforms\android\app\src\main\assets\app\item\item.js
-D:\nativescript-projects\Warehouse_mobile\WarehouseMobileApp\platforms\android\app\src\main\assets\app\item\item.service.js
-D:\nativescript-projects\Warehouse_mobile\WarehouseMobileApp\platforms\android\app\src\main\assets\app\item\items.component.js
+D:\nativescript-projects\Warehouse_mobile\WarehouseMobileApp\platforms\android\app\src\main\assets\app\pages\login\login.component.js
 D:\nativescript-projects\Warehouse_mobile\WarehouseMobileApp\platforms\android\app\src\main\assets\app\tns_modules\nativescript-angular\common.js
 D:\nativescript-projects\Warehouse_mobile\WarehouseMobileApp\platforms\android\app\src\main\assets\app\tns_modules\nativescript-angular\dom-adapter.js
 D:\nativescript-projects\Warehouse_mobile\WarehouseMobileApp\platforms\android\app\src\main\assets\app\tns_modules\nativescript-angular\element-registry.js

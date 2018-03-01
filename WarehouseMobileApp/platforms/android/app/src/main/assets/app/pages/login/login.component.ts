@@ -3,7 +3,8 @@ import { Page } from "ui/page";
 
 @Component({
     selector: "login-component",
-    templateUrl: "./pages/login/login.html"
+    templateUrl: "./pages/login/login.html",
+    styleUrls: ["pages/login/login-common.css"]
 })
 
 export class LoginComponent implements OnInit {
