@@ -1,0 +1,18 @@
+# IntelliJ
+.idea
+
+# Logs and databases #
+*.log
+*.sql
+*.sqlite
+
+# Nativescript
+*.js.map
+app/**/*.js
+hooks/
+lib/
+node_modules/
+platforms/
+tmp/
+typings/
+report/

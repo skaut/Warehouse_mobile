@@ -1,9 +1,9 @@
 {
-	"time": "Sat Mar 03 2018 17:31:38 GMT+0100 (Střední Evropa (běžný čas))",
+	"time": "Sun Mar 11 2018 12:52:40 GMT+0100 (Střední Evropa (běžný čas))",
 	"nativePlatformStatus": "3",
 	"bundle": false,
 	"release": false,
 	"changesRequireBuild": false,
-	"projectFileHash": "6d6234c137a017e8778b8a2ef875cd5f57ed0224d3d7ae3cf60456e837cb8f59",
-	"changesRequireBuildTime": "Thu Mar 01 2018 20:19:10 GMT+0100 (Střední Evropa (běžný čas))"
+	"projectFileHash": "11b60293d3cb413d0ce6b16c0e74758ba338c63e45abbc4b65535c1465fb1663",
+	"changesRequireBuildTime": "Sun Mar 04 2018 13:34:00 GMT+0100 (Střední Evropa (běžný čas))"
 }

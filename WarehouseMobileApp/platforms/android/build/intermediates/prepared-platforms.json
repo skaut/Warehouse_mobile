@@ -10,12 +10,14 @@
     "@angular/router": true,
     "nativescript-angular": true,
     "nativescript-theme-core": true,
+    "nativescript-ui-listview": true,
     "reflect-metadata": true,
     "rxjs": true,
     "tns-core-modules": true,
     "zone.js": true,
     "tslib": true,
     "nativescript-intl": true,
+    "nativescript-ui-core": true,
     "symbol-observable": true,
     "tns-core-modules-widgets": true
 }

@@ -2,26 +2,61 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4efa8395-bb10-4ed9-8c9f-51cf87187cec" name="Default" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/WarehouseMobileApp/app/entities/user/user.ts" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/WarehouseMobileApp/app/pages/warehouseList/warehouseList-common.css" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/WarehouseMobileApp/app/pages/warehouseList/warehouseList-component.ts" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/WarehouseMobileApp/app/pages/warehouseList/warehouseList.html" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/.gitignore" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/WarehouseMobileApp/app/constants.ts" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/WarehouseMobileApp/app/entities/config/config.ts" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/WarehouseMobileApp/app/entities/user/user.service.ts" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/WarehouseMobileApp/app/pages/warehouseDetail/warehouseDetail-common.css" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/WarehouseMobileApp/app/pages/warehouseDetail/warehouseDetail-component.ts" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/WarehouseMobileApp/app/pages/warehouseDetail/warehouseDetail.html" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/WarehouseMobileApp/app/utils/classes.ts" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change beforePath="$PROJECT_DIR$/WarehouseMobileApp/app/app.css" afterPath="$PROJECT_DIR$/WarehouseMobileApp/app/app.css" />
+      <change beforePath="$PROJECT_DIR$/WarehouseMobileApp/app/app.module.js" afterPath="$PROJECT_DIR$/WarehouseMobileApp/app/app.module.js" />
+      <change beforePath="$PROJECT_DIR$/WarehouseMobileApp/app/app.module.ts" afterPath="$PROJECT_DIR$/WarehouseMobileApp/app/app.module.ts" />
       <change beforePath="$PROJECT_DIR$/WarehouseMobileApp/app/app.routing.js" afterPath="$PROJECT_DIR$/WarehouseMobileApp/app/app.routing.js" />
       <change beforePath="$PROJECT_DIR$/WarehouseMobileApp/app/app.routing.ts" afterPath="$PROJECT_DIR$/WarehouseMobileApp/app/app.routing.ts" />
-      <change beforePath="$PROJECT_DIR$/WarehouseMobileApp/app/pages/login/login-common.css" afterPath="$PROJECT_DIR$/WarehouseMobileApp/app/pages/login/login-common.css" />
       <change beforePath="$PROJECT_DIR$/WarehouseMobileApp/app/pages/login/login.component.js" afterPath="$PROJECT_DIR$/WarehouseMobileApp/app/pages/login/login.component.js" />
       <change beforePath="$PROJECT_DIR$/WarehouseMobileApp/app/pages/login/login.component.ts" afterPath="$PROJECT_DIR$/WarehouseMobileApp/app/pages/login/login.component.ts" />
       <change beforePath="$PROJECT_DIR$/WarehouseMobileApp/app/pages/login/login.html" afterPath="$PROJECT_DIR$/WarehouseMobileApp/app/pages/login/login.html" />
+      <change beforePath="$PROJECT_DIR$/WarehouseMobileApp/app/pages/warehouseList/warehouseList-component.js" afterPath="$PROJECT_DIR$/WarehouseMobileApp/app/pages/warehouseList/warehouseList-component.js" />
+      <change beforePath="$PROJECT_DIR$/WarehouseMobileApp/app/pages/warehouseList/warehouseList-component.ts" afterPath="$PROJECT_DIR$/WarehouseMobileApp/app/pages/warehouseList/warehouseList-component.ts" />
+      <change beforePath="$PROJECT_DIR$/WarehouseMobileApp/app/pages/warehouseList/warehouseList.html" afterPath="$PROJECT_DIR$/WarehouseMobileApp/app/pages/warehouseList/warehouseList.html" />
+      <change beforePath="$PROJECT_DIR$/WarehouseMobileApp/package-lock.json" afterPath="$PROJECT_DIR$/WarehouseMobileApp/package-lock.json" />
+      <change beforePath="$PROJECT_DIR$/WarehouseMobileApp/package.json" afterPath="$PROJECT_DIR$/WarehouseMobileApp/package.json" />
+      <change beforePath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/.gradle/4.1/fileContent/annotation-processors.bin" afterPath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/.gradle/4.1/fileContent/annotation-processors.bin" />
+      <change beforePath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/.gradle/4.1/fileContent/fileContent.lock" afterPath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/.gradle/4.1/fileContent/fileContent.lock" />
+      <change beforePath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/.gradle/4.1/fileHashes/fileHashes.bin" afterPath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/.gradle/4.1/fileHashes/fileHashes.bin" />
+      <change beforePath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/.gradle/4.1/fileHashes/fileHashes.lock" afterPath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/.gradle/4.1/fileHashes/fileHashes.lock" />
+      <change beforePath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/.gradle/4.1/fileHashes/resourceHashesCache.bin" afterPath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/.gradle/4.1/fileHashes/resourceHashesCache.bin" />
+      <change beforePath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/.gradle/4.1/taskHistory/fileSnapshots.bin" afterPath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/.gradle/4.1/taskHistory/fileSnapshots.bin" />
+      <change beforePath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/.gradle/4.1/taskHistory/taskHistory.bin" afterPath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/.gradle/4.1/taskHistory/taskHistory.bin" />
+      <change beforePath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/.gradle/4.1/taskHistory/taskHistory.lock" afterPath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/.gradle/4.1/taskHistory/taskHistory.lock" />
       <change beforePath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/.nsprepareinfo" afterPath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/.nsprepareinfo" />
+      <change beforePath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/build/outputs/apk/.nsbuildinfo" afterPath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/build/outputs/apk/.nsbuildinfo" />
+      <change beforePath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/build/outputs/apk/WarehouseMobileApp-debug.apk" afterPath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/build/outputs/apk/WarehouseMobileApp-debug.apk" />
+      <change beforePath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/metadata/output/assets/metadata/treeNodeStream.dat" afterPath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/metadata/output/assets/metadata/treeNodeStream.dat" />
+      <change beforePath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/metadata/output/assets/metadata/treeStringsStream.dat" afterPath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/metadata/output/assets/metadata/treeStringsStream.dat" />
+      <change beforePath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/metadata/output/assets/metadata/treeValueStream.dat" afterPath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/metadata/output/assets/metadata/treeValueStream.dat" />
       <change beforePath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/src/main/assets/app/app.css" afterPath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/src/main/assets/app/app.css" />
+      <change beforePath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/src/main/assets/app/app.module.js" afterPath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/src/main/assets/app/app.module.js" />
+      <change beforePath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/src/main/assets/app/app.module.ts" afterPath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/src/main/assets/app/app.module.ts" />
       <change beforePath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/src/main/assets/app/app.routing.js" afterPath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/src/main/assets/app/app.routing.js" />
       <change beforePath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/src/main/assets/app/app.routing.ts" afterPath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/src/main/assets/app/app.routing.ts" />
-      <change beforePath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/src/main/assets/app/pages/login/login-common.css" afterPath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/src/main/assets/app/pages/login/login-common.css" />
       <change beforePath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/src/main/assets/app/pages/login/login.component.js" afterPath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/src/main/assets/app/pages/login/login.component.js" />
       <change beforePath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/src/main/assets/app/pages/login/login.component.ts" afterPath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/src/main/assets/app/pages/login/login.component.ts" />
       <change beforePath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/src/main/assets/app/pages/login/login.html" afterPath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/src/main/assets/app/pages/login/login.html" />
+      <change beforePath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/src/main/assets/app/pages/warehouseList/warehouseList-component.js" afterPath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/src/main/assets/app/pages/warehouseList/warehouseList-component.js" />
+      <change beforePath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/src/main/assets/app/pages/warehouseList/warehouseList-component.ts" afterPath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/src/main/assets/app/pages/warehouseList/warehouseList-component.ts" />
+      <change beforePath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/src/main/assets/app/pages/warehouseList/warehouseList.html" afterPath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/src/main/assets/app/pages/warehouseList/warehouseList.html" />
+      <change beforePath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/src/main/assets/metadata/treeNodeStream.dat" afterPath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/src/main/assets/metadata/treeNodeStream.dat" />
+      <change beforePath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/src/main/assets/metadata/treeStringsStream.dat" afterPath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/src/main/assets/metadata/treeStringsStream.dat" />
+      <change beforePath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/src/main/assets/metadata/treeValueStream.dat" afterPath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/src/main/assets/metadata/treeValueStream.dat" />
+      <change beforePath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/build-tools/android-static-binding-generator/bindings.txt" afterPath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/build-tools/android-static-binding-generator/bindings.txt" />
+      <change beforePath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/build-tools/android-static-binding-generator/jsFilesParameters.txt" afterPath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/build-tools/android-static-binding-generator/jsFilesParameters.txt" />
+      <change beforePath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/build/intermediates/dex-cache/cache.xml" afterPath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/build/intermediates/dex-cache/cache.xml" />
+      <change beforePath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/build/intermediates/prepared-platforms.json" afterPath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/build/intermediates/prepared-platforms.json" />
+      <change beforePath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/dependencies.json" afterPath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/dependencies.json" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -32,11 +67,99 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="login-common.css" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/WarehouseMobileApp/app/pages/login/login-common.css">
+      <file leaf-file-name="login.component.ts" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/WarehouseMobileApp/app/pages/login/login.component.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="170">
-              <caret line="10" column="19" lean-forward="false" selection-start-line="10" selection-start-column="19" selection-end-line="10" selection-end-column="19" />
+            <state relative-caret-position="544">
+              <caret line="37" column="1" lean-forward="false" selection-start-line="37" selection-start-column="1" selection-end-line="37" selection-end-column="1" />
+              <folding>
+                <element signature="e#0#73#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="warehouseDetail-component.ts" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/WarehouseMobileApp/app/pages/warehouseDetail/warehouseDetail-component.ts">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="493">
+              <caret line="31" column="14" lean-forward="false" selection-start-line="31" selection-start-column="14" selection-end-line="31" selection-end-column="14" />
+              <folding>
+                <element signature="e#0#50#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="app.module.ts" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/WarehouseMobileApp/app/app.module.ts">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="102">
+              <caret line="6" column="9" lean-forward="false" selection-start-line="6" selection-start-column="9" selection-end-line="6" selection-end-column="9" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="config.ts" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/WarehouseMobileApp/app/entities/config/config.ts">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="51">
+              <caret line="3" column="16" lean-forward="false" selection-start-line="3" selection-start-column="16" selection-end-line="3" selection-end-column="16" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="user.ts" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/WarehouseMobileApp/app/entities/user/user.ts">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="51">
+              <caret line="3" column="1" lean-forward="false" selection-start-line="3" selection-start-column="1" selection-end-line="3" selection-end-column="1" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="user.service.ts" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/WarehouseMobileApp/app/entities/user/user.service.ts">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="527">
+              <caret line="35" column="1" lean-forward="false" selection-start-line="35" selection-start-column="1" selection-end-line="35" selection-end-column="1" />
+              <folding>
+                <element signature="e#0#43#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="classes.ts" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/WarehouseMobileApp/app/utils/classes.ts">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="425">
+              <caret line="25" column="1" lean-forward="false" selection-start-line="25" selection-start-column="1" selection-end-line="25" selection-end-column="1" />
+              <folding>
+                <element signature="e#0#55#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name=".gitignore" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/.gitignore">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="289">
+              <caret line="17" column="7" lean-forward="true" selection-start-line="17" selection-start-column="7" selection-end-line="17" selection-end-column="7" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="constants.ts" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/WarehouseMobileApp/app/constants.ts">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="102">
+              <caret line="6" column="80" lean-forward="false" selection-start-line="6" selection-start-column="80" selection-end-line="6" selection-end-column="80" />
               <folding />
             </state>
           </provider>
@@ -45,52 +168,8 @@
       <file leaf-file-name="login.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/WarehouseMobileApp/app/pages/login/login.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="102">
-              <caret line="6" column="14" lean-forward="false" selection-start-line="6" selection-start-column="14" selection-end-line="6" selection-end-column="14" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="app.routing.ts" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/WarehouseMobileApp/app/app.routing.ts">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="119">
-              <caret line="10" column="26" lean-forward="false" selection-start-line="10" selection-start-column="26" selection-end-line="10" selection-end-column="26" />
-              <folding>
-                <marker date="1520094696698" expanded="true" signature="7:8" ph="..." />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="app.component.ts" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/WarehouseMobileApp/app/app.component.ts">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="102">
-              <caret line="6" column="0" lean-forward="false" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="login.component.ts" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/WarehouseMobileApp/app/pages/login/login.component.ts">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="459">
-              <caret line="27" column="1" lean-forward="true" selection-start-line="27" selection-start-column="1" selection-end-line="27" selection-end-column="1" />
-              <folding>
-                <element signature="e#0#73#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="app.css" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/WarehouseMobileApp/app/app.css">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="187">
-              <caret line="11" column="0" lean-forward="false" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
+            <state relative-caret-position="85">
+              <caret line="5" column="18" lean-forward="false" selection-start-line="5" selection-start-column="18" selection-end-line="5" selection-end-column="30" />
               <folding />
             </state>
           </provider>
@@ -101,9 +180,9 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="TypeScript File" />
-        <option value="CSS File" />
         <option value="HTML File" />
+        <option value="CSS File" />
+        <option value="TypeScript File" />
       </list>
     </option>
   </component>
@@ -121,18 +200,29 @@
         <option value="$PROJECT_DIR$/WarehouseMobileApp/app/platform.android.css" />
         <option value="$PROJECT_DIR$/WarehouseMobileApp/app/platform.ios.css" />
         <option value="$PROJECT_DIR$/WarehouseMobileApp/app/item/item.service.ts" />
-        <option value="$PROJECT_DIR$/WarehouseMobileApp/app/app.module.ts" />
         <option value="$PROJECT_DIR$/WarehouseMobileApp/app/main.ts" />
         <option value="$PROJECT_DIR$/WarehouseMobileApp/app/entities/user/user.ts" />
         <option value="$PROJECT_DIR$/WarehouseMobileApp/app/app.component.ts" />
-        <option value="$PROJECT_DIR$/WarehouseMobileApp/app/pages/login/login.component.ts" />
-        <option value="$PROJECT_DIR$/WarehouseMobileApp/app/app.routing.ts" />
-        <option value="$PROJECT_DIR$/WarehouseMobileApp/app/pages/warehouseList/warehouseList-component.ts" />
-        <option value="$PROJECT_DIR$/WarehouseMobileApp/app/app.css" />
         <option value="$PROJECT_DIR$/WarehouseMobileApp/app/pages/login/login-common.css" />
         <option value="$PROJECT_DIR$/WarehouseMobileApp/app/pages/login/login.html" />
         <option value="$PROJECT_DIR$/WarehouseMobileApp/app/pages/warehouseList/warehouseList-common.css" />
+        <option value="$PROJECT_DIR$/WarehouseMobileApp/app/pages/warehouseDetail/warehouseDetail.html.ts" />
+        <option value="$PROJECT_DIR$/WarehouseMobileApp/app/pages/warehouseDetail/warehouseDetail-common.css" />
+        <option value="$PROJECT_DIR$/WarehouseMobileApp/app/app.routing.ts" />
         <option value="$PROJECT_DIR$/WarehouseMobileApp/app/pages/warehouseList/warehouseList.html" />
+        <option value="$PROJECT_DIR$/WarehouseMobileApp/app/app.css" />
+        <option value="$PROJECT_DIR$/WarehouseMobileApp/app/pages/warehouseDetail/warehouseDetail.html" />
+        <option value="$PROJECT_DIR$/WarehouseMobileApp/app/utils/functions.ts" />
+        <option value="$PROJECT_DIR$/WarehouseMobileApp/app/pages/warehouseList/warehouseList-component.ts" />
+        <option value="$PROJECT_DIR$/WarehouseMobileApp/app/pages/warehouseDetail/warehouseDetail-component.ts" />
+        <option value="$PROJECT_DIR$/WarehouseMobileApp/app/entities/settings/settings.ts" />
+        <option value="$PROJECT_DIR$/WarehouseMobileApp/app/entities/config/config.ts" />
+        <option value="$PROJECT_DIR$/WarehouseMobileApp/app/app.module.ts" />
+        <option value="$PROJECT_DIR$/WarehouseMobileApp/app/constants.ts" />
+        <option value="$PROJECT_DIR$/WarehouseMobileApp/app/pages/login/login.component.ts" />
+        <option value="$PROJECT_DIR$/WarehouseMobileApp/app/entities/user/user.service.ts" />
+        <option value="$PROJECT_DIR$/WarehouseMobileApp/app/utils/classes.ts" />
+        <option value="$PROJECT_DIR$/.gitignore" />
       </list>
     </option>
   </component>
@@ -142,7 +232,7 @@
     <detection-done>true</detection-done>
     <sorting>DEFINITION_ORDER</sorting>
   </component>
-  <component name="ProjectFrameBounds">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="-7" />
     <option name="width" value="974" />
     <option name="height" value="1047" />
@@ -162,10 +252,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
-      <pane id="PackagesPane" />
-      <pane id="Scratches" />
       <pane id="AndroidView" />
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -197,6 +285,14 @@
               <item name="WarehouseMobileApp" type="462c0819:PsiDirectoryNode" />
               <item name="app" type="462c0819:PsiDirectoryNode" />
               <item name="entities" type="462c0819:PsiDirectoryNode" />
+              <item name="config" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Warehouse_mobile" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Warehouse_mobile" type="462c0819:PsiDirectoryNode" />
+              <item name="WarehouseMobileApp" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="entities" type="462c0819:PsiDirectoryNode" />
               <item name="user" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -219,20 +315,29 @@
               <item name="Warehouse_mobile" type="462c0819:PsiDirectoryNode" />
               <item name="WarehouseMobileApp" type="462c0819:PsiDirectoryNode" />
               <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="pages" type="462c0819:PsiDirectoryNode" />
-              <item name="warehouseList" type="462c0819:PsiDirectoryNode" />
+              <item name="utils" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Warehouse_mobile" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Warehouse_mobile" type="462c0819:PsiDirectoryNode" />
+              <item name="WarehouseMobileApp" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="utils" type="462c0819:PsiDirectoryNode" />
+              <item name="classes.ts" type="620a8d5e:NestingTreeNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="Scratches" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../Groceries" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
   </component>
@@ -357,14 +462,20 @@
       <workItem from="1519656265644" duration="3542000" />
       <workItem from="1519924895175" duration="2287000" />
       <workItem from="1519929628340" duration="4029000" />
+      <workItem from="1520161839482" duration="8310000" />
+      <workItem from="1520700999300" duration="7259000" />
+      <workItem from="1520709105844" duration="1360000" />
+      <workItem from="1520712337000" duration="9808000" />
+      <workItem from="1520764373735" duration="2568000" />
+      <workItem from="1520803522746" duration="686000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="14605000" />
+    <option name="totallyTimeSpent" value="46705000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-7" y="0" width="974" height="1047" extended-state="0" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -374,47 +485,26 @@
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="TypeScript" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.282881" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.13697916" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="TypeScript" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.14114584" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32979852" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
     </layout>
     <layout-to-restore>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -463,6 +553,11 @@
         <option value="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/src/main/assets/app/app.module.js" />
         <option value="$PROJECT_DIR$/WarehouseMobileApp/app/entities/user/user.js" />
         <option value="$PROJECT_DIR$/WarehouseMobileApp/app/pages/warehouseList/warehouseList-component.js" />
+        <option value="$PROJECT_DIR$/WarehouseMobileApp/app/pages/warehouseDetail/warehouseDetail-component.js" />
+        <option value="$PROJECT_DIR$/WarehouseMobileApp/app/constants.js" />
+        <option value="$PROJECT_DIR$/WarehouseMobileApp/app/entities/user/user.service.js" />
+        <option value="$PROJECT_DIR$/WarehouseMobileApp/app/entities/config/config.js" />
+        <option value="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/src/main/assets/app/constants.js" />
       </list>
     </option>
   </component>
@@ -476,84 +571,11 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/WarehouseMobileApp/package.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="1" column="21" lean-forward="false" selection-start-line="1" selection-start-column="21" selection-end-line="1" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/WarehouseMobileApp/app/app.module.ngfactory.d.ts" />
-    <entry file="file://$PROJECT_DIR$/WarehouseMobileApp/app/main.aot.ts" />
-    <entry file="file://$PROJECT_DIR$/WarehouseMobileApp/app/platform.ios.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/WarehouseMobileApp/app/README.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SPLIT">
-          <first_editor relative-caret-position="0">
-            <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          </first_editor>
-          <second_editor />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/LICENSE">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2369">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/README.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SPLIT">
-          <first_editor relative-caret-position="0">
-            <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          </first_editor>
-          <second_editor />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/WarehouseMobileApp/app/platform.android.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/WarehouseMobileApp/app/item/item.ts" />
-    <entry file="file://$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/build/intermediates/assets/debug/app/tns_modules/nativescript-theme-core/scss/skins/purple/_action-bar.scss">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="1" lean-forward="false" selection-start-line="0" selection-start-column="1" selection-end-line="0" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/WarehouseMobileApp/node_modules/tns-core-modules/tns-core-modules.d.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="35" column="12" lean-forward="false" selection-start-line="35" selection-start-column="12" selection-end-line="35" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/WarehouseMobileApp/app/item/item-detail.component.ts" />
     <entry file="file://$PROJECT_DIR$/WarehouseMobileApp/app/item/item-detail.component.html" />
     <entry file="file://$PROJECT_DIR$/WarehouseMobileApp/app/item/items.component.html" />
     <entry file="file://$PROJECT_DIR$/WarehouseMobileApp/app/item/item.service.ts" />
     <entry file="file://$PROJECT_DIR$/WarehouseMobileApp/app/item/items.component.ts" />
     <entry file="file://$PROJECT_DIR$/WarehouseMobileApp/app/app.component.html" />
-    <entry file="file://$PROJECT_DIR$/WarehouseMobileApp/app/app.module.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="26" column="2" lean-forward="false" selection-start-line="26" selection-start-column="2" selection-end-line="26" selection-end-column="2" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/WarehouseMobileApp/app/App_Resources/iOS/Info.plist">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -665,59 +687,25 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/WarehouseMobileApp/app/entities/warehouse/warehouse.js" />
-    <entry file="file://$PROJECT_DIR$/WarehouseMobileApp/app/entities/user/user.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="21" lean-forward="false" selection-start-line="2" selection-start-column="21" selection-end-line="2" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/WarehouseMobileApp/app/app.component.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="6" column="0" lean-forward="false" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/WarehouseMobileApp/app/app.routing.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="10" column="26" lean-forward="false" selection-start-line="10" selection-start-column="26" selection-end-line="10" selection-end-column="26" />
-          <folding>
-            <marker date="1520094696698" expanded="true" signature="7:8" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/WarehouseMobileApp/app/pages/warehouseList/warehouseList-component.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="7" column="2" lean-forward="false" selection-start-line="7" selection-start-column="2" selection-end-line="7" selection-end-column="2" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/WarehouseMobileApp/app/pages/login/login-common.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="170">
           <caret line="10" column="19" lean-forward="false" selection-start-line="10" selection-start-column="19" selection-end-line="10" selection-end-column="19" />
-          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/WarehouseMobileApp/app/pages/login/login.html">
+    <entry file="file://$PROJECT_DIR$/WarehouseMobileApp/app/pages/warehouseDetail/warehouseDetail.html.ts" />
+    <entry file="file://$PROJECT_DIR$/WarehouseMobileApp/app/pages/warehouseDetail/warehouseDetail-common.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="6" column="14" lean-forward="false" selection-start-line="6" selection-start-column="14" selection-end-line="6" selection-end-column="14" />
-          <folding />
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/WarehouseMobileApp/app/app.css">
+    <entry file="file://$PROJECT_DIR$/WarehouseMobileApp/app/pages/warehouseList/warehouseList.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="11" column="0" lean-forward="false" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
-          <folding />
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="10" selection-end-column="13" />
         </state>
       </provider>
     </entry>
@@ -728,20 +716,147 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/WarehouseMobileApp/app/pages/warehouseDetail/warehouseDetail.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="16" column="13" lean-forward="false" selection-start-line="16" selection-start-column="13" selection-end-line="16" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/WarehouseMobileApp/app/utils/classes.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/WarehouseMobileApp/app/app.routing.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="13" column="28" lean-forward="false" selection-start-line="13" selection-start-column="28" selection-end-line="13" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/WarehouseMobileApp/app/app.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="595">
+          <caret line="35" column="1" lean-forward="false" selection-start-line="35" selection-start-column="1" selection-end-line="35" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/WarehouseMobileApp/app/app.component.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="6" column="0" lean-forward="false" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/WarehouseMobileApp/app/pages/warehouseList/warehouseList-component.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="425">
+          <caret line="27" column="24" lean-forward="false" selection-start-line="27" selection-start-column="24" selection-end-line="27" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/WarehouseMobileApp/app/pages/warehouseDetail/warehouseDetail-component.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="493">
+          <caret line="31" column="14" lean-forward="false" selection-start-line="31" selection-start-column="14" selection-end-line="31" selection-end-column="14" />
+          <folding>
+            <element signature="e#0#50#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/WarehouseMobileApp/app/entities/user/user.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="51">
+          <caret line="3" column="1" lean-forward="false" selection-start-line="3" selection-start-column="1" selection-end-line="3" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/WarehouseMobileApp/app/pages/login/login.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="5" column="18" lean-forward="false" selection-start-line="5" selection-start-column="18" selection-end-line="5" selection-end-column="30" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/WarehouseMobileApp/app/entities/config/config.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="51">
+          <caret line="3" column="16" lean-forward="false" selection-start-line="3" selection-start-column="16" selection-end-line="3" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/WarehouseMobileApp/app/app.module.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="6" column="9" lean-forward="false" selection-start-line="6" selection-start-column="9" selection-end-line="6" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/src/main/assets/app/tns_modules/rxjs/src/Observable.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-17">
+          <caret line="75" column="8" lean-forward="true" selection-start-line="75" selection-start-column="8" selection-end-line="75" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/src/main/assets/app/constants.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="374">
+          <caret line="22" column="0" lean-forward="false" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/WarehouseMobileApp/app/constants.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="6" column="80" lean-forward="false" selection-start-line="6" selection-start-column="80" selection-end-line="6" selection-end-column="80" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/WarehouseMobileApp/app/pages/login/login.component.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="459">
-          <caret line="27" column="1" lean-forward="true" selection-start-line="27" selection-start-column="1" selection-end-line="27" selection-end-column="1" />
+        <state relative-caret-position="544">
+          <caret line="37" column="1" lean-forward="false" selection-start-line="37" selection-start-column="1" selection-end-line="37" selection-end-column="1" />
           <folding>
             <element signature="e#0#73#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/WarehouseMobileApp/app/pages/warehouseList/warehouseList.html">
+    <entry file="file://$PROJECT_DIR$/WarehouseMobileApp/app/entities/user/user.service.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="8" column="15" lean-forward="true" selection-start-line="8" selection-start-column="15" selection-end-line="8" selection-end-column="15" />
+        <state relative-caret-position="527">
+          <caret line="35" column="1" lean-forward="false" selection-start-line="35" selection-start-column="1" selection-end-line="35" selection-end-column="1" />
+          <folding>
+            <element signature="e#0#43#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/WarehouseMobileApp/app/utils/classes.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="425">
+          <caret line="25" column="1" lean-forward="false" selection-start-line="25" selection-start-column="1" selection-end-line="25" selection-end-column="1" />
+          <folding>
+            <element signature="e#0#55#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="17" column="7" lean-forward="true" selection-start-line="17" selection-start-column="7" selection-end-line="17" selection-end-column="7" />
+          <folding />
         </state>
       </provider>
     </entry>

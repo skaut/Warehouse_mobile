@@ -3,6 +3,24 @@
 
     <item
         is-multidex="false"
+        jar="C:\Users\Jan\.android\build-cache\0393785a6dbaad67bb784fe5897b1eaac38e3449\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="27.0.3"
+        sha1="83f711d70ef9ce041ead02bc16e944130c58d05a">
+        <dex dex="D:\nativescript-projects\Warehouse_mobile\WarehouseMobileApp\platforms\android\app\build\intermediates\pre-dexed\F0\debug\classes_084572b6079c46ed6a07cb5cd31e43f665b8572c.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\Jan\.android\build-cache\f8e15448301818f82f1a8e715cef0c3ed6d7800b\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="27.0.3"
+        sha1="c2f6a931b24ef8e63bfbc580fde4fb9998d78546">
+        <dex dex="D:\nativescript-projects\Warehouse_mobile\WarehouseMobileApp\platforms\android\app\build\intermediates\pre-dexed\F0\debug\classes_dce9dff35d123845f191eb5f41c00820fee50762.jar" />
+    </item>
+    <item
+        is-multidex="false"
         jar="C:\Users\Jan\.android\build-cache\440eba1b35f1e2025982ebdfe3cdf44b10e64ae3\output\jars\classes.jar"
         jumboMode="false"
         optimize="true"

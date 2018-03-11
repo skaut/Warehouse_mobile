@@ -2,7 +2,10 @@ D:\nativescript-projects\Warehouse_mobile\WarehouseMobileApp\platforms\android\a
 D:\nativescript-projects\Warehouse_mobile\WarehouseMobileApp\platforms\android\app\src\main\assets\app\app.module.js
 D:\nativescript-projects\Warehouse_mobile\WarehouseMobileApp\platforms\android\app\src\main\assets\app\app.routing.js
 D:\nativescript-projects\Warehouse_mobile\WarehouseMobileApp\platforms\android\app\src\main\assets\app\main.js
+D:\nativescript-projects\Warehouse_mobile\WarehouseMobileApp\platforms\android\app\src\main\assets\app\entities\user\user.js
 D:\nativescript-projects\Warehouse_mobile\WarehouseMobileApp\platforms\android\app\src\main\assets\app\pages\login\login.component.js
+D:\nativescript-projects\Warehouse_mobile\WarehouseMobileApp\platforms\android\app\src\main\assets\app\pages\warehouseDetail\warehouseDetail-component.js
+D:\nativescript-projects\Warehouse_mobile\WarehouseMobileApp\platforms\android\app\src\main\assets\app\pages\warehouseList\warehouseList-component.js
 D:\nativescript-projects\Warehouse_mobile\WarehouseMobileApp\platforms\android\app\src\main\assets\app\tns_modules\nativescript-angular\common.js
 D:\nativescript-projects\Warehouse_mobile\WarehouseMobileApp\platforms\android\app\src\main\assets\app\tns_modules\nativescript-angular\dom-adapter.js
 D:\nativescript-projects\Warehouse_mobile\WarehouseMobileApp\platforms\android\app\src\main\assets\app\tns_modules\nativescript-angular\element-registry.js
@@ -70,6 +73,10 @@ D:\nativescript-projects\Warehouse_mobile\WarehouseMobileApp\platforms\android\a
 D:\nativescript-projects\Warehouse_mobile\WarehouseMobileApp\platforms\android\app\src\main\assets\app\tns_modules\nativescript-intl\index.js
 D:\nativescript-projects\Warehouse_mobile\WarehouseMobileApp\platforms\android\app\src\main\assets\app\tns_modules\nativescript-intl\nativescript-intl-common.js
 D:\nativescript-projects\Warehouse_mobile\WarehouseMobileApp\platforms\android\app\src\main\assets\app\tns_modules\nativescript-intl\nativescript-intl.js
+D:\nativescript-projects\Warehouse_mobile\WarehouseMobileApp\platforms\android\app\src\main\assets\app\tns_modules\nativescript-ui-listview\ui-listview.common.js
+D:\nativescript-projects\Warehouse_mobile\WarehouseMobileApp\platforms\android\app\src\main\assets\app\tns_modules\nativescript-ui-listview\ui-listview.js
+D:\nativescript-projects\Warehouse_mobile\WarehouseMobileApp\platforms\android\app\src\main\assets\app\tns_modules\nativescript-ui-listview\hooks\after-prepare\nativescript-unit-test-runner.js
+D:\nativescript-projects\Warehouse_mobile\WarehouseMobileApp\platforms\android\app\src\main\assets\app\tns_modules\nativescript-ui-listview\hooks\before-livesync\nativescript-angular-sync.js
 D:\nativescript-projects\Warehouse_mobile\WarehouseMobileApp\platforms\android\app\src\main\assets\app\tns_modules\tns-core-modules\bundle-entry-points.js
 D:\nativescript-projects\Warehouse_mobile\WarehouseMobileApp\platforms\android\app\src\main\assets\app\tns_modules\tns-core-modules\application\application-common.js
 D:\nativescript-projects\Warehouse_mobile\WarehouseMobileApp\platforms\android\app\src\main\assets\app\tns_modules\tns-core-modules\application\application.js

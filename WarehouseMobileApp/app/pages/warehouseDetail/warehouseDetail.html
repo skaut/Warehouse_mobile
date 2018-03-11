@@ -1,0 +1,17 @@
+<GridLayout rows="60, *, 60">
+    <GridLayout row="0" columns="auto, *, auto" class="layout-bottom-border layout-colored">
+        <Button col="0" text="ZPĚT" class="header-text-component generic-text-component" (tap)="back()"></Button>
+        <Label col="1" text="MAJETEK" horizontalAlignment="center" verticalAlignment="center"
+               class="header-text-component generic-text-component"></Label>
+        <Button col="2" text="ODHLÁSIT" class="header-text-component generic-text-component" (tap)="logout()"></Button>
+    </GridLayout>
+    <ListView row="1" [items]="items" verticalAlignment="center" separatorColor="white">
+        <ng-template let-item="item">
+            <Button [text]="item.name" class="generic-text-component left-right-spacing"></Button>
+        </ng-template>
+    </ListView>
+    <GridLayout row="2" columns="auto, *, auto" class="layout-colored layout-top-border">
+        <Button col="0" text="INVENTARIZACE" class="header-text-component generic-text-component"></Button>
+        <Button col="2" text="REZERVACE" class="header-text-component generic-text-component"></Button>
+    </GridLayout>
+</GridLayout>
