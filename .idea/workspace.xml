@@ -2,61 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4efa8395-bb10-4ed9-8c9f-51cf87187cec" name="Default" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/.gitignore" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/WarehouseMobileApp/app/constants.ts" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/WarehouseMobileApp/app/entities/config/config.ts" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/WarehouseMobileApp/app/entities/user/user.service.ts" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/WarehouseMobileApp/app/pages/warehouseDetail/warehouseDetail-common.css" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/WarehouseMobileApp/app/pages/warehouseDetail/warehouseDetail-component.ts" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/WarehouseMobileApp/app/pages/warehouseDetail/warehouseDetail.html" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/WarehouseMobileApp/app/utils/classes.ts" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/WarehouseMobileApp/app/app.css" afterPath="$PROJECT_DIR$/WarehouseMobileApp/app/app.css" />
-      <change beforePath="$PROJECT_DIR$/WarehouseMobileApp/app/app.module.js" afterPath="$PROJECT_DIR$/WarehouseMobileApp/app/app.module.js" />
-      <change beforePath="$PROJECT_DIR$/WarehouseMobileApp/app/app.module.ts" afterPath="$PROJECT_DIR$/WarehouseMobileApp/app/app.module.ts" />
-      <change beforePath="$PROJECT_DIR$/WarehouseMobileApp/app/app.routing.js" afterPath="$PROJECT_DIR$/WarehouseMobileApp/app/app.routing.js" />
-      <change beforePath="$PROJECT_DIR$/WarehouseMobileApp/app/app.routing.ts" afterPath="$PROJECT_DIR$/WarehouseMobileApp/app/app.routing.ts" />
-      <change beforePath="$PROJECT_DIR$/WarehouseMobileApp/app/pages/login/login.component.js" afterPath="$PROJECT_DIR$/WarehouseMobileApp/app/pages/login/login.component.js" />
-      <change beforePath="$PROJECT_DIR$/WarehouseMobileApp/app/pages/login/login.component.ts" afterPath="$PROJECT_DIR$/WarehouseMobileApp/app/pages/login/login.component.ts" />
-      <change beforePath="$PROJECT_DIR$/WarehouseMobileApp/app/pages/login/login.html" afterPath="$PROJECT_DIR$/WarehouseMobileApp/app/pages/login/login.html" />
-      <change beforePath="$PROJECT_DIR$/WarehouseMobileApp/app/pages/warehouseList/warehouseList-component.js" afterPath="$PROJECT_DIR$/WarehouseMobileApp/app/pages/warehouseList/warehouseList-component.js" />
-      <change beforePath="$PROJECT_DIR$/WarehouseMobileApp/app/pages/warehouseList/warehouseList-component.ts" afterPath="$PROJECT_DIR$/WarehouseMobileApp/app/pages/warehouseList/warehouseList-component.ts" />
-      <change beforePath="$PROJECT_DIR$/WarehouseMobileApp/app/pages/warehouseList/warehouseList.html" afterPath="$PROJECT_DIR$/WarehouseMobileApp/app/pages/warehouseList/warehouseList.html" />
-      <change beforePath="$PROJECT_DIR$/WarehouseMobileApp/package-lock.json" afterPath="$PROJECT_DIR$/WarehouseMobileApp/package-lock.json" />
-      <change beforePath="$PROJECT_DIR$/WarehouseMobileApp/package.json" afterPath="$PROJECT_DIR$/WarehouseMobileApp/package.json" />
-      <change beforePath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/.gradle/4.1/fileContent/annotation-processors.bin" afterPath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/.gradle/4.1/fileContent/annotation-processors.bin" />
-      <change beforePath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/.gradle/4.1/fileContent/fileContent.lock" afterPath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/.gradle/4.1/fileContent/fileContent.lock" />
-      <change beforePath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/.gradle/4.1/fileHashes/fileHashes.bin" afterPath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/.gradle/4.1/fileHashes/fileHashes.bin" />
-      <change beforePath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/.gradle/4.1/fileHashes/fileHashes.lock" afterPath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/.gradle/4.1/fileHashes/fileHashes.lock" />
-      <change beforePath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/.gradle/4.1/fileHashes/resourceHashesCache.bin" afterPath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/.gradle/4.1/fileHashes/resourceHashesCache.bin" />
-      <change beforePath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/.gradle/4.1/taskHistory/fileSnapshots.bin" afterPath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/.gradle/4.1/taskHistory/fileSnapshots.bin" />
-      <change beforePath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/.gradle/4.1/taskHistory/taskHistory.bin" afterPath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/.gradle/4.1/taskHistory/taskHistory.bin" />
-      <change beforePath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/.gradle/4.1/taskHistory/taskHistory.lock" afterPath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/.gradle/4.1/taskHistory/taskHistory.lock" />
-      <change beforePath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/.nsprepareinfo" afterPath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/.nsprepareinfo" />
-      <change beforePath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/build/outputs/apk/.nsbuildinfo" afterPath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/build/outputs/apk/.nsbuildinfo" />
-      <change beforePath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/build/outputs/apk/WarehouseMobileApp-debug.apk" afterPath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/build/outputs/apk/WarehouseMobileApp-debug.apk" />
-      <change beforePath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/metadata/output/assets/metadata/treeNodeStream.dat" afterPath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/metadata/output/assets/metadata/treeNodeStream.dat" />
-      <change beforePath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/metadata/output/assets/metadata/treeStringsStream.dat" afterPath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/metadata/output/assets/metadata/treeStringsStream.dat" />
-      <change beforePath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/metadata/output/assets/metadata/treeValueStream.dat" afterPath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/metadata/output/assets/metadata/treeValueStream.dat" />
-      <change beforePath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/src/main/assets/app/app.css" afterPath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/src/main/assets/app/app.css" />
-      <change beforePath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/src/main/assets/app/app.module.js" afterPath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/src/main/assets/app/app.module.js" />
-      <change beforePath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/src/main/assets/app/app.module.ts" afterPath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/src/main/assets/app/app.module.ts" />
-      <change beforePath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/src/main/assets/app/app.routing.js" afterPath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/src/main/assets/app/app.routing.js" />
-      <change beforePath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/src/main/assets/app/app.routing.ts" afterPath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/src/main/assets/app/app.routing.ts" />
-      <change beforePath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/src/main/assets/app/pages/login/login.component.js" afterPath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/src/main/assets/app/pages/login/login.component.js" />
-      <change beforePath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/src/main/assets/app/pages/login/login.component.ts" afterPath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/src/main/assets/app/pages/login/login.component.ts" />
-      <change beforePath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/src/main/assets/app/pages/login/login.html" afterPath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/src/main/assets/app/pages/login/login.html" />
-      <change beforePath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/src/main/assets/app/pages/warehouseList/warehouseList-component.js" afterPath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/src/main/assets/app/pages/warehouseList/warehouseList-component.js" />
-      <change beforePath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/src/main/assets/app/pages/warehouseList/warehouseList-component.ts" afterPath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/src/main/assets/app/pages/warehouseList/warehouseList-component.ts" />
-      <change beforePath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/src/main/assets/app/pages/warehouseList/warehouseList.html" afterPath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/src/main/assets/app/pages/warehouseList/warehouseList.html" />
-      <change beforePath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/src/main/assets/metadata/treeNodeStream.dat" afterPath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/src/main/assets/metadata/treeNodeStream.dat" />
-      <change beforePath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/src/main/assets/metadata/treeStringsStream.dat" afterPath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/src/main/assets/metadata/treeStringsStream.dat" />
-      <change beforePath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/src/main/assets/metadata/treeValueStream.dat" afterPath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/app/src/main/assets/metadata/treeValueStream.dat" />
-      <change beforePath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/build-tools/android-static-binding-generator/bindings.txt" afterPath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/build-tools/android-static-binding-generator/bindings.txt" />
-      <change beforePath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/build-tools/android-static-binding-generator/jsFilesParameters.txt" afterPath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/build-tools/android-static-binding-generator/jsFilesParameters.txt" />
-      <change beforePath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/build/intermediates/dex-cache/cache.xml" afterPath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/build/intermediates/dex-cache/cache.xml" />
-      <change beforePath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/build/intermediates/prepared-platforms.json" afterPath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/build/intermediates/prepared-platforms.json" />
-      <change beforePath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/dependencies.json" afterPath="$PROJECT_DIR$/WarehouseMobileApp/platforms/android/dependencies.json" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -148,8 +95,8 @@
       <file leaf-file-name=".gitignore" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/.gitignore">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="289">
-              <caret line="17" column="7" lean-forward="true" selection-start-line="17" selection-start-column="7" selection-end-line="17" selection-end-column="7" />
+            <state relative-caret-position="17">
+              <caret line="1" column="3" lean-forward="false" selection-start-line="1" selection-start-column="3" selection-end-line="1" selection-end-column="3" />
               <folding />
             </state>
           </provider>
@@ -467,12 +414,12 @@
       <workItem from="1520709105844" duration="1360000" />
       <workItem from="1520712337000" duration="9808000" />
       <workItem from="1520764373735" duration="2568000" />
-      <workItem from="1520803522746" duration="686000" />
+      <workItem from="1520803522746" duration="876000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="46705000" />
+    <option name="totallyTimeSpent" value="46895000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -854,8 +801,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/.gitignore">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="17" column="7" lean-forward="true" selection-start-line="17" selection-start-column="7" selection-end-line="17" selection-end-column="7" />
+        <state relative-caret-position="17">
+          <caret line="1" column="3" lean-forward="false" selection-start-line="1" selection-start-column="3" selection-end-line="1" selection-end-column="3" />
           <folding />
         </state>
       </provider>
