@@ -5,6 +5,7 @@ import { AppComponent } from "./app.component";
 import { routes, navigatableComponents } from "./app.routing";
 import { NativeScriptUIListViewModule } from "nativescript-ui-listview/angular";
 import { HttpClientModule } from "@angular/common/http";
+import { NativeScriptFormsModule } from "nativescript-angular";
 
 // Uncomment and add to NgModule imports if you need to use two-way binding
 // import { NativeScriptFormsModule } from "nativescript-angular/forms";
@@ -18,6 +19,7 @@ import { HttpClientModule } from "@angular/common/http";
         NativeScriptRouterModule,
         NativeScriptRouterModule.forRoot(routes),
         NativeScriptUIListViewModule,
+        NativeScriptFormsModule,
         HttpClientModule,
     ],
     declarations: [

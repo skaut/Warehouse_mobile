@@ -10,3 +10,7 @@ TextField {
 Button {
     margin-top: 30;
 }
+Label {
+    color: white;
+    font-weight: bold;
+}

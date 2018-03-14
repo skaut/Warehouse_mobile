@@ -34,3 +34,16 @@ refer to http://docs.nativescript.org/ui/theme.
     font-size: 16;
     font-weight: bold;
 }
+.login-failed-container {
+    background-color: red;
+    height: 30;
+}
+.list-view-first-line {
+    margin: 5, 5, 0, 10;
+    font-weight: bold;
+    font-size: 15;
+}
+.list-view-second-line {
+    margin: 0, 0, 5, 15;
+    font-size: 12;
+}
