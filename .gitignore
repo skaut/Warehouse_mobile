@@ -16,3 +16,13 @@ platforms/
 tmp/
 typings/
 report/
+
+#gradle
+gradle/
+**/.gradle/
+gradlew
+gradlew.bat
+
+
+#releaseKyes
+warehouse_mobile_release_key.*
