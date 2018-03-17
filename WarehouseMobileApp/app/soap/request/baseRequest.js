@@ -1,0 +1,7 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.baseRequest = function (requestBody) {
+    return ("<soap:Envelope " + xmlns + ">\n        <soap:Body>\n            " + requestBody + "\n        </soap:Body>\n    </soap:Envelope>");
+};
+var xmlns = "xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\"";
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiYmFzZVJlcXVlc3QuanMiLCJzb3VyY2VSb290IjoiIiwic291cmNlcyI6WyJiYXNlUmVxdWVzdC50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiOztBQUNhLFFBQUEsV0FBVyxHQUFHLFVBQUMsV0FBVztJQUNuQyxNQUFNLENBQUMsQ0FDUCxvQkFBa0IsS0FBSyw0Q0FFYixXQUFXLGlEQUVKLENBQUMsQ0FBQztBQUN2QixDQUFDLENBQUM7QUFFRixJQUFNLEtBQUssR0FBRyxpS0FBaUssQ0FBQyIsInNvdXJjZXNDb250ZW50IjpbIlxyXG5leHBvcnQgY29uc3QgYmFzZVJlcXVlc3QgPSAocmVxdWVzdEJvZHkpID0+IHtcclxuICAgIHJldHVybiAoXHJcbiAgICBgPHNvYXA6RW52ZWxvcGUgJHt4bWxuc30+XHJcbiAgICAgICAgPHNvYXA6Qm9keT5cclxuICAgICAgICAgICAgJHtyZXF1ZXN0Qm9keX1cclxuICAgICAgICA8L3NvYXA6Qm9keT5cclxuICAgIDwvc29hcDpFbnZlbG9wZT5gKTtcclxufTtcclxuXHJcbmNvbnN0IHhtbG5zID0gXCJ4bWxuczp4c2k9XFxcImh0dHA6Ly93d3cudzMub3JnLzIwMDEvWE1MU2NoZW1hLWluc3RhbmNlXFxcIiB4bWxuczp4c2Q9XFxcImh0dHA6Ly93d3cudzMub3JnLzIwMDEvWE1MU2NoZW1hXFxcIiB4bWxuczpzb2FwPVxcXCJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy9zb2FwL2VudmVsb3BlL1xcXCJcIjsiXX0=

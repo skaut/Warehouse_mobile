@@ -3,19 +3,22 @@ import * as XmlObjects from "nativescript-xmlobjects";
 
 export class LoginResponse {
     private token: string;
-    idRole: string;
-    idUnit: string;
+    roleId: string;
+    unitId: string;
     error: boolean;
 
     constructor() {
         this.error = false;
     }
 
+    /*
+        Method parses xml response for login request and sets fields to received values.
+        In case of error sets error field to true to signalize problem.
+     */
     parseLoginResponse(response: string) {
         try {
             const inputs = XmlObjects.parse(response)
                 .root
-                // <body> is in the second element if request was successful
                 .element("body")
                 .element("form")
                 .elements("input");
@@ -25,10 +28,10 @@ export class LoginResponse {
                         this.token = element.attribute("value").value;
                         break;
                     case "skautIS_IDRole":
-                        this.idRole = element.attribute("value").value;
+                        this.roleId = element.attribute("value").value;
                         break;
                     case "skautIS_IDUnit":
-                        this.idUnit = element.attribute("value").value;
+                        this.unitId = element.attribute("value").value;
                         break;
                 }
             })
@@ -43,6 +46,6 @@ export class LoginResponse {
     }
 }
 
-export class soapResponse {
+export class SoapResponse {
 
 }
