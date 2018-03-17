@@ -10,7 +10,7 @@ export class UserService {
 
     login( user: User ) {
         const url = Constants.SERVER_URL + "Login/";
-        const body = this.buildBody(user);
+        const body = this.buildLoginBody(user);
         const options = {
             responseType: "text" as "text",
         };
@@ -21,7 +21,7 @@ export class UserService {
         );
     }
 
-    private buildBody(user: User) {
+    private buildLoginBody(user: User) {
         const body = new FormData();
         body.append("appid", Constants.APPLICATION_ID);
         body.append("ctl00$Content$txtUserName", user.name);

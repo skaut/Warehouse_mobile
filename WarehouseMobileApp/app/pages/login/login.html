@@ -1,6 +1,9 @@
 <StackLayout>
+    <GridLayout rows="*" columns="*" class="login-failed-container" [visibility]="failedLoginLabel.visibility">
+        <Label row="0" verticalAlignment="center" textAlignment="center" [text]="failedLoginLabel.message"></Label>
+    </GridLayout>
     <Image src="res://login_logo" stretch="none" horizontalAlignment="center"></Image>
-    <TextField #email hint="Uživatelské jméno (skautIS)" keyboardType="email" [(ngModel)]="user.name"
+    <TextField #name hint="Uživatelské jméno (skautIS)" keyboardType="email" [(ngModel)]="user.name"
                autocorrect="false" autocapitalizationType="none"></TextField>
     <TextField #password hint="Heslo" secure="true" [(ngModel)]="user.password"></TextField>
     <Button text="Přihlásit se" (tap)="login()" class="generic-text-component left-right-spacing"></Button>
