@@ -1,19 +1,18 @@
 import { Injectable } from "@angular/core";
-import { HttpClient, HttpHeaders } from "@angular/common/http";
+import { HttpClient } from "@angular/common/http";
 import { User } from "./user";
-import { baseRequest } from "../../soap/request/baseRequest";
 import { Observable } from "rxjs/Observable";
 import * as Constants from "../../constants"
-import * as appSettings from "application-settings"
+import { UserDetail } from "../../soap/soapEntities/userDetail";
 
 
 @Injectable()
 export class UserService {
-    options = {
-        responseType: "text" as "text"
-    };
+
+    serviceName: string = "UserManagement";
 
     constructor( private httpClient: HttpClient ) {}
+
 
     login( user: User ): Observable<any> {
         const url = Constants.SERVER_URL + "Login/";
@@ -21,32 +20,12 @@ export class UserService {
         return this.httpClient.post(
             url,
             body,
-            this.options
+            { responseType: "text" as "text" }
         );
     }
 
-    userDetail( token: string ): Observable<any> {
-        const url = Constants.BASE_SERVICE_URL + "UserManagement.asmx";
-        const requestBody =
-            `<UserDetail xmlns=\"https://is.skaut.cz/\">
-                <userDetailInput>
-                    <ID_Login>${token}</ID_Login>
-                    <ID_Application>${Constants.APPLICATION_ID}</ID_Application>
-                </userDetailInput>
-            </UserDetail>`;
-        const body = baseRequest(requestBody);
-        const options = {
-            headers: new HttpHeaders({
-                "Content-Type": " text/xml",
-                "SOAPAction": "https://is.skaut.cz/UserDetail"
-            }),
-            responseType: "text" as "text"
-        };
-        return this.httpClient.post(
-            url,
-            body,
-            options
-        );
+    getUserDetail(userDetail: UserDetail) {
+        return userDetail.call(userDetail, this.serviceName, this.httpClient);
     }
 
     private buildLoginBody(user: User): FormData {

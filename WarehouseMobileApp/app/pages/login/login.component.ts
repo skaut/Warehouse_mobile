@@ -4,7 +4,9 @@ import { User } from "../../entities/user/user"
 import { Router } from "@angular/router";
 import { UserService } from "../../entities/user/user.service";
 import { LoginResponse } from "../../soap/response/responseParser";
+import { UserDetail } from "../../soap/soapEntities/userDetail";
 import * as appSettings from "application-settings";
+
 
 @Component({
     providers: [UserService],
@@ -58,7 +60,7 @@ export class LoginComponent implements OnInit {
                         appSettings.setString("token", response.getToken());
                         appSettings.setString("roleId", response.roleId);
                         appSettings.setString("unitId", response.unitId);
-                        this.userService.userDetail(response.getToken())
+                        this.userService.getUserDetail(new UserDetail())
                             .subscribe(
                                 resp => {
                                     console.log(resp)
