@@ -1,10 +1,13 @@
 import { Component, ElementRef, OnInit, ViewChild } from "@angular/core";
 import { Page } from "ui/page";
 import { User } from "../../entities/user/user"
-import { Router } from "@angular/router";
 import { UserService } from "../../entities/user/user.service";
-import { LoginResponse } from "../../soap/responseParsers";
+import { LoginResponse, SoapResponse } from "../../soap/responseParsers/responseParsers";
+import { UserDetail } from "../../soap/requests/userDetail";
+import { RouterExtensions } from "nativescript-angular";
+import { UserDetailResult } from "../../soap/results/userDetailResult";
 import * as appSettings from "application-settings";
+
 
 @Component({
     providers: [UserService],
@@ -25,12 +28,12 @@ export class LoginComponent implements OnInit {
     ngOnInit(): void {
         this.page.actionBarHidden = true;
         this.failedLoginLabel = {
-            message: "Přihlášení se nezdařilo. Zkontrolujte připojení k internetu.",
+            message: "Nastala chyba při komunikaci se službou SkautIS.",
             visibility: "hidden"
         }
     }
 
-    constructor( private page: Page, private router: Router, private userService: UserService ) {
+    constructor( private page: Page, private userService: UserService, private routerExtensions: RouterExtensions ) {
         this.user = new User();
         this.user.name = "stredisko.koprivnice";
         this.user.password = "koprivnice.Web5";
@@ -44,6 +47,10 @@ export class LoginComponent implements OnInit {
         }, 3000)
     }
 
+    /*
+        Performs login request followed by userDetail request using data from response to login
+        Params from response which will be used later by app are saved to appSettings.
+     */
     login() {
         this.userService.login(this.user)
             .subscribe(
@@ -51,18 +58,32 @@ export class LoginComponent implements OnInit {
                     const response = new LoginResponse();
                     response.parseLoginResponse(resp);
                     if (!response.error) {
+                        appSettings.setString("userName", this.user.name);
                         appSettings.setString("token", response.getToken());
-                        appSettings.setString("idRole", response.idRole);
-                        appSettings.setString("idUnit", response.idUnit);
-                        this.router.navigate(["/warehouseList"]);
+                        appSettings.setString("roleId", response.roleId);
+                        appSettings.setString("unitId", response.unitId);
+                        this.userService.getUserDetail(new UserDetail())
+                            .subscribe(
+                                resp => {
+                                    const response = new SoapResponse();
+                                    const userDetailResult: UserDetailResult = response
+                                        .parseResponse(resp, new UserDetailResult());
+                                    // todo - save data in userDetail to db/appSettings
+                                    this.routerExtensions.navigate(["/warehouseList"], { clearHistory: true });
+                                    },
+                                () => {
+                                    this.showErrorBar("Nepovedlo se načíst uživatelská data.");
+                                }
+                            );
                     }
                     else {
                         this.showErrorBar("Špatné uživatelské jméno nebo heslo.")
                     }
                 },
                 () => {
-                    this.showErrorBar("Nastala chyba při komunikaci se službou SkautIS.")
+                    this.showErrorBar("Přihlášení se nezdařilo. Zkontrolujte připojení k internetu.")
                 }
             );
+
     }
 }

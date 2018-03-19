@@ -1,10 +1,11 @@
-import * as dialogs from "tns-core-modules/ui/dialogs";
-import { Router } from "@angular/router";
 import { Injectable } from "@angular/core";
+import { RouterExtensions } from "nativescript-angular";
+import * as dialogs from "tns-core-modules/ui/dialogs";
+
 
 @Injectable()
 export class Helper {
-    constructor( private router: Router ) {}
+    constructor( private routerExtensions: RouterExtensions ) {}
 
     logout() {
         dialogs.confirm({
@@ -15,12 +16,12 @@ export class Helper {
         })
             .then(result => {
                 if (result) {
-                    this.router.navigate([""]);
+                    this.routerExtensions.navigate([""], { clearHistory: true });
                 }
             })
     }
 
     navigate(page) {
-        this.router.navigate([page]);
+        this.routerExtensions.navigate([page]);
     }
 }
