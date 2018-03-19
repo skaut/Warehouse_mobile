@@ -3,7 +3,7 @@ import { HttpClient } from "@angular/common/http";
 import { User } from "./user";
 import { Observable } from "rxjs/Observable";
 import * as Constants from "../../constants"
-import { UserDetail } from "../../soap/soapEntities/userDetail";
+import { UserDetail } from "../../soap/requests/userDetail";
 
 
 @Injectable()

@@ -1,10 +1,10 @@
 import { Component, ElementRef, OnInit, ViewChild } from "@angular/core";
 import { Page } from "ui/page";
 import { User } from "../../entities/user/user"
-import { Router } from "@angular/router";
 import { UserService } from "../../entities/user/user.service";
-import { LoginResponse } from "../../soap/response/responseParser";
-import { UserDetail } from "../../soap/soapEntities/userDetail";
+import { LoginResponse } from "../../soap/responseParsers/responseParser";
+import { UserDetail } from "../../soap/requests/userDetail";
+import { RouterExtensions } from "nativescript-angular";
 import * as appSettings from "application-settings";
 
 
@@ -32,7 +32,7 @@ export class LoginComponent implements OnInit {
         }
     }
 
-    constructor( private page: Page, private router: Router, private userService: UserService ) {
+    constructor( private page: Page, private userService: UserService, private routerExtensions: RouterExtensions ) {
         this.user = new User();
         this.user.name = "stredisko.koprivnice";
         this.user.password = "koprivnice.Web5";
@@ -69,7 +69,7 @@ export class LoginComponent implements OnInit {
                                     console.log("Fockin error: "  + error.status);
                                 }
                             );
-                        this.router.navigate(["/warehouseList"]);
+                        this.routerExtensions.navigate(["/warehouseList"], { clearHistory: true });
                     }
                     else {
                         this.showErrorBar("Špatné uživatelské jméno nebo heslo.")

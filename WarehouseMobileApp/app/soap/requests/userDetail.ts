@@ -1,4 +1,4 @@
-import { BaseRequest } from "../request/baseRequest";
+import { BaseRequest } from "./baseRequest";
 
 export class UserDetail extends BaseRequest {
     constructor() {
