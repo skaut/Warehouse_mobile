@@ -65,11 +65,10 @@ export class LoginComponent implements OnInit {
                         this.userService.getUserDetail(new UserDetail())
                             .subscribe(
                                 resp => {
-                                    // console.log(resp);
                                     const response = new SoapResponse();
                                     const userDetailResult: UserDetailResult = response
                                         .parseResponse(resp, new UserDetailResult());
-                                    // response.parseResponse(test, new UserDetailResult());
+                                    // todo - save data in userDetail to db/appSettings
                                     this.routerExtensions.navigate(["/warehouseList"], { clearHistory: true });
                                     },
                                 () => {

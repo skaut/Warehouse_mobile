@@ -1,6 +1,7 @@
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Observable } from "rxjs/Observable";
 import { Injectable } from "@angular/core";
+import { lowerCaseFirstLetter } from "../../utils/functions";
 import * as appSettings from "application-settings"
 import * as Constants from "../../constants";
 
@@ -39,16 +40,12 @@ export class BaseRequest {
         return `<soap12:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://www.w3.org/2003/05/soap-envelope">
                   <soap12:Body>
                     <${entityName} xmlns="https://is.skaut.cz/">
-                      <${this.lowerCaseFirstLetter(entityName)}Input>
+                      <${lowerCaseFirstLetter(entityName)}Input>
                         <ID_Login>${appSettings.getString("token")}</ID_Login>
                         ${requestParams.join('')}
-                      </${this.lowerCaseFirstLetter(entityName)}Input>
+                      </${lowerCaseFirstLetter(entityName)}Input>
                     </${entityName}>
                   </soap12:Body>
                 </soap12:Envelope>`;
-    }
-
-    private lowerCaseFirstLetter(string) {
-        return string.charAt(0).toLowerCase() + string.slice(1);
     }
 }
