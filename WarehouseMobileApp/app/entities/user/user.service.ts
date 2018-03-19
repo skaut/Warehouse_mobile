@@ -36,7 +36,7 @@ export class UserService {
         body.append("ctl00$Content$BtnLogin", Constants.BUTTON_LOGIN);
         body.append("__EVENTVALIDATION", Constants.__EVENTVALIDATION);
         body.append("__VIEWSTATE", Constants.__VIEWSTATE);
-        body.append("__VIEWSTATEGENERATOR", Constants.__VIEWSTATEGENERATOR);
+        // body.append("__VIEWSTATEGENERATOR", Constants.__VIEWSTATEGENERATOR);
         return body;
     }
 }

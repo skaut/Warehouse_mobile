@@ -2,9 +2,10 @@ import { Component, ElementRef, OnInit, ViewChild } from "@angular/core";
 import { Page } from "ui/page";
 import { User } from "../../entities/user/user"
 import { UserService } from "../../entities/user/user.service";
-import { LoginResponse } from "../../soap/responseParsers/responseParser";
+import { LoginResponse, SoapResponse } from "../../soap/responseParsers/responseParsers";
 import { UserDetail } from "../../soap/requests/userDetail";
 import { RouterExtensions } from "nativescript-angular";
+import { UserDetailResult } from "../../soap/results/userDetailResult";
 import * as appSettings from "application-settings";
 
 
@@ -57,19 +58,24 @@ export class LoginComponent implements OnInit {
                     const response = new LoginResponse();
                     response.parseLoginResponse(resp);
                     if (!response.error) {
+                        appSettings.setString("userName", this.user.name);
                         appSettings.setString("token", response.getToken());
                         appSettings.setString("roleId", response.roleId);
                         appSettings.setString("unitId", response.unitId);
                         this.userService.getUserDetail(new UserDetail())
                             .subscribe(
                                 resp => {
-                                    console.log(resp)
-                                },
-                                error => {
-                                    console.log("Fockin error: "  + error.status);
+                                    // console.log(resp);
+                                    const response = new SoapResponse();
+                                    const userDetailResult: UserDetailResult = response
+                                        .parseResponse(resp, new UserDetailResult());
+                                    // response.parseResponse(test, new UserDetailResult());
+                                    this.routerExtensions.navigate(["/warehouseList"], { clearHistory: true });
+                                    },
+                                () => {
+                                    this.showErrorBar("Nepovedlo se načíst uživatelská data.");
                                 }
                             );
-                        this.routerExtensions.navigate(["/warehouseList"], { clearHistory: true });
                     }
                     else {
                         this.showErrorBar("Špatné uživatelské jméno nebo heslo.")
