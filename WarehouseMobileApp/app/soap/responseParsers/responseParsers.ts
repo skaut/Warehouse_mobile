@@ -1,3 +1,4 @@
+import { USER_TOKEN, USER_ROLE_ID, USER_UNIT_ID } from "../../constants";
 import { Status } from "../../utils/enums";
 import * as XmlObjects from "nativescript-xmlobjects";
 import * as AppSettings from "application-settings";
@@ -19,19 +20,16 @@ export const parseLoginResponse = (response: string): Status => {
         inputs.map((element) => {
             switch (element.attribute("name").value) {
                 case "skautIS_Token":
-                    AppSettings.setString("token", element.attribute("value").value);
+                    AppSettings.setString(USER_TOKEN, element.attribute("value").value);
                     break;
                 case "skautIS_IDRole":
-                    AppSettings.setString("roleId", element.attribute("value").value);
+                    AppSettings.setString(USER_ROLE_ID, element.attribute("value").value);
                     break;
                 case "skautIS_IDUnit":
-                    AppSettings.setString("unitId", element.attribute("value").value);
+                    AppSettings.setString(USER_UNIT_ID, element.attribute("value").value);
                     break;
             }
         });
-        // console.log(AppSettings.getString("token"));
-        // console.log(AppSettings.getString("roleId"));
-        // console.log(AppSettings.getString("unitId"));
         return Status.success
     }
     catch {
@@ -65,9 +63,6 @@ export const parseSoapResponse = (response: string, entity: any, createSingleOut
             return mapReceivedDataToEntity(entity, receivedTags.nodes())
         }
         else {
-            if (!createSingleOutputEntity()) {
-                return Status.error
-            }
             outputs.map(output => {
                 const mappingEntity = mapReceivedDataToEntity(createSingleOutputEntity(), output.nodes());
                 entity[`${mappingEntity.constructor.name}s`].push(mappingEntity);
@@ -76,7 +71,7 @@ export const parseSoapResponse = (response: string, entity: any, createSingleOut
         }
     }
     catch {
-        return Status.error
+        return null
     }
 };
 
