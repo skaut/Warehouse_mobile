@@ -2,11 +2,12 @@ import { Component, ElementRef, OnInit, ViewChild } from "@angular/core";
 import { Page } from "ui/page";
 import { User } from "../../entities/user/user"
 import { UserService } from "../../entities/user/user.service";
-import { LoginResponse, SoapResponse } from "../../soap/responseParsers/responseParsers";
+import { parseLoginResponse, parseSoapResponse } from "../../soap/responseParsers/responseParsers";
 import { UserDetail } from "../../soap/requests/userDetail";
 import { RouterExtensions } from "nativescript-angular";
 import { UserDetailResult } from "../../soap/results/userDetailResult";
-import * as appSettings from "application-settings";
+import { Status } from "../../utils/enums";
+import * as AppSettings from "application-settings";
 
 
 @Component({
@@ -35,7 +36,7 @@ export class LoginComponent implements OnInit {
 
     constructor( private page: Page, private userService: UserService, private routerExtensions: RouterExtensions ) {
         this.user = new User();
-        this.user.name = "stredisko.koprivnice";
+        this.user.name = AppSettings.getString("userName", "");
         this.user.password = "koprivnice.Web5";
     }
 
@@ -44,31 +45,26 @@ export class LoginComponent implements OnInit {
         this.failedLoginLabel.visibility = "visible";
         setTimeout(() => {
             this.failedLoginLabel.visibility = "hidden";
+            this.failedLoginLabel.message = "Nastala chyba při komunikaci se službou SkautIS.";
         }, 3000)
     }
 
     /*
         Performs login request followed by userDetail request using data from response to login
-        Params from response which will be used later by app are saved to appSettings.
+        Params from response which will be used later by app are saved to AppSettings.
      */
     login() {
         this.userService.login(this.user)
             .subscribe(
                 resp => {
-                    const response = new LoginResponse();
-                    response.parseLoginResponse(resp);
-                    if (!response.error) {
-                        appSettings.setString("userName", this.user.name);
-                        appSettings.setString("token", response.getToken());
-                        appSettings.setString("roleId", response.roleId);
-                        appSettings.setString("unitId", response.unitId);
+                    const result = parseLoginResponse(resp);
+                    if (result === Status.success) {
+                        AppSettings.setString("userName", this.user.name);
                         this.userService.getUserDetail(new UserDetail())
                             .subscribe(
                                 resp => {
-                                    const response = new SoapResponse();
-                                    const userDetailResult: UserDetailResult = response
-                                        .parseResponse(resp, new UserDetailResult());
-                                    // todo - save data in userDetail to db/appSettings
+                                    const userDetailResult = parseSoapResponse(resp, new UserDetailResult());
+                                    // todo - save data in userDetail to db/AppSettings and handle error
                                     this.routerExtensions.navigate(["/warehouseList"], { clearHistory: true });
                                     },
                                 () => {

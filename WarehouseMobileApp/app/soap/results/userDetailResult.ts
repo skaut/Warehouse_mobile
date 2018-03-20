@@ -9,4 +9,8 @@ export class UserDetailResult {
         this.ID_Person = "";
         this.Person = "";
     }
+
+    toString() {
+        return "ID: " + this.ID + ", ID_Person: " + this.ID_Person + ", Person: " + this.Person
+    }
 }

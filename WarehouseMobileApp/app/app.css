@@ -14,7 +14,7 @@ refer to http://docs.nativescript.org/ui/theme.
     margin-right: 30;
 }
 .generic-text-component {
-    background-color: royalblue;
+    background-color: #255C9E;
     color: white;
 }
 .layout-bottom-border {
@@ -26,7 +26,7 @@ refer to http://docs.nativescript.org/ui/theme.
     border-top-width: 1;
 }
 .layout-colored {
-    background-color: royalblue;
+    background-color: #255C9E;
 }
 .header-text-component {
     border-color: transparent;
