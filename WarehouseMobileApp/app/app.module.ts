@@ -6,6 +6,7 @@ import { routes, navigatableComponents } from "./app.routing";
 import { NativeScriptUIListViewModule } from "nativescript-ui-listview/angular";
 import { HttpClientModule } from "@angular/common/http";
 import { NativeScriptFormsModule } from "nativescript-angular";
+import {UserRoleAllResult} from "./soap/results/userRoleAllResult";
 
 // Uncomment and add to NgModule imports if you need to use two-way binding
 // import { NativeScriptFormsModule } from "nativescript-angular/forms";
@@ -26,7 +27,8 @@ import { NativeScriptFormsModule } from "nativescript-angular";
         AppComponent,
         ...navigatableComponents
     ],
-    bootstrap: [AppComponent]
+    bootstrap: [AppComponent],
+    providers: [UserRoleAllResult]
 })
 /*
 Pass your application module to the bootstrapModule function located in main.ts to start your app

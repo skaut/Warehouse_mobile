@@ -13,4 +13,14 @@ export class UserRole {
         this.Role = "";
         this.Unit = "";
     }
+
+    // helper for development purposes
+    toString() {
+        return `
+        ID: ${this.ID}
+        IDRole: ${this.ID_Role}
+        IDUnit: ${this.ID_Unit}
+        Role: ${this.Role}
+        Unit: ${this.Unit}`
+    }
 }

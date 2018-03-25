@@ -1,15 +1,17 @@
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Observable } from "rxjs/Observable";
+import { USER_TOKEN, APPLICATION_ID } from "../../constants";
 import { Injectable } from "@angular/core";
 import { lowerCaseFirstLetter } from "../../utils/functions";
-import * as appSettings from "application-settings"
+import * as AppSettings from "application-settings"
 import * as Constants from "../../constants";
 
 
 @Injectable()
 export class BaseRequest {
 
-    ID_Application: string = Constants.APPLICATION_ID;
+    ID_Application: string = APPLICATION_ID;
+    ID_Login: string = AppSettings.getString(USER_TOKEN, "");
 
     /**
      * Method for post call on skautIS webservice
@@ -41,7 +43,6 @@ export class BaseRequest {
                   <soap12:Body>
                     <${entityName} xmlns="https://is.skaut.cz/">
                       <${lowerCaseFirstLetter(entityName)}Input>
-                        <ID_Login>${appSettings.getString("token")}</ID_Login>
                         ${requestParams.join('')}
                       </${lowerCaseFirstLetter(entityName)}Input>
                     </${entityName}>

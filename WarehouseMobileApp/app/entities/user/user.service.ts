@@ -2,8 +2,9 @@ import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { User } from "./user";
 import { Observable } from "rxjs/Observable";
-import * as Constants from "../../constants"
 import { UserDetail } from "../../soap/requests/userDetail";
+import { UserRoleAll } from "../../soap/requests/userRoleAll";
+import * as Constants from "../../constants"
 
 
 @Injectable()
@@ -26,6 +27,10 @@ export class UserService {
 
     getUserDetail(userDetail: UserDetail) {
         return userDetail.call(userDetail, this.serviceName, this.httpClient);
+    }
+
+    getUserRoleAll(userRoleAll: UserRoleAll) {
+        return userRoleAll.call(userRoleAll, this.serviceName, this.httpClient);
     }
 
     private buildLoginBody(user: User): FormData {

@@ -3,19 +3,28 @@ import {HttpHeaders, HttpParams} from "@angular/common/http";
 const TEST_IS = true;
 
 export const SERVER_URL = TEST_IS ? "https://test-is.skaut.cz/" : "https://is.skaut.cz/";
-
 export const BASE_SERVICE_URL = SERVER_URL + "JunakWebservice/"
-
-export const REQUEST_XML_HEADER = new HttpHeaders({"Content-Type": "text/xml"});
 
 // todo - fill in appid for production once received
 export const APPLICATION_ID = TEST_IS ? "cd5f12c7-4fde-481a-9fbb-b167b1d33152" : "";
 
 export const BUTTON_LOGIN = "Přihlásit se";
 
-/*
-    The 'magical' constants below are hidden inputs in SkautIS web page (test and production respectively).
-    It is necessary to send these values along with user name and password for successful login.
+export const USER_TOKEN = "token";
+export const USER_ROLE_ID = "roleId";
+export const USER_UNIT_ID = "unitId";
+export const USER_ID = "userId";
+export const USER_PERSON_ID = "userPersonId";
+export const USER_PERSON_NAME = "userPersonName";
+export const USER_ROLE = "userRole"
+export const USER_NAME = "userName";
+
+export const ALLOWED_ROLES = ["18", "22", "25", "44", "50", "51", "61", "103", "104"];
+
+/**
+ * The three constants below are hidden inputs in SkautIS web page (test and production respectively).
+ * It is necessary to send these values along with user name and password for successful login.
+ * EDIT: It seems that __VIEWSTATEGENERATOR is not necessary to send.
  */
 export const __EVENTVALIDATION = TEST_IS
     ? "/wEdAAbUPcsB8lZt0eubI3qrQasyDWTlVFFJ9YJcCdgyvbvSZJjc8X/OeYsNy9+KgXIoSOZMlO+KuBJDgBNV3/T8Jw9hbOt01hIqJPnLi/Gc3NzATMPVWCNOPgGxUCfc4D95At/dLp2PV0JbIeul+0/lTDizSHayNAuvr7ygzBWG/V354g=="
