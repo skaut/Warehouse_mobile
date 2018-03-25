@@ -33,6 +33,12 @@ export class UserService {
         return userRoleAll.call(userRoleAll, this.serviceName, this.httpClient);
     }
 
+    /**
+     * Method to build login request body. Fields are hidden inputs in skautIS page with necessary data to login.
+     *
+     * @param {User} user - user with name and password to pass to skautIS
+     * @returns {FormData}
+     */
     private buildLoginBody(user: User): FormData {
         const body = new FormData();
         body.append("appid", Constants.APPLICATION_ID);
