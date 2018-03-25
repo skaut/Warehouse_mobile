@@ -11,6 +11,7 @@ import * as Constants from "../../constants";
 export class BaseRequest {
 
     ID_Application: string = APPLICATION_ID;
+    ID_Login: string = AppSettings.getString(USER_TOKEN, "");
 
     /**
      * Method for post call on skautIS webservice
@@ -42,7 +43,6 @@ export class BaseRequest {
                   <soap12:Body>
                     <${entityName} xmlns="https://is.skaut.cz/">
                       <${lowerCaseFirstLetter(entityName)}Input>
-                        <ID_Login>${AppSettings.getString(USER_TOKEN)}</ID_Login>
                         ${requestParams.join('')}
                       </${lowerCaseFirstLetter(entityName)}Input>
                     </${entityName}>

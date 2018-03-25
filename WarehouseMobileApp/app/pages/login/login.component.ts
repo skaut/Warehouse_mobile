@@ -115,6 +115,7 @@ export class LoginComponent implements OnInit {
             .subscribe(
                 resp => {
                     try {
+                        this.userRoleAllResult.UserRoles = [];
                         this.userRoleAllResult.UserRoles = parseSoapResponse(resp, this.userRoleAllResult,
                             () => new UserRole())
                             ["UserRoles"].filter(role => {
