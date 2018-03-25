@@ -8,7 +8,7 @@
 
 # Nativescript
 *.js.map
-app/**/*.js
+WarehouseMobileApp/app/**/*.js
 hooks/
 lib/
 node_modules/
