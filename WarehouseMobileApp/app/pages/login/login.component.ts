@@ -18,7 +18,7 @@ import * as AppSettings from "application-settings";
     providers: [UserService],
     selector: "login-component",
     templateUrl: "./pages/login/login.html",
-    styleUrls: ["pages/login/login-common.css"]
+    styleUrls: ["pages/login/login.common.css"]
 })
 
 export class LoginComponent implements OnInit {
@@ -29,14 +29,6 @@ export class LoginComponent implements OnInit {
     };
     @ViewChild("name") name: ElementRef;
     @ViewChild("password") password: ElementRef;
-
-    ngOnInit(): void {
-        this.page.actionBarHidden = true;
-        this.failedLoginLabel = {
-            message: "Nastala chyba při komunikaci se službou SkautIS.",
-            visibility: "hidden"
-        }
-    }
 
     constructor(
         private page: Page,
@@ -49,7 +41,15 @@ export class LoginComponent implements OnInit {
         this.user.password = "koprivnice.Web5";
     }
 
-    private showErrorBar(message) {
+    ngOnInit(): void {
+        this.page.actionBarHidden = true;
+        this.failedLoginLabel = {
+            message: "Nastala chyba při komunikaci se službou SkautIS.",
+            visibility: "hidden"
+        }
+    }
+
+    private showErrorBar(message): void {
         this.failedLoginLabel.message = message;
         this.failedLoginLabel.visibility = "visible";
         setTimeout(() => {
@@ -121,7 +121,10 @@ export class LoginComponent implements OnInit {
                             ["UserRoles"].filter(role => {
                             return ALLOWED_ROLES.some(value => value === role["ID_Role"])
                         });
-                        this.routerExtensions.navigate(["/warehouseList"], { clearHistory: true });
+                        this.userRoleAllResult.UserRoles.map(role => {
+                            console.log(role.toFullString())
+                        });
+                        this.routerExtensions.navigate(["/selectRole"], { clearHistory: true });
                     }
                     catch {
                         this.showErrorBar("Nepodařilo se načíst uživatelské role.")

@@ -1,13 +1,14 @@
 import { Component, OnInit } from "@angular/core";
-import { Helper } from "../../utils/classes"
+import { logout } from "../../utils/functions"
 import { Page } from "ui/page";
+import { RouterExtensions } from "nativescript-angular";
 
 @Component({
     selector: "warehouseList-component",
     moduleId: module.id,
     templateUrl: "./warehouseList.html",
-    styleUrls: ["./warehouseList-common.css"],
-    providers: [Helper]
+    styleUrls: ["./warehouseList.common.css"],
+    providers: []
 })
 
 export class WarehouseListComponent implements OnInit {
@@ -15,7 +16,7 @@ export class WarehouseListComponent implements OnInit {
     isLoading = true;
     listLoaded = false;
 
-    constructor( private page: Page, private helper: Helper ) {}
+    constructor( private page: Page, private routerExtensions: RouterExtensions ) {}
 
     ngOnInit() {
         this.page.actionBarHidden = true;
@@ -25,10 +26,10 @@ export class WarehouseListComponent implements OnInit {
     }
 
     logout() {
-        this.helper.logout()
+        logout(this.routerExtensions)
     }
 
     warehouseSelected() {
-        this.helper.navigate("/warehouseDetail")
+        this.routerExtensions.navigate(["/warehouseDetail"])
     }
 }
