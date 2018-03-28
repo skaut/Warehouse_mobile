@@ -8,10 +8,11 @@
     <Label row="1" text="Uživatel nemá práva pro správu majetku."
            verticalAlignment="center"
            horizontalAlignment="center"
-           [visibility]="noRolesLabelVisible"></Label>
-    <StackLayout row="1" [visibility]="unitPickerVisible" class="left-right-spacing">
-        <ListPicker [items]="items"></ListPicker>
-        <Button text="VYBRAT" class="generic-text-component"></Button>
+           [visibility]="noRolesLabelVisibility"></Label>
+    <StackLayout row="1" [visibility]="unitPickerVisibility" class="left-right-spacing">
+        <ListPicker [items]="userRoleAllResult.UserRoles" [selectedIndex]="selectedRoleIndex"
+            (selectedIndexChange)="selectedIndexChanged($event)"></ListPicker>
+        <Button text="VYBRAT" class="generic-text-component" (tap)="roleSelected()"></Button>
     </StackLayout>
     <GridLayout row="2" columns="*" class="layout-colored layout-top-border">
         <Button col="0" text="REZERVACE MAJETKU" class="header-text-component generic-text-component"></Button>

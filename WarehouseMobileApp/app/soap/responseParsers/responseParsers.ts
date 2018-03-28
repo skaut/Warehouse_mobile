@@ -87,7 +87,12 @@ const mapReceivedDataToEntity = (entity: any, nodes: XmlObjects.XNode[]): any =>
         if (tag instanceof XmlObjects.XElement) {
             properties.map(property => {
                 if (property === tag.name.toString()) {
-                    entity[property] = tag.value.toString()
+                    if (tag.value == null) {
+                        entity[property] = null;
+                    }
+                    else {
+                        entity[property] = tag.value.toString()
+                    }
                 }
             })
         }

@@ -35,6 +35,6 @@ export class WarehouseDetailComponent implements OnInit {
     }
 
     back() {
-        this.routerExtensions.navigate(["/warehouseList"])
+        this.routerExtensions.backToPreviousPage()
     }
 }
