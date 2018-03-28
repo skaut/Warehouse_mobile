@@ -10,8 +10,8 @@ import { WarehouseAllResult } from "../../soap/results/warehouseAllResult";
 
 @Component({
     selector: "warehouseList-component",
-    templateUrl: "./warehouseList.html",
-    styleUrls: ["./warehouseList.common.css"],
+    templateUrl: "./pages/warehouseList/warehouseList.html",
+    styleUrls: ["./pages/warehouseList/warehouseList.common.css"],
     providers: [WarehouseService]
 })
 
@@ -29,21 +29,24 @@ export class WarehouseListComponent implements OnInit {
 
     ngOnInit() {
         this.page.actionBarHidden = true;
+        this.noWarehousesLabelVisibility = "hidden";
+        this.warehousesVisibility = "hidden";
+        this.getWarehouses();
+    }
+
+    private getWarehouses() {
         this.warehouseService.getWarehouseAll(new WarehouseAll())
             .subscribe(
                 resp => {
                     this.warehouses = parseSoapResponse(resp, new WarehouseAllResult(),
                         () => new Warehouse())["Warehouses"];
-                    // this.warehouses.map(wh => {
-                    //     console.log(wh.toFullString());
-                    // })
                     if (this.warehouses.length === 0) {
                         this.noWarehousesLabelVisibility = "visible";
-                        this.warehousesVisibility = "hidden"
+                        this.warehousesVisibility = "hidden";
                     }
                     else {
                         this.noWarehousesLabelVisibility = "hidden";
-                        this.warehousesVisibility = "visible"
+                        this.warehousesVisibility = "visible";
                     }
                 },
                 () => {

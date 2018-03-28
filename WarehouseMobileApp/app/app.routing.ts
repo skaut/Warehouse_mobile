@@ -1,7 +1,7 @@
 import { LoginComponent } from "./pages/login/login.component";
+import { SelectRoleComponent } from "./pages/selectRole/selectRole.component";
 import { WarehouseListComponent } from "./pages/warehouseList/warehouseList.component";
 import { WarehouseDetailComponent } from "./pages/warehouseDetail/warehouseDetail.component";
-import {SelectRoleComponent} from "./pages/selectRole/selectRole.component";
 
 export const routes = [
     { path: "", component: LoginComponent },
