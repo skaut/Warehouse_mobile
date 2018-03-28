@@ -4,12 +4,12 @@ import { User } from "./user";
 import { Observable } from "rxjs/Observable";
 import { UserDetail } from "../../soap/requests/userDetail";
 import { UserRoleAll } from "../../soap/requests/userRoleAll";
+import { LoginUpdate } from "../../soap/requests/loginUpdate";
 import * as Constants from "../../constants"
 
 
 @Injectable()
 export class UserService {
-
     serviceName: string = "UserManagement";
 
     constructor( private httpClient: HttpClient ) {}
@@ -31,6 +31,10 @@ export class UserService {
 
     getUserRoleAll(userRoleAll: UserRoleAll) {
         return userRoleAll.call(userRoleAll, this.serviceName, this.httpClient);
+    }
+
+    updateUserRole(loginUpdate: LoginUpdate) {
+        return loginUpdate.call(loginUpdate, this.serviceName, this.httpClient);
     }
 
     /**

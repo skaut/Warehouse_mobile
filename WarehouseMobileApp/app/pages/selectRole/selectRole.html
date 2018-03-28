@@ -1,0 +1,20 @@
+<GridLayout rows="60, *, 60">
+    <GridLayout row="0" columns="auto, *, auto" class="layout-bottom-border layout-colored">
+        <Button col="0" text="ZPĚT" class="header-text-component generic-text-component" (tap)="logout()"></Button>
+        <Label col="1" text="VYBERTE JEDNOTKU" horizontalAlignment="center" verticalAlignment="center"
+               class="header-text-component generic-text-component"></Label>
+        <Button col="2" visibility="hidden" text="ZPĚT" class="header-text-component generic-text-component" (tap)="logout()"></Button>
+    </GridLayout>
+    <Label row="1" text="Uživatel nemá práva pro správu majetku."
+           verticalAlignment="center"
+           horizontalAlignment="center"
+           [visibility]="noRolesLabelVisibility"></Label>
+    <StackLayout row="1" [visibility]="unitPickerVisibility" class="left-right-spacing">
+        <ListPicker [items]="userRoleAllResult.UserRoles" [selectedIndex]="selectedRoleIndex"
+            (selectedIndexChange)="selectedIndexChanged($event)"></ListPicker>
+        <Button text="VYBRAT" class="generic-text-component" (tap)="roleSelected()"></Button>
+    </StackLayout>
+    <GridLayout row="2" columns="*" class="layout-colored layout-top-border">
+        <Button col="0" text="REZERVACE MAJETKU" class="header-text-component generic-text-component"></Button>
+    </GridLayout>
+</GridLayout>

@@ -15,10 +15,10 @@ import * as AppSettings from "application-settings";
 
 
 @Component({
-    providers: [UserService],
+    providers: [],
     selector: "login-component",
     templateUrl: "./pages/login/login.html",
-    styleUrls: ["pages/login/login-common.css"]
+    styleUrls: ["pages/login/login.common.css"]
 })
 
 export class LoginComponent implements OnInit {
@@ -29,14 +29,6 @@ export class LoginComponent implements OnInit {
     };
     @ViewChild("name") name: ElementRef;
     @ViewChild("password") password: ElementRef;
-
-    ngOnInit(): void {
-        this.page.actionBarHidden = true;
-        this.failedLoginLabel = {
-            message: "Nastala chyba při komunikaci se službou SkautIS.",
-            visibility: "hidden"
-        }
-    }
 
     constructor(
         private page: Page,
@@ -49,7 +41,15 @@ export class LoginComponent implements OnInit {
         this.user.password = "koprivnice.Web5";
     }
 
-    private showErrorBar(message) {
+    ngOnInit(): void {
+        this.page.actionBarHidden = true;
+        this.failedLoginLabel = {
+            message: "Nastala chyba při komunikaci se službou SkautIS.",
+            visibility: "hidden"
+        }
+    }
+
+    private showErrorBar(message): void {
         this.failedLoginLabel.message = message;
         this.failedLoginLabel.visibility = "visible";
         setTimeout(() => {
@@ -90,9 +90,9 @@ export class LoginComponent implements OnInit {
             .subscribe(
                 resp => {
                     const userDetailResult = parseSoapResponse(resp, new UserDetailResult());
-                    if(userDetailResult) {
+                    if (userDetailResult) {
                         userDetailResult.saveData();
-                        this.gerUserRoles();
+                        this.getUserRoles();
                     }
                     else {
                         this.showErrorBar("Nepodařilo se načíst uživatelská data.")
@@ -110,7 +110,7 @@ export class LoginComponent implements OnInit {
      * which will be used as provider in next page (select role) as well and therefore role data will be accessible.
      * If no error appeared method navigates to the next page as last step.
      */
-    private gerUserRoles() {
+    private getUserRoles() {
         this.userService.getUserRoleAll(new UserRoleAll())
             .subscribe(
                 resp => {
@@ -121,7 +121,15 @@ export class LoginComponent implements OnInit {
                             ["UserRoles"].filter(role => {
                             return ALLOWED_ROLES.some(value => value === role["ID_Role"])
                         });
-                        this.routerExtensions.navigate(["/warehouseList"], { clearHistory: true });
+                        // this.userRoleAllResult.UserRoles.map(role => {
+                        //     console.log(role.toFullString())
+                        // });
+                        if (this.userRoleAllResult.UserRoles.length === 1) {
+                            this.routerExtensions.navigate(["/warehouseList"], {clearHistory: true})
+                        }
+                        else {
+                            this.routerExtensions.navigate(["/selectRole"], {clearHistory: true});
+                        }
                     }
                     catch {
                         this.showErrorBar("Nepodařilo se načíst uživatelské role.")
