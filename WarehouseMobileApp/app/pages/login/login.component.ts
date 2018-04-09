@@ -27,6 +27,7 @@ export class LoginComponent implements OnInit {
         message: string,
         visibility: string
     };
+    isLoading: boolean;
     @ViewChild("name") name: ElementRef;
     @ViewChild("password") password: ElementRef;
 
@@ -36,6 +37,7 @@ export class LoginComponent implements OnInit {
         private routerExtensions: RouterExtensions ,
         private userRoleAllResult: UserRoleAllResult,
     ) {
+        this.isLoading = false;
         this.user = new User();
         this.user.name = AppSettings.getString(USER_NAME, "");
         this.user.password = "koprivnice.Web5";
@@ -64,6 +66,7 @@ export class LoginComponent implements OnInit {
      */
     login() {
         AppSettings.setString(USER_NAME, this.user.name);
+        this.isLoading = true;
         this.userService.login(this.user)
             .subscribe(
                 resp => {
@@ -73,10 +76,12 @@ export class LoginComponent implements OnInit {
                     }
                     else {
                         this.showErrorBar("Špatné uživatelské jméno nebo heslo.")
+                        this.isLoading = false;
                     }
                 },
                 () => {
                     this.showErrorBar("Přihlášení se nezdařilo. Zkontrolujte připojení k internetu.")
+                    this.isLoading = false;
                 }
             );
     }
@@ -96,10 +101,12 @@ export class LoginComponent implements OnInit {
                     }
                     else {
                         this.showErrorBar("Nepodařilo se načíst uživatelská data.")
+                        this.isLoading = false;
                     }
                 },
                 () => {
                     this.showErrorBar("Nepodařilo se načíst uživatelská data.")
+                    this.isLoading = false;
                 }
             )
     }
@@ -124,6 +131,7 @@ export class LoginComponent implements OnInit {
                         // this.userRoleAllResult.UserRoles.map(role => {
                         //     console.log(role.toFullString())
                         // });
+                        this.isLoading = false;
                         if (this.userRoleAllResult.UserRoles.length === 1) {
                             this.routerExtensions.navigate(["/warehouseList"], {clearHistory: true})
                         }
@@ -132,11 +140,13 @@ export class LoginComponent implements OnInit {
                         }
                     }
                     catch {
-                        this.showErrorBar("Nepodařilo se načíst uživatelské role.")
+                        this.showErrorBar("Nepodařilo se načíst uživatelské role.");
+                        this.isLoading = false
                     }
                 },
                 () => {
-                    this.showErrorBar("Nepodařilo se načíst uživatelské role.")
+                    this.showErrorBar("Nepodařilo se načíst uživatelské role.");
+                    this.isLoading = false;
                 }
             )
     }

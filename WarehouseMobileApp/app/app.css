@@ -47,3 +47,6 @@ refer to http://docs.nativescript.org/ui/theme.
     margin: 0, 0, 5, 15;
     font-size: 12;
 }
+.scout-blue-color {
+    color: #255C9E;
+}
