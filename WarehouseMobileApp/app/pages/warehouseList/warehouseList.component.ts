@@ -19,6 +19,7 @@ export class WarehouseListComponent implements OnInit {
     warehouses: Array<Warehouse> = [];
     warehousesVisibility: string;
     noWarehousesLabelVisibility: string;
+    isLoading: boolean = true;
 
     constructor
     (
@@ -35,6 +36,7 @@ export class WarehouseListComponent implements OnInit {
     }
 
     private getWarehouses() {
+        this.isLoading = true;
         this.warehouseService.getWarehouseAll(new WarehouseAll())
             .subscribe(
                 resp => {
@@ -48,13 +50,15 @@ export class WarehouseListComponent implements OnInit {
                         this.noWarehousesLabelVisibility = "hidden";
                         this.warehousesVisibility = "visible";
                     }
+                    this.isLoading = false;
                 },
                 () => {
                     this.noWarehousesLabelVisibility = "visible";
-                    this.warehousesVisibility = "hidden"
+                    this.warehousesVisibility = "hidden";
+                    this.isLoading = false;
                     // todo - handle errors (maybe red bar with error message?)
                 }
-            )
+            );
     }
 
     back() {

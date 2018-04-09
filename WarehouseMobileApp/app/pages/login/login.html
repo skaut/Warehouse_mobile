@@ -1,10 +1,13 @@
-<StackLayout>
-    <GridLayout rows="*" columns="*" class="login-failed-container" [visibility]="failedLoginLabel.visibility">
-        <Label row="0" verticalAlignment="center" textAlignment="center" [text]="failedLoginLabel.message"></Label>
-    </GridLayout>
-    <Image src="res://login_logo" stretch="none" horizontalAlignment="center"></Image>
-    <TextField #name hint="Uživatelské jméno (skautIS)" keyboardType="email" [(ngModel)]="user.name"
-               autocorrect="false" autocapitalizationType="none"></TextField>
-    <TextField #password hint="Heslo" secure="true" [(ngModel)]="user.password"></TextField>
-    <Button text="Přihlásit se" (tap)="login()" class="generic-text-component left-right-spacing"></Button>
-</StackLayout>
+<GridLayout rows="*">
+    <StackLayout row="0">
+        <GridLayout rows="*" columns="*" class="login-failed-container" [visibility]="failedLoginLabel.visibility">
+            <Label row="0" verticalAlignment="center" textAlignment="center" [text]="failedLoginLabel.message"></Label>
+        </GridLayout>
+        <Image src="res://login_logo" stretch="none" horizontalAlignment="center"></Image>
+        <TextField #name hint="Uživatelské jméno (skautIS)" keyboardType="email" [(ngModel)]="user.name"
+                   autocorrect="false" autocapitalizationType="none"></TextField>
+        <TextField #password hint="Heslo" secure="true" [(ngModel)]="user.password"></TextField>
+        <Button text="Přihlásit se" (tap)="login()" class="generic-text-component left-right-spacing"></Button>
+    </StackLayout>
+    <ActivityIndicator row="0" class="scout-blue-color" [busy]="isLoading" height="50" width="50"></ActivityIndicator>
+</GridLayout>

@@ -5,14 +5,18 @@
                class="header-text-component generic-text-component"></Label>
         <Button col="2" text="ODHLÁSIT" class="header-text-component generic-text-component" (tap)="logout()"></Button>
     </GridLayout>
-    <Label row="1" text="Jednotce nejsou přiřazeny žádné sklady."
-           verticalAlignment="center"
-           horizontalAlignment="center"
-           [visibility]="noWarehousesLabelVisibility"></Label>
-    <ListView row="1" [items]="warehouses" [visibility]="warehousesVisibility" verticalAlignment="center" separatorColor="white">
+    <GridLayout row="1" rows="*">
+        <Label row="0" text="Jednotce nejsou přiřazeny žádné sklady."
+               verticalAlignment="center"
+               horizontalAlignment="center"
+               [visibility]="noWarehousesLabelVisibility"></Label>
+        <ListView row="0" [items]="warehouses" [visibility]="warehousesVisibility" verticalAlignment="center"
+                  separatorColor="white">
             <ng-template let-item="item">
                 <Button [text]="item.DisplayName" class="generic-text-component left-right-spacing"
                         (tap)="warehouseSelected()"></Button>
             </ng-template>
-    </ListView>
+        </ListView>
+    </GridLayout>
+    <ActivityIndicator row="1" class="scout-blue-color" [busy]="isLoading" height="50" width="50"></ActivityIndicator>
 </GridLayout>
