@@ -75,12 +75,12 @@ export class LoginComponent implements OnInit {
                         this.getUserDetail()
                     }
                     else {
-                        this.showErrorBar("Špatné uživatelské jméno nebo heslo.")
+                        this.showErrorBar("Špatné uživatelské jméno nebo heslo.");
                         this.isLoading = false;
                     }
                 },
                 () => {
-                    this.showErrorBar("Přihlášení se nezdařilo. Zkontrolujte připojení k internetu.")
+                    this.showErrorBar("Přihlášení se nezdařilo. Zkontrolujte připojení k internetu.");
                     this.isLoading = false;
                 }
             );

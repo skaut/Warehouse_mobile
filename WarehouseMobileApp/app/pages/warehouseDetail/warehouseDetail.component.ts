@@ -18,7 +18,7 @@ export class WarehouseDetailComponent implements OnInit {
 
     constructor( private page: Page, private routerExtensions: RouterExtensions ) {}
 
-    ngOnInit() {
+    ngOnInit(): void {
         this.page.actionBarHidden = true;
         this.items.push({ name: "Item 1", id: "MC12854132" });
         this.items.push({ name: "Item 2", id: "MC12854132" });
@@ -30,11 +30,11 @@ export class WarehouseDetailComponent implements OnInit {
         this.items.push({ name: "Item 8", id: "MC12854132" });
     }
 
-    logout() {
+    logout(): void {
         logout(this.routerExtensions)
     }
 
-    back() {
+    back(): void {
         this.routerExtensions.backToPreviousPage()
     }
 }

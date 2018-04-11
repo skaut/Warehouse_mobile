@@ -8,6 +8,7 @@ import { HttpClientModule } from "@angular/common/http";
 import { NativeScriptFormsModule } from "nativescript-angular";
 import { UserRoleAllResult } from "./soap/results/userRoleAllResult";
 import { UserService } from "./entities/user/user.service";
+import { WarehouseService } from "./entities/warehouse/warehouse.service";
 
 // Uncomment and add to NgModule imports if you need to use two-way binding
 // import { NativeScriptFormsModule } from "nativescript-angular/forms";
@@ -29,7 +30,11 @@ import { UserService } from "./entities/user/user.service";
         ...navigatableComponents
     ],
     bootstrap: [AppComponent],
-    providers: [UserService, UserRoleAllResult]
+    providers: [
+        UserService,
+        WarehouseService,
+        UserRoleAllResult,
+    ]
 })
 /*
 Pass your application module to the bootstrapModule function located in main.ts to start your app

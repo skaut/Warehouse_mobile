@@ -10,7 +10,13 @@ import { UserService } from "../../entities/user/user.service";
 import { LoginUpdate } from "../../soap/requests/loginUpdate";
 import { parseSoapResponse } from "../../soap/responseParsers/responseParsers";
 import { LoginUpdateResult } from "../../soap/results/loginUpdateResult";
-
+import { WarehouseService } from "../../entities/warehouse/warehouse.service";
+import { WarehouseAllResult } from "../../soap/results/warehouseAllResult";
+import { WarehouseAll } from "../../soap/requests/warehouseAll";
+import { Warehouse } from "../../entities/warehouse/warehouse";
+import { WarehouseItemAll } from "../../soap/requests/warehouseItemAll";
+import { WarehouseItem } from "../../entities/warehouseItem/warehouseItem";
+import { WarehouseItemAllResult } from "../../soap/results/warehouseItemAllResult";
 import * as AppSettings from "application-settings"
 
 
@@ -26,12 +32,14 @@ export class SelectRoleComponent implements OnInit {
     unitPickerVisibility: string;
     selectedRoleIndex: number;
     selectedRole: UserRole;
+    isLoading: boolean = false;
 
     constructor(
         private page: Page,
         private routerExtensions: RouterExtensions,
         private userRoleAllResult: UserRoleAllResult,
-        private userService: UserService
+        private userService: UserService,
+        private warehouseService: WarehouseService,
         ) {}
 
     ngOnInit(): void {
@@ -65,12 +73,14 @@ export class SelectRoleComponent implements OnInit {
         this.selectedRole = this.userRoleAllResult.UserRoles[picker.selectedIndex];
     }
 
-    roleSelected() {
+    roleSelected(): void {
         if (this.selectedRole) {
             this.userService.updateUserRole(new LoginUpdate(this.selectedRole.ID))
                 .subscribe(resp => {
                         const loginUpdateResult = parseSoapResponse(resp, new LoginUpdateResult());
                         loginUpdateResult.saveData();
+                        this.getWarehouses();
+                        this.getWarehouseItems();
                         this.routerExtensions.navigate(["/warehouseList"]);
                     },
                     () => {
@@ -81,6 +91,34 @@ export class SelectRoleComponent implements OnInit {
         else {
             return
         }
+    }
+
+    private getWarehouses(): void {
+        this.warehouseService.getWarehouseAll(new WarehouseAll())
+            .subscribe(
+                resp => {
+                    const warehouses: Array<Warehouse> = parseSoapResponse(resp, new WarehouseAllResult(),
+                        () => new Warehouse())["Warehouses"];
+                    console.log(warehouses.toString());
+                },
+                () => {
+                    // todo - handle errors (maybe red bar with error message?)
+                }
+            );
+    }
+
+    private getWarehouseItems(): void {
+        this.warehouseService.getWarehouseItemAll(new WarehouseItemAll())
+            .subscribe(
+                resp => {
+                    const result = parseSoapResponse(resp, new WarehouseItemAllResult(),
+                        () => new WarehouseItem());
+
+                },
+                () => {
+
+                }
+            )
     }
 
     logout(): void {

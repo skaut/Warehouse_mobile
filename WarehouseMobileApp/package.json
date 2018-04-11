@@ -20,6 +20,7 @@
 		"@angular/platform-browser-dynamic": "~5.2.0",
 		"@angular/router": "~5.2.0",
 		"nativescript-angular": "~5.2.0",
+		"nativescript-sqlite": "^2.0.1",
 		"nativescript-theme-core": "~1.0.4",
 		"nativescript-ui-listview": "^3.5.0",
 		"nativescript-xmlobjects": "^1.1.4",
