@@ -4,10 +4,10 @@ import { Page } from "ui/page";
 import { RouterExtensions } from "nativescript-angular";
 import { Warehouse } from "../../entities/warehouse/warehouse";
 import { WarehouseService } from "../../entities/warehouse/warehouse.service";
-import { WarehouseAll } from "../../soap/requests/warehouseAll";
-import { parseSoapResponse } from "../../soap/responseParsers/responseParsers";
-import { WarehouseAllResult } from "../../soap/results/warehouseAllResult";
-import {Database} from "../../utils/database";
+import { Database } from "../../utils/database";
+import { USER_UNIT_ID } from "../../constants";
+import * as AppSettings from "application-settings";
+
 
 @Component({
     selector: "warehouseList-component",
@@ -20,7 +20,7 @@ export class WarehouseListComponent implements OnInit {
     warehouses: Array<Warehouse> = [];
     warehousesVisibility: string;
     noWarehousesLabelVisibility: string;
-    isLoading: boolean = true;
+    isLoading: boolean;
 
     constructor
     (
@@ -30,50 +30,39 @@ export class WarehouseListComponent implements OnInit {
         private database: Database,
     ) {}
 
-    ngOnInit() {
+    ngOnInit(): void {
         this.page.actionBarHidden = true;
         this.noWarehousesLabelVisibility = "hidden";
         this.warehousesVisibility = "hidden";
-        this.getWarehouses();
+        this.isLoading = true;
+        setTimeout(() => {
+            this.getWarehouses();
+        }, 100);
     }
 
     private getWarehouses() {
         this.isLoading = true;
-        this.warehouseService.getWarehouseAll(new WarehouseAll())
-            .subscribe(
-                resp => {
-                    this.warehouses = parseSoapResponse(resp, new WarehouseAllResult(),
-                        () => new Warehouse())["Warehouses"];
-                    if (this.warehouses.length === 0) {
-                        this.noWarehousesLabelVisibility = "visible";
-                        this.warehousesVisibility = "hidden";
-                    }
-                    else {
-                        this.noWarehousesLabelVisibility = "hidden";
-                        this.warehousesVisibility = "visible";
-                    }
-                    this.isLoading = false;
-                },
-                () => {
-                    this.noWarehousesLabelVisibility = "visible";
-                    this.warehousesVisibility = "hidden";
-                    this.isLoading = false;
-                    // todo - handle errors (maybe red bar with error message?)
-                }
-            );
+        this.warehouses = this.database.selectAvailableWarehouses(AppSettings.getString(USER_UNIT_ID));
+        if (this.warehouses.length === 0) {
+            this.noWarehousesLabelVisibility = "visible";
+            this.warehousesVisibility = "hidden";
+        }
+        else {
+            this.noWarehousesLabelVisibility = "hidden";
+            this.warehousesVisibility = "visible";
+        }
+        this.isLoading = false;
     }
 
-    back() {
-        this.routerExtensions.backToPreviousPage();
+    back(): void {
+        this.routerExtensions.backToPreviousPage()
     }
 
-    logout() {
+    logout(): void {
         logout(this.routerExtensions)
     }
 
-    warehouseSelected() {
-        this.database.selectAll("warehouse");
-        this.database.selectAll("item");
-        // this.routerExtensions.navigate(["/warehouseDetail"])
+    warehouseSelected(): void {
+        this.routerExtensions.navigate(["/warehouseDetail"])
     }
 }

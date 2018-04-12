@@ -81,7 +81,6 @@ export class SelectRoleComponent implements OnInit {
                         const loginUpdateResult = parseSoapResponse(resp, new LoginUpdateResult());
                         loginUpdateResult.saveData();
                         this.getWarehouses();
-                        this.routerExtensions.navigate(["/warehouseList"]);
                     },
                     () => {
                         // todo - handle errors (red bar with message?)
@@ -100,7 +99,7 @@ export class SelectRoleComponent implements OnInit {
                     const warehouses: Array<Warehouse> = parseSoapResponse(resp, new WarehouseAllResult(),
                         () => new Warehouse())["Warehouses"];
                     warehouses.map(warehouse => {
-                        this.database.insertWarehouse(warehouse);
+                        this.database.insertWarehouse(warehouse, this.selectedRole.ID_Unit)
                     });
                     this.getWarehouseItems()
                 },
@@ -114,9 +113,9 @@ export class SelectRoleComponent implements OnInit {
         this.warehouseService.getWarehouseItemAll(new WarehouseItemAll())
             .subscribe(
                 resp => {
-                    const result = parseSoapResponse(resp, new WarehouseItemAllResult(),
-                        () => new WarehouseItem());
-                    result.WarehouseItems.map(item => {
+                    const items = parseSoapResponse(resp, new WarehouseItemAllResult(),
+                        () => new WarehouseItem())["WarehouseItems"];
+                    items.map(item => {
                         this.database.insertItem(item);
                     });
                     this.routerExtensions.navigate(["/warehouseList"])
