@@ -5,9 +5,9 @@ export class Warehouse {
     ID_WarehouseMain: string;
 
     constructor() {
-        this.ID = "";
-        this.DisplayName = "";
-        this.ID_WarehouseMain = "";
+        this.ID = null;
+        this.DisplayName = null;
+        this.ID_WarehouseMain = null;
     }
 
     toString() {

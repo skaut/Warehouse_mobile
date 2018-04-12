@@ -5,16 +5,12 @@ import { AppComponent } from "./app.component";
 import { routes, navigatableComponents } from "./app.routing";
 import { NativeScriptUIListViewModule } from "nativescript-ui-listview/angular";
 import { HttpClientModule } from "@angular/common/http";
-import { NativeScriptFormsModule } from "nativescript-angular";
+import { NativeScriptFormsModule, NativeScriptHttpModule } from "nativescript-angular";
 import { UserRoleAllResult } from "./soap/results/userRoleAllResult";
 import { UserService } from "./entities/user/user.service";
 import { WarehouseService } from "./entities/warehouse/warehouse.service";
+import { Database } from "./utils/database";
 
-// Uncomment and add to NgModule imports if you need to use two-way binding
-// import { NativeScriptFormsModule } from "nativescript-angular/forms";
-
-// Uncomment and add to NgModule imports  if you need to use the HTTP wrapper
-// import { NativeScriptHttpModule } from "nativescript-angular/http";
 
 @NgModule({
     imports: [
@@ -23,6 +19,7 @@ import { WarehouseService } from "./entities/warehouse/warehouse.service";
         NativeScriptRouterModule.forRoot(routes),
         NativeScriptUIListViewModule,
         NativeScriptFormsModule,
+        NativeScriptHttpModule,
         HttpClientModule,
     ],
     declarations: [
@@ -34,6 +31,7 @@ import { WarehouseService } from "./entities/warehouse/warehouse.service";
         UserService,
         WarehouseService,
         UserRoleAllResult,
+        Database,
     ]
 })
 /*

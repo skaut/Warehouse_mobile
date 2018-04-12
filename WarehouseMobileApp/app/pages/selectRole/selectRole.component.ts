@@ -17,6 +17,7 @@ import { Warehouse } from "../../entities/warehouse/warehouse";
 import { WarehouseItemAll } from "../../soap/requests/warehouseItemAll";
 import { WarehouseItem } from "../../entities/warehouseItem/warehouseItem";
 import { WarehouseItemAllResult } from "../../soap/results/warehouseItemAllResult";
+import { Database } from "../../utils/database";
 import * as AppSettings from "application-settings"
 
 
@@ -40,7 +41,7 @@ export class SelectRoleComponent implements OnInit {
         private userRoleAllResult: UserRoleAllResult,
         private userService: UserService,
         private warehouseService: WarehouseService,
-        ) {}
+        private database: Database) {}
 
     ngOnInit(): void {
         this.page.actionBarHidden = true;
@@ -80,7 +81,6 @@ export class SelectRoleComponent implements OnInit {
                         const loginUpdateResult = parseSoapResponse(resp, new LoginUpdateResult());
                         loginUpdateResult.saveData();
                         this.getWarehouses();
-                        this.getWarehouseItems();
                         this.routerExtensions.navigate(["/warehouseList"]);
                     },
                     () => {
@@ -99,7 +99,10 @@ export class SelectRoleComponent implements OnInit {
                 resp => {
                     const warehouses: Array<Warehouse> = parseSoapResponse(resp, new WarehouseAllResult(),
                         () => new Warehouse())["Warehouses"];
-                    console.log(warehouses.toString());
+                    warehouses.map(warehouse => {
+                        this.database.insertWarehouse(warehouse);
+                    });
+                    this.getWarehouseItems()
                 },
                 () => {
                     // todo - handle errors (maybe red bar with error message?)
@@ -113,10 +116,13 @@ export class SelectRoleComponent implements OnInit {
                 resp => {
                     const result = parseSoapResponse(resp, new WarehouseItemAllResult(),
                         () => new WarehouseItem());
-
+                    result.WarehouseItems.map(item => {
+                        this.database.insertItem(item);
+                    });
+                    this.routerExtensions.navigate(["/warehouseList"])
                 },
                 () => {
-
+                    // todo - handle errors, should provide offline functionality
                 }
             )
     }

@@ -7,6 +7,7 @@ import { WarehouseService } from "../../entities/warehouse/warehouse.service";
 import { WarehouseAll } from "../../soap/requests/warehouseAll";
 import { parseSoapResponse } from "../../soap/responseParsers/responseParsers";
 import { WarehouseAllResult } from "../../soap/results/warehouseAllResult";
+import {Database} from "../../utils/database";
 
 @Component({
     selector: "warehouseList-component",
@@ -25,7 +26,8 @@ export class WarehouseListComponent implements OnInit {
     (
         private page: Page,
         private routerExtensions: RouterExtensions,
-        private warehouseService: WarehouseService
+        private warehouseService: WarehouseService,
+        private database: Database,
     ) {}
 
     ngOnInit() {
@@ -70,6 +72,8 @@ export class WarehouseListComponent implements OnInit {
     }
 
     warehouseSelected() {
-        this.routerExtensions.navigate(["/warehouseDetail"])
+        this.database.selectAll("warehouse");
+        this.database.selectAll("item");
+        // this.routerExtensions.navigate(["/warehouseDetail"])
     }
 }

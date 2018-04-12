@@ -5,21 +5,21 @@ export class WarehouseItem {
     ID_Warehouse: string;
     InventoryNumber: string;
     Description: string;
-    PurchasePrice: number;
+    PurchasePrice: string;
     InWarehouse: boolean;
     PurchaseDate: string;
     InventoryDate: string;
 
     constructor() {
-        this.ID = "";
-        this.DisplayName = "";
-        this.ID_Warehouse = "";
-        this.InventoryNumber = "";
-        this.Description = "";
+        this.ID = null;
+        this.DisplayName = null;
+        this.ID_Warehouse = null;
+        this.InventoryNumber = null;
+        this.Description = null;
         this.PurchasePrice = null;
         this.InWarehouse = null;
-        this.PurchaseDate = "";
-        this.InventoryDate = "";
+        this.PurchaseDate = null;
+        this.InventoryDate = null;
     }
 
     toString() {
