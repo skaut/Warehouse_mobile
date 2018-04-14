@@ -10,6 +10,10 @@ export class WarehouseItem {
     PurchaseDate: string;
     InventoryDate: string;
 
+    // fields below are not received from server and are only used locally by app
+    synced: boolean;
+    expanded: boolean;
+
     constructor() {
         this.ID = null;
         this.DisplayName = null;
@@ -20,6 +24,8 @@ export class WarehouseItem {
         this.InWarehouse = null;
         this.PurchaseDate = null;
         this.InventoryDate = null;
+        this.synced = true;
+        this.expanded = false;
     }
 
     toString() {
@@ -36,6 +42,8 @@ export class WarehouseItem {
         PurchasePrice: ${this.PurchasePrice}
         InWarehouse: ${this.InWarehouse}
         PurchaseDate: ${this.PurchaseDate}
-        InventoryDate: ${this.InventoryDate}`
+        InventoryDate: ${this.InventoryDate}
+        synced: ${this.synced}
+        expanded: ${this.expanded}`
     }
 }

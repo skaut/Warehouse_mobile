@@ -85,7 +85,6 @@ export class Database {
      * @param {WarehouseItem} item to be inserted
      */
     insertItem(item: WarehouseItem): void {
-        const in_warehouse = (item.InWarehouse) ? 1 : 0;
         this.db.execSQL(
             `INSERT OR IGNORE INTO item (
                 id,
@@ -105,10 +104,10 @@ export class Database {
                 item.InventoryNumber,
                 item.Description,
                 item.PurchasePrice,
-                in_warehouse,
+                item.InWarehouse ? 1 : 0,
                 item.PurchaseDate,
                 item.InventoryDate,
-                1
+                item.synced ? 1 : 0
             ])
             .then(() => {
                 },
@@ -175,9 +174,10 @@ export class Database {
         item.InventoryNumber = dbRow[3];
         item.Description = dbRow[4];
         item.PurchasePrice = dbRow[5];
-        item.InWarehouse = (dbRow[6] === 1);
+        item.InWarehouse = dbRow[6] === 1;
         item.PurchaseDate = dbRow[7];
         item.InventoryDate = dbRow[8];
+        item.synced = dbRow[9] === 1;
         return item
     }
 }
