@@ -3,15 +3,15 @@
         <Button col="0" text="ZPĚT" class="header-text-component generic-text-component" (tap)="logout()"></Button>
         <Label col="1" text="VYBERTE JEDNOTKU" horizontalAlignment="center" verticalAlignment="center"
                class="header-text-component generic-text-component"></Label>
-        <Button col="2" visibility="hidden" text="ZPĚT" class="header-text-component generic-text-component"
-                (tap)="logout()"></Button>
+        <Button col="2" visibility="hidden" text="ZPĚT" class="header-text-component generic-text-component"></Button>
     </GridLayout>
     <GridLayout row="1" rows="*">
         <Label row="0" text="Uživatel nemá práva pro správu majetku."
                verticalAlignment="center"
                horizontalAlignment="center"
-               [visibility]="noRolesLabelVisibility"></Label>
-        <StackLayout row="0" [visibility]="unitPickerVisibility" class="left-right-spacing">
+               visibility="{{userRoleAllResult.UserRoles.length > 0 ? 'hidden' : 'visible'}}"></Label>
+        <StackLayout row="0" visibility="{{userRoleAllResult.UserRoles.length > 0 ? 'visible' : 'hidden'}}"
+                     class="left-right-spacing">
             <ListPicker [items]="userRoleAllResult.UserRoles" [selectedIndex]="selectedRoleIndex"
                         (selectedIndexChange)="selectedIndexChanged($event)"></ListPicker>
             <Button text="VYBRAT" class="generic-text-component" (tap)="roleSelected($event)"></Button>

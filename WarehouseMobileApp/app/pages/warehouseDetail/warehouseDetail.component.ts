@@ -17,8 +17,6 @@ import { WarehouseItem } from "../../entities/warehouseItem/warehouseItem";
 export class WarehouseDetailComponent implements OnInit {
     items: Array<WarehouseItem> = [];
     warehouseId: string;
-    noItemsLabelVisibility: string;
-    itemsVisibility: string;
     isLoading = true;
 
     constructor(
@@ -34,8 +32,6 @@ export class WarehouseDetailComponent implements OnInit {
 
     ngOnInit(): void {
         this.page.actionBarHidden = true;
-        this.noItemsLabelVisibility = "hidden";
-        this.itemsVisibility = "hidden";
     }
 
     onLoaded(): void {
@@ -45,14 +41,6 @@ export class WarehouseDetailComponent implements OnInit {
     private getItems() {
         this.isLoading = true;
         this.items = this.database.selectAvailableItems(this.warehouseId);
-        if (this.items.length === 0) {
-            this.noItemsLabelVisibility = "visible";
-            this.itemsVisibility = "hidden";
-        }
-        else {
-            this.noItemsLabelVisibility = "hidden";
-            this.itemsVisibility = "visible";
-        }
         this.isLoading = false;
     }
 

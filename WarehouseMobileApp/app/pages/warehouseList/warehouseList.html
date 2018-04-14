@@ -11,8 +11,9 @@
             <Label row="0" text="Jednotce nejsou přiřazeny žádné sklady."
                    verticalAlignment="center"
                    horizontalAlignment="center"
-                   [visibility]="noWarehousesLabelVisibility"></Label>
-            <ListView row="0" [items]="warehouses" [visibility]="warehousesVisibility" verticalAlignment="center"
+                   visibility="{{warehouses.length > 0 ? 'hidden' : 'visible'}}"></Label>
+            <ListView row="0" [items]="warehouses" visibility="{{warehouses.length > 0 ? 'visible' : 'hidden'}}"
+                      verticalAlignment="center"
                       separatorColor="white">
                 <ng-template let-item="item">
                     <Button [text]="item.DisplayName" [id]="item.ID" class="generic-text-component left-right-spacing"
@@ -20,7 +21,5 @@
                 </ng-template>
             </ListView>
         </GridLayout>
-        <ActivityIndicator row="1" class="scout-blue-color" [busy]="isLoading" height="50"
-                           width="50"></ActivityIndicator>
     </GridLayout>
 </Page>

@@ -18,9 +18,6 @@ import * as AppSettings from "application-settings";
 
 export class WarehouseListComponent implements OnInit {
     warehouses: Array<Warehouse> = [];
-    warehousesVisibility: string;
-    noWarehousesLabelVisibility: string;
-    isLoading = true;
 
     constructor(
         private page: Page,
@@ -30,8 +27,6 @@ export class WarehouseListComponent implements OnInit {
 
     ngOnInit(): void {
         this.page.actionBarHidden = true;
-        this.noWarehousesLabelVisibility = "hidden";
-        this.warehousesVisibility = "hidden";
     }
 
     onLoaded() {
@@ -40,17 +35,7 @@ export class WarehouseListComponent implements OnInit {
     }
 
     private getWarehouses() {
-        this.isLoading = true;
         this.warehouses = this.database.selectAvailableWarehouses(AppSettings.getString(USER_UNIT_ID));
-        if (this.warehouses.length === 0) {
-            this.noWarehousesLabelVisibility = "visible";
-            this.warehousesVisibility = "hidden";
-        }
-        else {
-            this.noWarehousesLabelVisibility = "hidden";
-            this.warehousesVisibility = "visible";
-        }
-        this.isLoading = false;
     }
 
     back(): void {

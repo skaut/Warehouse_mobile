@@ -31,8 +31,6 @@ import * as AppSettings from "application-settings"
 })
 
 export class SelectRoleComponent implements OnInit {
-    noRolesLabelVisibility: string;
-    unitPickerVisibility: string;
     selectedRoleIndex: number;
     selectedRole: UserRole;
     isLoading: boolean = false;
@@ -46,33 +44,27 @@ export class SelectRoleComponent implements OnInit {
         private database: Database) {}
 
     /**
-     * Event handler that is called on component initialization. Sets correct component visible according to data.
+     * Event handler that is called on component initialization.
      * Sorts roles alphabetically and sets focus to current user role (roles are represented by units in picker).
      */
     ngOnInit(): void {
         this.page.actionBarHidden = true;
-        if (this.userRoleAllResult.UserRoles.length === 0) {
-            this.noRolesLabelVisibility = "visible";
-            this.unitPickerVisibility = "hidden";
+        if (this.userRoleAllResult.UserRoles.length > 0) {
+            this.userRoleAllResult.UserRoles = this.userRoleAllResult.UserRoles.sort((role1, role2) => {
+                if (role1.Unit > role2.Unit) {
+                    return 1
+                }
+                if (role1.Unit < role2.Unit) {
+                    return -1
+                }
+                return 0
+            });
+            const currentUserRoleIndex = this.userRoleAllResult.UserRoles.indexOf(
+                this.userRoleAllResult.UserRoles.find(role => {
+                    return role.ID === AppSettings.getString(USER_ROLE_ID)
+                }));
+            this.selectedRoleIndex = currentUserRoleIndex != -1 ? currentUserRoleIndex : 0;
         }
-        else {
-            this.noRolesLabelVisibility = "hidden";
-            this.unitPickerVisibility = "visible";
-        }
-        this.userRoleAllResult.UserRoles = this.userRoleAllResult.UserRoles.sort((role1, role2) => {
-            if (role1.Unit > role2.Unit) {
-                return 1
-            }
-            if (role1.Unit < role2.Unit) {
-                return -1
-            }
-            return 0
-        });
-        const currentUserRoleIndex = this.userRoleAllResult.UserRoles.indexOf(
-            this.userRoleAllResult.UserRoles.find(role => {
-                return role.ID === AppSettings.getString(USER_ROLE_ID)
-            }));
-        this.selectedRoleIndex = currentUserRoleIndex != -1 ? currentUserRoleIndex : 0;
     }
 
     selectedIndexChanged(args): void {

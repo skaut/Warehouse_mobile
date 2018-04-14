@@ -11,15 +11,16 @@
             <Label row="0" text="Ve skladu nejsou evidovány žádné položky."
                    verticalAlignment="center"
                    horizontalAlignment="center"
-                   [visibility]="noItemsLabelVisibility"></Label>
-            <ListView row="0" [items]="items" [visiblity]="itemsVisibility">
+                   visibility="{{items.length > 0 ? 'hidden' : 'visible'}}"></Label>
+            <RadListView row="0" [items]="items" visiblity="{{items.length > 0 ? 'visible' : 'hidden'}}">
                 <ng-template let-item="item">
-                    <GridLayout rows="*, auto" columns="*">
+                    <GridLayout rows="*, auto, auto" columns="*">
                         <Label row="0" [text]="item.DisplayName" class="list-view-first-line"></Label>
                         <Label row="1" [text]="item.ID" class="list-view-second-line"></Label>
+                        <StackLayout row="2" height="1" backgroundColor="#aaaaaa"></StackLayout>
                     </GridLayout>
                 </ng-template>
-            </ListView>
+            </RadListView>
         </GridLayout>
         <ActivityIndicator row="1" class="scout-blue-color" [busy]="isLoading" height="50"
                            width="50"></ActivityIndicator>
