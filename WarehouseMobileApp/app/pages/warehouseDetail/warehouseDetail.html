@@ -12,12 +12,23 @@
                    verticalAlignment="center"
                    horizontalAlignment="center"
                    visibility="{{items.length > 0 ? 'hidden' : 'visible'}}"></Label>
-            <RadListView row="0" [items]="items" visiblity="{{items.length > 0 ? 'visible' : 'hidden'}}">
-                <ng-template let-item="item">
+            <RadListView row="0" [items]="items" visiblity="{{items.length > 0 ? 'visible' : 'hidden'}}"
+                         (itemTap)="onItemTap($event)"
+                         [itemTemplateSelector]="templateSelector">
+                <ng-template tkListItemTemplate let-item="item">
                     <GridLayout rows="*, auto, auto" columns="*">
                         <Label row="0" [text]="item.DisplayName" class="list-view-first-line"></Label>
-                        <Label row="1" [text]="item.ID" class="list-view-second-line"></Label>
+                        <Label row="1" text="{{'ID: ' + item.ID}}" class="list-view-second-line"></Label>
                         <StackLayout row="2" height="1" backgroundColor="#aaaaaa"></StackLayout>
+                    </GridLayout>
+                </ng-template>
+                <ng-template tkTemplateKey="expanded" let-item="item">
+                    <GridLayout rows="*, auto, auto, auto, auto">
+                        <Label row="0" [text]="item.DisplayName" class="list-view-first-line"></Label>
+                        <Label row="1" text="{{'ID: ' + item.ID}}" class="list-view-second-line"></Label>
+                        <Label row="2" [text]="item.Description" class="list-view-second-line"></Label>
+                        <Label row="3" [text]="item.PurchaseDate" class="list-view-second-line"></Label>
+                        <StackLayout row="4" height="1" backgroundColor="#aaaaaa"></StackLayout>
                     </GridLayout>
                 </ng-template>
             </RadListView>
