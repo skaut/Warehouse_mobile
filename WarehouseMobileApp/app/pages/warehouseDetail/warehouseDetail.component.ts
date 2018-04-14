@@ -5,8 +5,6 @@ import { RouterExtensions } from "nativescript-angular";
 import { ActivatedRoute } from "@angular/router";
 import { Database } from "../../utils/database";
 import { WarehouseItem } from "../../entities/warehouseItem/warehouseItem";
-import { isAndroid, isIOS } from "tns-core-modules/platform";
-declare var UIView, NSMutableArray, NSIndexPath;
 
 
 @Component({
@@ -44,28 +42,9 @@ export class WarehouseDetailComponent implements OnInit {
         this.items = this.database.selectAvailableItems(this.warehouseId);
     }
 
-    templateSelector(item: WarehouseItem, index: number, items: any): string {
-        return item.expanded ? "expanded" : "default";
-    }
-
     onItemTap(eventData): void {
-        const listView = eventData.object;
-        const index = eventData.index;
         const dataItem = eventData.view.bindingContext;
         dataItem.expanded = !dataItem.expanded;
-        if (isIOS) {
-            // Uncomment the lines below to avoid default animation
-            // UIView.animateWithDurationAnimations(0, () => {
-            let indexPaths = NSMutableArray.new();
-            indexPaths.addObject(NSIndexPath.indexPathForRowInSection(index, eventData.groupIndex));
-            listView.ios.reloadItemsAtIndexPaths(indexPaths);
-            // });
-        }
-        if (isAndroid) {
-            listView.androidListView.getAdapter().notifyItemChanged(index);
-        }
-        console.log(index);
-        console.log(dataItem.toFullString());
     }
 
     logout(): void {

@@ -13,22 +13,17 @@
                    horizontalAlignment="center"
                    visibility="{{items.length > 0 ? 'hidden' : 'visible'}}"></Label>
             <RadListView row="0" [items]="items" visiblity="{{items.length > 0 ? 'visible' : 'hidden'}}"
-                         (itemTap)="onItemTap($event)"
-                         [itemTemplateSelector]="templateSelector">
-                <ng-template tkListItemTemplate let-item="item">
-                    <GridLayout rows="*, auto, auto" columns="*">
+                         (itemTap)="onItemTap($event)">
+                <ng-template let-item="item">
+                    <GridLayout rows="{{item.expanded ? '*, *, *, auto' : '*, *, auto'}}">
                         <Label row="0" [text]="item.DisplayName" class="list-view-first-line"></Label>
                         <Label row="1" text="{{'ID: ' + item.ID}}" class="list-view-second-line"></Label>
-                        <StackLayout row="2" height="1" backgroundColor="#aaaaaa"></StackLayout>
-                    </GridLayout>
-                </ng-template>
-                <ng-template tkTemplateKey="expanded" let-item="item">
-                    <GridLayout rows="*, auto, auto, auto, auto">
-                        <Label row="0" [text]="item.DisplayName" class="list-view-first-line"></Label>
-                        <Label row="1" text="{{'ID: ' + item.ID}}" class="list-view-second-line"></Label>
-                        <Label row="2" [text]="item.Description" class="list-view-second-line"></Label>
-                        <Label row="3" [text]="item.PurchaseDate" class="list-view-second-line"></Label>
-                        <StackLayout row="4" height="1" backgroundColor="#aaaaaa"></StackLayout>
+                        <GridLayout row="2" rows="auto, auto" visibility="{{item.expanded ? 'visible' : 'collapse'}}">
+                            <Label row="0" [text]="item.Description" class="list-view-second-line"></Label>
+                            <Label row="1" [text]="item.PurchaseDate" class="list-view-second-line"></Label>
+                        </GridLayout>
+                        <StackLayout row="{{item.expanded ? '3' : '2'}}" height="1"
+                                     backgroundColor="#aaaaaa"></StackLayout>
                     </GridLayout>
                 </ng-template>
             </RadListView>
