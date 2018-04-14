@@ -18,6 +18,9 @@ import { WarehouseItemAll } from "../../soap/requests/warehouseItemAll";
 import { WarehouseItem } from "../../entities/warehouseItem/warehouseItem";
 import { WarehouseItemAllResult } from "../../soap/results/warehouseItemAllResult";
 import { Database } from "../../utils/database";
+import { Button } from "tns-core-modules/ui/button";
+import { Color } from "tns-core-modules/color";
+import { disableButton, enableButton } from "../../utils/functions";
 import * as AppSettings from "application-settings"
 
 
@@ -74,15 +77,19 @@ export class SelectRoleComponent implements OnInit {
         this.selectedRole = this.userRoleAllResult.UserRoles[picker.selectedIndex];
     }
 
-    roleSelected(): void {
+    roleSelected(args): void {
         if (this.selectedRole) {
+            let button = <Button>args.object;
+            disableButton(button);
+            this.isLoading = true;
             this.userService.updateUserRole(new LoginUpdate(this.selectedRole.ID))
                 .subscribe(resp => {
                         const loginUpdateResult = parseSoapResponse(resp, new LoginUpdateResult());
                         loginUpdateResult.saveData();
-                        this.getWarehouses();
+                        this.getWarehouses(button);
                     },
                     () => {
+                        this.enableButton(button);
                         // todo - handle errors (red bar with message?)
                     }
                 )
@@ -92,35 +99,45 @@ export class SelectRoleComponent implements OnInit {
         }
     }
 
-    private getWarehouses(): void {
+    private getWarehouses(button: Button): void {
         this.warehouseService.getWarehouseAll(new WarehouseAll())
             .subscribe(
                 resp => {
                     const warehouses: Array<Warehouse> = parseSoapResponse(resp, new WarehouseAllResult(),
                         () => new Warehouse())["Warehouses"];
                     warehouses.map(warehouse => {
+                        console.log(warehouse.toFullString());
                         this.database.insertWarehouse(warehouse, this.selectedRole.ID_Unit)
                     });
-                    this.getWarehouseItems()
+                    this.getWarehouseItems(this.selectedRole.ID_Unit);
+                    warehouses.map(warehouse => {
+                        if (warehouse.ID_Unit != this.selectedRole.ID_Unit) {
+                            this.getWarehouseItems(warehouse.ID_Unit)
+                        }
+                    });
+                    this.enableButton(button);
+                    this.routerExtensions.navigate(["/warehouseList"])
                 },
                 () => {
+                    this.enableButton(button);
                     // todo - handle errors (maybe red bar with error message?)
                 }
             );
     }
 
-    private getWarehouseItems(): void {
-        this.warehouseService.getWarehouseItemAll(new WarehouseItemAll())
+    private getWarehouseItems(unitId: string): void {
+        this.warehouseService.getWarehouseItemAll(new WarehouseItemAll(unitId))
             .subscribe(
                 resp => {
                     const items = parseSoapResponse(resp, new WarehouseItemAllResult(),
                         () => new WarehouseItem())["WarehouseItems"];
                     items.map(item => {
+                        console.log(item.toFullString());
                         this.database.insertItem(item);
                     });
-                    this.routerExtensions.navigate(["/warehouseList"])
                 },
                 () => {
+                    this.isLoading = false;
                     // todo - handle errors, should provide offline functionality
                 }
             )
@@ -128,5 +145,10 @@ export class SelectRoleComponent implements OnInit {
 
     logout(): void {
         logout(this.routerExtensions)
+    }
+
+    private enableButton(button) {
+        enableButton(button);
+        this.isLoading = false;
     }
 }

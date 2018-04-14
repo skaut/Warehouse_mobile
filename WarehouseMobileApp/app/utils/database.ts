@@ -152,6 +152,14 @@ export class Database {
         return result
     }
 
+    selectAvailableItems(warehouseId: string): Array<WarehouseItem> {
+        let result = [];
+        this.db.each(`SELECT * FROM item WHERE id_warehouse = ${warehouseId}`, (err, row) => {
+            result.push(this.createItemObject(new WarehouseItem(), row))
+        });
+        return result
+    }
+
     private createWarehouseObject(warehouse: Warehouse, dbRow: Array<any>): Warehouse {
         warehouse.ID = dbRow[0];
         warehouse.DisplayName = dbRow[1];

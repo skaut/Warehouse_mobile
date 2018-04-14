@@ -20,24 +20,23 @@ export class WarehouseListComponent implements OnInit {
     warehouses: Array<Warehouse> = [];
     warehousesVisibility: string;
     noWarehousesLabelVisibility: string;
-    isLoading: boolean;
+    isLoading = true;
 
-    constructor
-    (
+    constructor(
         private page: Page,
         private routerExtensions: RouterExtensions,
         private warehouseService: WarehouseService,
-        private database: Database,
-    ) {}
+        private database: Database) {}
 
     ngOnInit(): void {
         this.page.actionBarHidden = true;
         this.noWarehousesLabelVisibility = "hidden";
         this.warehousesVisibility = "hidden";
-        this.isLoading = true;
-        setTimeout(() => {
-            this.getWarehouses();
-        }, 100);
+    }
+
+    onLoaded() {
+        // todo - maybe on propertyChanged on warehouses field instead?
+        this.getWarehouses();
     }
 
     private getWarehouses() {
@@ -62,7 +61,8 @@ export class WarehouseListComponent implements OnInit {
         logout(this.routerExtensions)
     }
 
-    warehouseSelected(): void {
-        this.routerExtensions.navigate(["/warehouseDetail"])
+    warehouseSelected(args): void {
+        this.routerExtensions.navigate(["/warehouseDetail"],
+            {queryParams: {"warehouseId": args.object.id}})
     }
 }

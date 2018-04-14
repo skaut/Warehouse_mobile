@@ -1,4 +1,6 @@
 import { RouterExtensions } from "nativescript-angular";
+import { Button } from "tns-core-modules/ui/button";
+import { Color } from "tns-core-modules/color";
 import * as dialogs from "tns-core-modules/ui/dialogs";
 
 
@@ -18,4 +20,14 @@ export const logout = (routerExtensions: RouterExtensions) => {
                 routerExtensions.navigate([""], { clearHistory: true} );
             }
         })
+};
+
+export const disableButton = (button: Button) => {
+    button.backgroundColor = new Color("#757575");
+    button.isEnabled = false;
+};
+
+export const enableButton = (button: Button) => {
+    button.isEnabled = true;
+    button.backgroundColor = new Color("#255C9E");
 };

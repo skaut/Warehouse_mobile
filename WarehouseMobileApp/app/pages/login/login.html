@@ -7,7 +7,7 @@
         <TextField #name hint="Uživatelské jméno (skautIS)" keyboardType="email" [(ngModel)]="user.name"
                    autocorrect="false" autocapitalizationType="none"></TextField>
         <TextField #password hint="Heslo" secure="true" [(ngModel)]="user.password"></TextField>
-        <Button text="Přihlásit se" (tap)="login()" class="generic-text-component left-right-spacing"></Button>
+        <Button text="Přihlásit se" (tap)="login($event)" class="generic-text-component left-right-spacing"></Button>
     </StackLayout>
     <ActivityIndicator row="0" class="scout-blue-color" [busy]="isLoading" height="50" width="50"></ActivityIndicator>
 </GridLayout>
