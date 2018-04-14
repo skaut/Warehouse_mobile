@@ -17,7 +17,6 @@ import { WarehouseItem } from "../../entities/warehouseItem/warehouseItem";
 export class WarehouseDetailComponent implements OnInit {
     items: Array<WarehouseItem> = [];
     warehouseId: string;
-    isLoading = true;
 
     constructor(
         private page: Page,
@@ -39,9 +38,7 @@ export class WarehouseDetailComponent implements OnInit {
     }
 
     private getItems() {
-        this.isLoading = true;
         this.items = this.database.selectAvailableItems(this.warehouseId);
-        this.isLoading = false;
     }
 
     logout(): void {
