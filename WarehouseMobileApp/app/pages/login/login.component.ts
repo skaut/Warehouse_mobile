@@ -65,6 +65,8 @@ export class LoginComponent implements OnInit {
     /**
      * Method attempts to log user in. When login request is successful calls UserDetail request.
      * App actually log user in only if all login, UserDetail and UserRoleAll request were successful.
+     *
+     * @param args - event args for login button tap
      */
     login(args) {
         AppSettings.setString(USER_NAME, this.user.name);
@@ -93,6 +95,8 @@ export class LoginComponent implements OnInit {
     /**
      * Method performs UserDetail request and saves parsed data to AppSettings.
      * If successful follows by calling getUserRoles().
+     *
+     * @param {Button} button - login button to enable in case of error
      */
     private getUserDetail(button: Button) {
         this.userService.getUserDetail(new UserDetail())
@@ -120,6 +124,8 @@ export class LoginComponent implements OnInit {
      * allowed to handle material agendas. This filtered list is assigned to the list of provider userRoleAllResult
      * which will be used as provider in next page (select role) as well and therefore role data will be accessible.
      * If no error appeared method navigates to the next page as last step.
+     *
+     * @param {Button} button - login button to enable after parsing response
      */
     private getUserRoles(button: Button) {
         this.userService.getUserRoleAll(new UserRoleAll())

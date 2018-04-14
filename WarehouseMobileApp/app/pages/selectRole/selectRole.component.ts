@@ -19,7 +19,6 @@ import { WarehouseItem } from "../../entities/warehouseItem/warehouseItem";
 import { WarehouseItemAllResult } from "../../soap/results/warehouseItemAllResult";
 import { Database } from "../../utils/database";
 import { Button } from "tns-core-modules/ui/button";
-import { Color } from "tns-core-modules/color";
 import { disableButton, enableButton } from "../../utils/functions";
 import * as AppSettings from "application-settings"
 
@@ -46,6 +45,10 @@ export class SelectRoleComponent implements OnInit {
         private warehouseService: WarehouseService,
         private database: Database) {}
 
+    /**
+     * Event handler that is called on component initialization. Sets correct component visible according to data.
+     * Sorts roles alphabetically and sets focus to current user role (roles are represented by units in picker).
+     */
     ngOnInit(): void {
         this.page.actionBarHidden = true;
         if (this.userRoleAllResult.UserRoles.length === 0) {
@@ -77,6 +80,12 @@ export class SelectRoleComponent implements OnInit {
         this.selectedRole = this.userRoleAllResult.UserRoles[picker.selectedIndex];
     }
 
+    /**
+     * Event handler for select role button tap. Calls LoginUpdate request for selected role.
+     * After receiving response calls getWarehouses() with its button as argument (to enable it later).
+     *
+     * @param args - event arguments for button tap
+     */
     roleSelected(args): void {
         if (this.selectedRole) {
             let button = <Button>args.object;
@@ -99,6 +108,13 @@ export class SelectRoleComponent implements OnInit {
         }
     }
 
+    /**
+     * Method performs WarehouseAll request. If successful it saves data to db.
+     * After that it calls getWarehouseItems for all relevant units (warehouseItemAll request is unit based).
+     * If all was successful navigates to warehouseList page
+     *
+     * @param {Button} button - select role button to enable after requests or in case of error.
+     */
     private getWarehouses(button: Button): void {
         this.warehouseService.getWarehouseAll(new WarehouseAll())
             .subscribe(
@@ -106,7 +122,6 @@ export class SelectRoleComponent implements OnInit {
                     const warehouses: Array<Warehouse> = parseSoapResponse(resp, new WarehouseAllResult(),
                         () => new Warehouse())["Warehouses"];
                     warehouses.map(warehouse => {
-                        console.log(warehouse.toFullString());
                         this.database.insertWarehouse(warehouse, this.selectedRole.ID_Unit)
                     });
                     this.getWarehouseItems(this.selectedRole.ID_Unit);
@@ -125,6 +140,11 @@ export class SelectRoleComponent implements OnInit {
             );
     }
 
+    /**
+     * Method performs warehouseItemAll request and if successful saves data to db.
+     *
+     * @param {string} unitId - id of unit to request data from.
+     */
     private getWarehouseItems(unitId: string): void {
         this.warehouseService.getWarehouseItemAll(new WarehouseItemAll(unitId))
             .subscribe(
@@ -132,7 +152,6 @@ export class SelectRoleComponent implements OnInit {
                     const items = parseSoapResponse(resp, new WarehouseItemAllResult(),
                         () => new WarehouseItem())["WarehouseItems"];
                     items.map(item => {
-                        console.log(item.toFullString());
                         this.database.insertItem(item);
                     });
                 },
