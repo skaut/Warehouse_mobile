@@ -118,26 +118,6 @@ export class Database {
     }
 
     /**
-     * Method selects all from specified table (warehouse or item) and maps each row to corresponding entity
-     *
-     * @param {string} table - Table to perform the select on (warehouse or item tables)
-     * @returns {Array<any>} - Array of entities with data mapped from db.
-     */
-    selectAll(table: string): Array<any> {
-        let result = [];
-        this.db.each(`SELECT * FROM ${table}`, (err, row) => {
-            if (table === "warehouse") {
-                result.push(this.createWarehouseObject(new Warehouse(), row));
-            }
-            else {
-                result.push(this.createItemObject(new WarehouseItem(), row));
-            }
-        });
-        // todo - remove this method
-        return result
-    }
-
-    /**
      * Method to select all available warehouses for current role. It maps each row to warehouse entity.
      *
      * @param {string} unitId - id of the unit which warehouses we want to select
@@ -151,6 +131,12 @@ export class Database {
         return result
     }
 
+    /**
+     * Method to select all available items for specified warehouse. Maps each row to warehouseItem entity.
+     *
+     * @param {string} warehouseId - id of selected warehouse
+     * @returns {Array<WarehouseItem>} - array of available warehouse items
+     */
     selectAvailableItems(warehouseId: string): Array<WarehouseItem> {
         let result = [];
         this.db.each(`SELECT * FROM item WHERE id_warehouse = ${warehouseId}`, (err, row) => {
