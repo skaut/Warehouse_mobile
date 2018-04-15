@@ -39,12 +39,10 @@ refer to http://docs.nativescript.org/ui/theme.
     height: 30;
 }
 .list-view-first-line {
-    margin: 5, 5, 0, 10;
     font-weight: bold;
-    font-size: 15;
+    font-size: 16;
 }
 .list-view-second-line {
-    margin: 0, 0, 5, 15;
     font-size: 12;
 }
 .scout-blue-color {

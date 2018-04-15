@@ -21,6 +21,8 @@ import { Database } from "../../utils/database";
 import { Button } from "tns-core-modules/ui/button";
 import { disableButton, enableButton } from "../../utils/functions";
 import * as AppSettings from "application-settings"
+import {WarehouseItemDetailPhoto} from "../../soap/requests/warehouseItemDetailPhoto";
+import {WarehouseItemDetailPhotoResult} from "../../soap/results/warehouseItemDetailPhotoResult";
 
 
 @Component({
@@ -72,6 +74,10 @@ export class SelectRoleComponent implements OnInit {
         this.selectedRole = this.userRoleAllResult.UserRoles[picker.selectedIndex];
     }
 
+    logout(): void {
+        logout(this.routerExtensions)
+    }
+
     /**
      * Event handler for select role button tap. Calls LoginUpdate request for selected role.
      * After receiving response calls getWarehouses() with its button as argument (to enable it later).
@@ -103,7 +109,8 @@ export class SelectRoleComponent implements OnInit {
     /**
      * Method performs WarehouseAll request. If successful it saves data to db.
      * After that it calls getWarehouseItems for all relevant units (warehouseItemAll request is unit based).
-     * If all was successful navigates to warehouseList page
+     * If all was successful navigates to warehouseList page (with delay to ensure data was loaded
+     * if warehouse count is > 0).
      *
      * @param {Button} button - select role button to enable after requests or in case of error.
      */
@@ -122,8 +129,16 @@ export class SelectRoleComponent implements OnInit {
                             this.getWarehouseItems(warehouse.ID_Unit)
                         }
                     });
-                    this.enableButton(button);
-                    this.routerExtensions.navigate(["/warehouseList"])
+                    if (warehouses.length > 0) {
+                        setTimeout(() => {
+                            this.enableButton(button);
+                            this.routerExtensions.navigate(["/warehouseList"])
+                        }, 600);
+                    }
+                    else {
+                        this.enableButton(button);
+                        this.routerExtensions.navigate(["/warehouseList"])
+                    }
                 },
                 () => {
                     this.enableButton(button);
@@ -141,21 +156,24 @@ export class SelectRoleComponent implements OnInit {
         this.warehouseService.getWarehouseItemAll(new WarehouseItemAll(unitId))
             .subscribe(
                 resp => {
-                    const items = parseSoapResponse(resp, new WarehouseItemAllResult(),
+                    const items: Array<WarehouseItem> = parseSoapResponse(resp, new WarehouseItemAllResult(),
                         () => new WarehouseItem())["WarehouseItems"];
                     items.map(item => {
-                        this.database.insertItem(item);
+                        this.warehouseService.getWarehouseItemPhoto(new WarehouseItemDetailPhoto(item.ID))
+                            .subscribe(
+                                resp => {
+                                    const photoResult = parseSoapResponse(resp, new WarehouseItemDetailPhotoResult());
+                                    item.PhotoContent = photoResult["PhotoContent"];
+                                    this.database.insertItem(item);
+                                },
+                                () => {}
+                            );
                     });
                 },
                 () => {
-                    this.isLoading = false;
                     // todo - handle errors, should provide offline functionality
                 }
             )
-    }
-
-    logout(): void {
-        logout(this.routerExtensions)
     }
 
     private enableButton(button) {

@@ -42,6 +42,7 @@ export class Database {
                         in_warehouse INTEGER, 
                         purchase_date TEXT,
                         inventory_date TEXT,
+                        photo_content BLOB,
                         synced INTEGER,
                         FOREIGN KEY(id_warehouse) REFERENCES warehouse(id)
                     )`)
@@ -59,7 +60,8 @@ export class Database {
     /**
      * Method to insert row in warehouse table
      *
-     * @param {Warehouse} warehouse to be inserted
+     * @param {Warehouse} warehouse - warehouse entity to insert
+     * @param {string} unitId - unit id to insert warehouse with
      */
     insertWarehouse(warehouse: Warehouse, unitId: string): void {
         this.db.execSQL(`INSERT INTO warehouse (id, name, id_parent, id_unit) VALUES (?, ?, ?, ?)`,
@@ -96,7 +98,8 @@ export class Database {
                 in_warehouse,
                 purchase_date,
                 inventory_date,
-                synced) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+                photo_content,
+                synced) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
             [
                 item.ID,
                 item.DisplayName,
@@ -107,6 +110,7 @@ export class Database {
                 item.InWarehouse ? 1 : 0,
                 item.PurchaseDate,
                 item.InventoryDate,
+                item.PhotoContent,
                 item.synced ? 1 : 0
             ])
             .then(() => {
@@ -163,7 +167,9 @@ export class Database {
         item.InWarehouse = dbRow[6] === 1;
         item.PurchaseDate = dbRow[7];
         item.InventoryDate = dbRow[8];
-        item.synced = dbRow[9] === 1;
+        item.PhotoContent = dbRow[9];
+        item.synced = dbRow[10] === 1;
+        item.setImageSource();
         return item
     }
 }

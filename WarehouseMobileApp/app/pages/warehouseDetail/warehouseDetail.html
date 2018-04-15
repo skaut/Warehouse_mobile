@@ -15,14 +15,29 @@
             <RadListView row="0" [items]="items" visiblity="{{items.length > 0 ? 'visible' : 'hidden'}}"
                          (itemTap)="onItemTap($event)">
                 <ng-template let-item="item">
-                    <GridLayout rows="{{item.expanded ? '*, *, *, auto' : '*, *, auto'}}">
-                        <Label row="0" [text]="item.DisplayName" class="list-view-first-line"></Label>
-                        <Label row="1" text="{{'ID: ' + item.ID}}" class="list-view-second-line"></Label>
-                        <GridLayout row="2" rows="auto, auto" visibility="{{item.expanded ? 'visible' : 'collapse'}}">
+                    <GridLayout rows="{{item.expanded ? '70, *, auto' : '70, auto'}}">
+                        <GridLayout row="0" columns="auto, *, auto">
+                            <Button col="0" visibility="hidden" text="ZPĚT"
+                                    class="header-text-component generic-text-component"></Button>
+                            <StackLayout col="0">
+                                <Image [src]="item.photo" horizontalAlignment="center"
+                                       verticalAlignment="center"></Image>
+                            </StackLayout>
+                            <StackLayout col="1" horizontalAlignment="center" verticalAlignment="center">
+                                <Label [text]="item.DisplayName" class="list-view-first-line" textWrap="true"
+                                       horizontalAlignment="center" verticalAlignment="center"></Label>
+                                <Label text="{{'ID: ' + item.ID}}" class="list-view-second-line"
+                                       horizontalAlignment="center" verticalAlignment="center"></Label>
+                            </StackLayout>
+                            <Button col="2" visibility="hidden" text="ODHLÁSIT"
+                                    class="header-text-component generic-text-component"></Button>
+                            <Label col="2" text="shit"></Label>
+                        </GridLayout>
+                        <GridLayout row="1" rows="auto, auto" visibility="{{item.expanded ? 'visible' : 'collapse'}}">
                             <Label row="0" [text]="item.Description" class="list-view-second-line"></Label>
                             <Label row="1" [text]="item.PurchaseDate" class="list-view-second-line"></Label>
                         </GridLayout>
-                        <StackLayout row="{{item.expanded ? '3' : '2'}}" height="1"
+                        <StackLayout row="{{item.expanded ? '2' : '1'}}" height="1"
                                      backgroundColor="#aaaaaa"></StackLayout>
                     </GridLayout>
                 </ng-template>

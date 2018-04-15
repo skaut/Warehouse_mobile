@@ -1,3 +1,4 @@
+import * as ImageSource from "tns-core-modules/image-source";
 
 export class WarehouseItem {
     ID: string;
@@ -9,8 +10,10 @@ export class WarehouseItem {
     InWarehouse: boolean;
     PurchaseDate: string;
     InventoryDate: string;
+    PhotoContent: string;
 
     // fields below are not received from server and are only used locally by app
+    photo: ImageSource.ImageSource;
     synced: boolean;
     expanded: boolean;
 
@@ -24,8 +27,16 @@ export class WarehouseItem {
         this.InWarehouse = null;
         this.PurchaseDate = null;
         this.InventoryDate = null;
+        this.PhotoContent = null;
+        this.photo = null;
         this.synced = true;
         this.expanded = false;
+    }
+
+    setImageSource() {
+        if (this.PhotoContent) {
+            this.photo = ImageSource.fromBase64(this.PhotoContent);
+        }
     }
 
     toString() {
@@ -33,6 +44,7 @@ export class WarehouseItem {
     }
 
     toFullString() {
+        const photo = this.PhotoContent ? this.PhotoContent.slice(0, 50) + "..." : null;
         return `
         ID: ${this.ID}
         DisplayName: ${this.DisplayName}
@@ -43,6 +55,7 @@ export class WarehouseItem {
         InWarehouse: ${this.InWarehouse}
         PurchaseDate: ${this.PurchaseDate}
         InventoryDate: ${this.InventoryDate}
+        PhotoContent: ${photo}
         synced: ${this.synced}
         expanded: ${this.expanded}`
     }
