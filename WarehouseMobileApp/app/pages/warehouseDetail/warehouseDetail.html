@@ -31,7 +31,14 @@
                             </StackLayout>
                             <Button col="2" visibility="hidden" text="ODHLÁSIT"
                                     class="header-text-component generic-text-component"></Button>
-                            <Label col="2" text="shit"></Label>
+                            <StackLayout col="2" orientation="horizontal" horizontalAlignment="right">
+                                <Label text="{{icons.info}}"
+                                       verticalAlignment="center"
+                                       class="icon icon-item"></Label>
+                                <Label text="{{item.expanded ? icons.caretDown : icons.caretLeft}}"
+                                       verticalAlignment="center"
+                                       class="icon icon-item"></Label>
+                            </StackLayout>
                         </GridLayout>
                         <GridLayout row="1" rows="auto, auto" visibility="{{item.expanded ? 'visible' : 'collapse'}}">
                             <Label row="0" [text]="item.Description" class="list-view-second-line"></Label>

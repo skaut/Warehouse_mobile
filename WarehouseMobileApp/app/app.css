@@ -48,3 +48,10 @@ refer to http://docs.nativescript.org/ui/theme.
 .scout-blue-color {
     color: #255C9E;
 }
+.icon {
+    font-family: 'icomoon';
+    font-size: 20;
+}
+.icon-item {
+    margin-right: 15;
+}

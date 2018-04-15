@@ -18,6 +18,7 @@ import { WarehouseItem } from "../../entities/warehouseItem/warehouseItem";
 export class WarehouseDetailComponent implements OnInit {
     items: Array<WarehouseItem> = [];
     warehouseId: string;
+    icons;
 
     constructor(
         private page: Page,
@@ -26,7 +27,12 @@ export class WarehouseDetailComponent implements OnInit {
         private database: Database)
     {
         this.route.queryParams.subscribe(params => {
-            this.warehouseId = params["warehouseId"]
+            this.warehouseId = params["warehouseId"];
+            this.icons = {
+                caretLeft: String.fromCharCode(0xea44),
+                caretDown: String.fromCharCode(0xea43),
+                info: String.fromCharCode(0xea0c),
+            }
         });
     }
 
@@ -35,7 +41,7 @@ export class WarehouseDetailComponent implements OnInit {
     }
 
     onLoaded(): void {
-        this.getItems()
+        this.getItems();
     }
 
     private getItems() {
