@@ -18,7 +18,8 @@ import { WarehouseItem } from "../../entities/warehouseItem/warehouseItem";
 export class WarehouseDetailComponent implements OnInit {
     items: Array<WarehouseItem> = [];
     warehouseId: string;
-    icons;
+    listLoaded: boolean;
+    icons: {};
 
     constructor(
         private page: Page,
@@ -26,14 +27,16 @@ export class WarehouseDetailComponent implements OnInit {
         private route: ActivatedRoute,
         private database: Database)
     {
+        this.listLoaded = false;
         this.route.queryParams.subscribe(params => {
             this.warehouseId = params["warehouseId"];
-            this.icons = {
-                caretLeft: String.fromCharCode(0xea44),
-                caretDown: String.fromCharCode(0xea43),
-                info: String.fromCharCode(0xea0c),
-            }
         });
+        this.icons = {
+            caretLeft: String.fromCharCode(0xea44),
+            caretDown: String.fromCharCode(0xea43),
+            info: String.fromCharCode(0xea0c),
+            photo: String.fromCharCode(0xe90f),
+        }
     }
 
     ngOnInit(): void {
@@ -41,11 +44,13 @@ export class WarehouseDetailComponent implements OnInit {
     }
 
     onLoaded(): void {
-        this.getItems();
-    }
-
-    private getItems() {
-        this.items = this.database.selectAvailableItems(this.warehouseId);
+        this.items = this.database.selectAvailableItems(this.warehouseId)
+            .then((items) => {
+                setTimeout(() => {
+                    this.items = items;
+                    this.listLoaded = true;
+                }, 400);
+            });
     }
 
     onItemTap(eventData): void {

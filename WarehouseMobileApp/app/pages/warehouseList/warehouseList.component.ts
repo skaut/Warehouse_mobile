@@ -30,12 +30,10 @@ export class WarehouseListComponent implements OnInit {
     }
 
     onLoaded() {
-        // todo - maybe on propertyChanged on warehouses field instead?
-        this.getWarehouses();
-    }
-
-    private getWarehouses() {
-        this.warehouses = this.database.selectAvailableWarehouses(AppSettings.getString(USER_UNIT_ID));
+        this.warehouses = this.database.selectAvailableWarehouses(AppSettings.getString(USER_UNIT_ID))
+            .then((warehouses) => {
+                this.warehouses = warehouses;
+            })
     }
 
     back(): void {

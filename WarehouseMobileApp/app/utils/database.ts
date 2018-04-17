@@ -63,8 +63,8 @@ export class Database {
      * @param {Warehouse} warehouse - warehouse entity to insert
      * @param {string} unitId - unit id to insert warehouse with
      */
-    insertWarehouse(warehouse: Warehouse, unitId: string): void {
-        this.db.execSQL(`INSERT INTO warehouse (id, name, id_parent, id_unit) VALUES (?, ?, ?, ?)`,
+    insertWarehouse(warehouse: Warehouse, unitId: string) {
+        return this.db.execSQL(`INSERT INTO warehouse (id, name, id_parent, id_unit) VALUES (?, ?, ?, ?)`,
             [warehouse.ID, warehouse.DisplayName, warehouse.ID_WarehouseMain, unitId])
             .then(id => {
                     // console.log("insert warehouse result", id);
@@ -86,8 +86,8 @@ export class Database {
      *
      * @param {WarehouseItem} item to be inserted
      */
-    insertItem(item: WarehouseItem): void {
-        this.db.execSQL(
+    insertItem(item: WarehouseItem) {
+        return this.db.execSQL(
             `INSERT OR IGNORE INTO item (
                 id,
                 name,
@@ -127,12 +127,24 @@ export class Database {
      * @param {string} unitId - id of the unit which warehouses we want to select
      * @returns {Array<Warehouse>} - array of available warehouses
      */
-    selectAvailableWarehouses(unitId: string): Array<Warehouse> {
+    selectAvailableWarehouses(unitId: string) {
         let result = [];
-        this.db.each(`SELECT * FROM warehouse WHERE id_unit = ${unitId}`, (err, row) => {
+        return this.db.each(`SELECT * FROM warehouse WHERE id_unit = ${unitId}`, (err, row) => {
             result.push(this.createWarehouseObject(new Warehouse(), row))
-        });
-        return result
+        })
+            .then(() => {
+                return new Promise((resolve, reject) => {
+                    if (result.length > 0) {
+                        result.sort((item1, item2) => {
+                            return item1.DisplayName.localeCompare(item2.DisplayName, undefined, {
+                                numeric: true,
+                                sensitivity:'base'
+                            });
+                        })
+                    }
+                    resolve(result);
+                })
+            })
     }
 
     /**
@@ -141,12 +153,24 @@ export class Database {
      * @param {string} warehouseId - id of selected warehouse
      * @returns {Array<WarehouseItem>} - array of available warehouse items
      */
-    selectAvailableItems(warehouseId: string): Array<WarehouseItem> {
+    selectAvailableItems(warehouseId: string) {
         let result = [];
-        this.db.each(`SELECT * FROM item WHERE id_warehouse = ${warehouseId}`, (err, row) => {
+        return this.db.each(`SELECT * FROM item WHERE id_warehouse = ${warehouseId}`, (err, row) => {
             result.push(this.createItemObject(new WarehouseItem(), row))
-        });
-        return result
+        })
+            .then(() => {
+                return new Promise((resolve, reject) => {
+                    if (result.length > 0) {
+                        result.sort((item1, item2) => {
+                            return item1.DisplayName.localeCompare(item2.DisplayName, undefined, {
+                                numeric: true,
+                                sensitivity: 'base'
+                            });
+                        })
+                    }
+                    resolve(result);
+                })
+            })
     }
 
     private createWarehouseObject(warehouse: Warehouse, dbRow: Array<any>): Warehouse {

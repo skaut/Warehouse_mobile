@@ -121,13 +121,8 @@ export class SelectRoleComponent implements OnInit {
                     const warehouses: Array<Warehouse> = parseSoapResponse(resp, new WarehouseAllResult(),
                         () => new Warehouse())["Warehouses"];
                     warehouses.map(warehouse => {
-                        this.database.insertWarehouse(warehouse, this.selectedRole.ID_Unit)
-                    });
-                    this.getWarehouseItems(this.selectedRole.ID_Unit);
-                    warehouses.map(warehouse => {
-                        if (warehouse.ID_Unit != this.selectedRole.ID_Unit) {
-                            this.getWarehouseItems(warehouse.ID_Unit)
-                        }
+                        this.database.insertWarehouse(warehouse, this.selectedRole.ID_Unit);
+                        this.getWarehouseItems(warehouse.ID_Unit);
                     });
                     if (warehouses.length > 0) {
                         setTimeout(() => {
