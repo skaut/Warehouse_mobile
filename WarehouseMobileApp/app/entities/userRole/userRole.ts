@@ -18,12 +18,11 @@ export class UserRole {
         return this.Unit
     }
 
-    // helper for development purposes
     toFullString() {
         return `
         ID: ${this.ID}
-        IDRole: ${this.ID_Role}
-        IDUnit: ${this.ID_Unit}
+        ID_Role: ${this.ID_Role}
+        ID_Unit: ${this.ID_Unit}
         Role: ${this.Role}
         Unit: ${this.Unit}`
     }

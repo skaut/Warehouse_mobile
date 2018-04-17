@@ -11,6 +11,8 @@ import { UserRoleAllResult } from "../../soap/results/userRoleAllResult";
 import { UserRole } from "../../entities/userRole/userRole";
 import { Status } from "../../utils/enums";
 import { ALLOWED_ROLES, USER_NAME } from "../../constants";
+import { disableButton, enableButton } from "../../utils/functions";
+import { Button } from "tns-core-modules/ui/button";
 import * as AppSettings from "application-settings";
 
 
@@ -63,25 +65,29 @@ export class LoginComponent implements OnInit {
     /**
      * Method attempts to log user in. When login request is successful calls UserDetail request.
      * App actually log user in only if all login, UserDetail and UserRoleAll request were successful.
+     *
+     * @param args - event args for login button tap
      */
-    login() {
+    login(args) {
         AppSettings.setString(USER_NAME, this.user.name);
+        let button = <Button>args.object;
+        disableButton(button);
         this.isLoading = true;
         this.userService.login(this.user)
             .subscribe(
                 resp => {
                     const result = parseLoginResponse(resp);
                     if (result === Status.success) {
-                        this.getUserDetail()
+                        this.getUserDetail(button)
                     }
                     else {
-                        this.showErrorBar("Špatné uživatelské jméno nebo heslo.")
-                        this.isLoading = false;
+                        this.showErrorBar("Špatné uživatelské jméno nebo heslo.");
+                        this.enableButton(button);
                     }
                 },
                 () => {
-                    this.showErrorBar("Přihlášení se nezdařilo. Zkontrolujte připojení k internetu.")
-                    this.isLoading = false;
+                    this.showErrorBar("Přihlášení se nezdařilo. Zkontrolujte připojení k internetu.");
+                    this.enableButton(button);
                 }
             );
     }
@@ -89,24 +95,26 @@ export class LoginComponent implements OnInit {
     /**
      * Method performs UserDetail request and saves parsed data to AppSettings.
      * If successful follows by calling getUserRoles().
+     *
+     * @param {Button} button - login button to enable in case of error
      */
-    private getUserDetail() {
+    private getUserDetail(button: Button) {
         this.userService.getUserDetail(new UserDetail())
             .subscribe(
                 resp => {
                     const userDetailResult = parseSoapResponse(resp, new UserDetailResult());
                     if (userDetailResult) {
                         userDetailResult.saveData();
-                        this.getUserRoles();
+                        this.getUserRoles(button);
                     }
                     else {
-                        this.showErrorBar("Nepodařilo se načíst uživatelská data.")
-                        this.isLoading = false;
+                        this.showErrorBar("Nepodařilo se načíst uživatelská data.");
+                        this.enableButton(button);
                     }
                 },
                 () => {
-                    this.showErrorBar("Nepodařilo se načíst uživatelská data.")
-                    this.isLoading = false;
+                    this.showErrorBar("Nepodařilo se načíst uživatelská data.");
+                    this.enableButton(button);
                 }
             )
     }
@@ -116,8 +124,10 @@ export class LoginComponent implements OnInit {
      * allowed to handle material agendas. This filtered list is assigned to the list of provider userRoleAllResult
      * which will be used as provider in next page (select role) as well and therefore role data will be accessible.
      * If no error appeared method navigates to the next page as last step.
+     *
+     * @param {Button} button - login button to enable after parsing response
      */
-    private getUserRoles() {
+    private getUserRoles(button: Button) {
         this.userService.getUserRoleAll(new UserRoleAll())
             .subscribe(
                 resp => {
@@ -128,11 +138,9 @@ export class LoginComponent implements OnInit {
                             ["UserRoles"].filter(role => {
                             return ALLOWED_ROLES.some(value => value === role["ID_Role"])
                         });
-                        // this.userRoleAllResult.UserRoles.map(role => {
-                        //     console.log(role.toFullString())
-                        // });
-                        this.isLoading = false;
+                        this.enableButton(button);
                         if (this.userRoleAllResult.UserRoles.length === 1) {
+                            // todo - load warehouses for user with one role only!
                             this.routerExtensions.navigate(["/warehouseList"], {clearHistory: true})
                         }
                         else {
@@ -141,13 +149,18 @@ export class LoginComponent implements OnInit {
                     }
                     catch {
                         this.showErrorBar("Nepodařilo se načíst uživatelské role.");
-                        this.isLoading = false
+                        this.enableButton(button);
                     }
                 },
                 () => {
                     this.showErrorBar("Nepodařilo se načíst uživatelské role.");
-                    this.isLoading = false;
+                    this.enableButton(button);
                 }
             )
+    }
+
+    private enableButton(button: Button) {
+        enableButton(button);
+        this.isLoading = false;
     }
 }

@@ -1,22 +1,25 @@
-<GridLayout rows="60, *">
-    <GridLayout row="0" columns="auto, *, auto" class="layout-bottom-border layout-colored">
-        <Button col="0" text="ZPĚT" class="header-text-component generic-text-component" (tap)="back()"></Button>
-        <Label col="1" text="SKLADY" horizontalAlignment="center" verticalAlignment="center"
-               class="header-text-component generic-text-component"></Label>
-        <Button col="2" text="ODHLÁSIT" class="header-text-component generic-text-component" (tap)="logout()"></Button>
+<Page (loaded)="onLoaded()">
+    <GridLayout rows="60, *">
+        <GridLayout row="0" columns="auto, *, auto" class="layout-bottom-border layout-colored">
+            <Button col="0" text="ZPĚT" class="header-text-component generic-text-component" (tap)="back()"></Button>
+            <Label col="1" text="SKLADY" horizontalAlignment="center" verticalAlignment="center"
+                   class="header-text-component generic-text-component"></Label>
+            <Button col="2" text="ODHLÁSIT" class="header-text-component generic-text-component"
+                    (tap)="logout()"></Button>
+        </GridLayout>
+        <GridLayout row="1" rows="*">
+            <Label row="0" text="Jednotce nejsou přiřazeny žádné sklady."
+                   verticalAlignment="center"
+                   horizontalAlignment="center"
+                   visibility="{{warehouses.length > 0 ? 'hidden' : 'visible'}}"></Label>
+            <ListView row="0" [items]="warehouses" visibility="{{warehouses.length > 0 ? 'visible' : 'hidden'}}"
+                      verticalAlignment="center"
+                      separatorColor="white">
+                <ng-template let-item="item">
+                    <Button [text]="item.DisplayName" [id]="item.ID" class="generic-text-component left-right-spacing"
+                            (tap)="warehouseSelected($event)"></Button>
+                </ng-template>
+            </ListView>
+        </GridLayout>
     </GridLayout>
-    <GridLayout row="1" rows="*">
-        <Label row="0" text="Jednotce nejsou přiřazeny žádné sklady."
-               verticalAlignment="center"
-               horizontalAlignment="center"
-               [visibility]="noWarehousesLabelVisibility"></Label>
-        <ListView row="0" [items]="warehouses" [visibility]="warehousesVisibility" verticalAlignment="center"
-                  separatorColor="white">
-            <ng-template let-item="item">
-                <Button [text]="item.DisplayName" class="generic-text-component left-right-spacing"
-                        (tap)="warehouseSelected()"></Button>
-            </ng-template>
-        </ListView>
-    </GridLayout>
-    <ActivityIndicator row="1" class="scout-blue-color" [busy]="isLoading" height="50" width="50"></ActivityIndicator>
-</GridLayout>
+</Page>

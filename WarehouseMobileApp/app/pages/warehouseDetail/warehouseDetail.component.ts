@@ -2,6 +2,10 @@ import { Component, OnInit } from "@angular/core";
 import { logout } from "../../utils/functions"
 import { Page } from "ui/page";
 import { RouterExtensions } from "nativescript-angular";
+import { ActivatedRoute } from "@angular/router";
+import { Database } from "../../utils/database";
+import { WarehouseItem } from "../../entities/warehouseItem/warehouseItem";
+
 
 @Component({
     selector: "warehouseDetail-component",
@@ -12,29 +16,53 @@ import { RouterExtensions } from "nativescript-angular";
 })
 
 export class WarehouseDetailComponent implements OnInit {
-    items: Array<Object> = [];
-    isLoading = true;
-    listLoaded = false;
+    items: Array<WarehouseItem> = [];
+    warehouseId: string;
+    listLoaded: boolean;
+    icons: {};
 
-    constructor( private page: Page, private routerExtensions: RouterExtensions ) {}
-
-    ngOnInit() {
-        this.page.actionBarHidden = true;
-        this.items.push({ name: "Item 1", id: "MC12854132" });
-        this.items.push({ name: "Item 2", id: "MC12854132" });
-        this.items.push({ name: "Item 3", id: "MC12854132" });
-        this.items.push({ name: "Item 4", id: "MC12854132" });
-        this.items.push({ name: "Item 5", id: "MC12854132" });
-        this.items.push({ name: "Item 6", id: "MC12854132" });
-        this.items.push({ name: "Item 7", id: "MC12854132" });
-        this.items.push({ name: "Item 8", id: "MC12854132" });
+    constructor(
+        private page: Page,
+        private routerExtensions: RouterExtensions,
+        private route: ActivatedRoute,
+        private database: Database)
+    {
+        this.listLoaded = false;
+        this.route.queryParams.subscribe(params => {
+            this.warehouseId = params["warehouseId"];
+        });
+        this.icons = {
+            caretLeft: String.fromCharCode(0xea44),
+            caretDown: String.fromCharCode(0xea43),
+            info: String.fromCharCode(0xea0c),
+            photo: String.fromCharCode(0xe90f),
+        }
     }
 
-    logout() {
+    ngOnInit(): void {
+        this.page.actionBarHidden = true;
+    }
+
+    onLoaded(): void {
+        this.items = this.database.selectAvailableItems(this.warehouseId)
+            .then((items) => {
+                setTimeout(() => {
+                    this.items = items;
+                    this.listLoaded = true;
+                }, 400);
+            });
+    }
+
+    onItemTap(eventData): void {
+        const dataItem = eventData.view.bindingContext;
+        dataItem.expanded = !dataItem.expanded;
+    }
+
+    logout(): void {
         logout(this.routerExtensions)
     }
 
-    back() {
+    back(): void {
         this.routerExtensions.backToPreviousPage()
     }
 }
