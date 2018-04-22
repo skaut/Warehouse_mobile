@@ -5,6 +5,9 @@ import { RouterExtensions } from "nativescript-angular";
 import { ActivatedRoute } from "@angular/router";
 import { Database } from "../../utils/database";
 import { WarehouseItem } from "../../entities/warehouseItem/warehouseItem";
+import { ObservableArray } from "tns-core-modules/data/observable-array";
+import * as Camera from "nativescript-camera"
+import * as ImageSource from "tns-core-modules/image-source";
 
 
 @Component({
@@ -12,11 +15,11 @@ import { WarehouseItem } from "../../entities/warehouseItem/warehouseItem";
     moduleId: module.id,
     templateUrl: "./warehouseDetail.html",
     styleUrls: ["./warehouseDetail.common.css"],
-    providers: []
+    providers: [],
 })
 
 export class WarehouseDetailComponent implements OnInit {
-    items: Array<WarehouseItem> = [];
+    items: ObservableArray<WarehouseItem>;
     warehouseId: string;
     listLoaded: boolean;
     icons: {};
@@ -41,21 +44,36 @@ export class WarehouseDetailComponent implements OnInit {
 
     ngOnInit(): void {
         this.page.actionBarHidden = true;
-    }
-
-    onLoaded(): void {
         this.items = this.database.selectAvailableItems(this.warehouseId)
             .then((items) => {
                 setTimeout(() => {
-                    this.items = items;
+                    console.log("loading items from db");
+                    this.items = new ObservableArray<WarehouseItem>(items);
                     this.listLoaded = true;
-                }, 400);
+                }, 900);
             });
     }
 
     onItemTap(eventData): void {
         const dataItem = eventData.view.bindingContext;
         dataItem.expanded = !dataItem.expanded;
+    }
+
+    onImageTap(eventData) {
+        const dataItem = eventData.view.bindingContext;
+        if (!dataItem.photo) {
+            if (Camera.isAvailable()) {
+                Camera.requestPermissions();
+                Camera.takePicture({width: 300, height: 300, keepAspectRatio: true, saveToGallery: false})
+                    .then(imageAsset => {
+                        ImageSource.fromAsset(imageAsset).then(imageSource => {
+                            dataItem.photo = imageSource;
+                            dataItem.PhotoContent = imageSource.toBase64String("jpeg", 100);
+                            this.database.updateItemPhoto(dataItem);
+                        })
+                    })
+            }
+        }
     }
 
     logout(): void {
