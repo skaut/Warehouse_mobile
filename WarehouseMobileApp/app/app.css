@@ -75,11 +75,8 @@ refer to http://docs.nativescript.org/ui/theme.
 .bot-margin-list {
     margin-bottom: 10;
 }
-.left-margin-list {
+.left-right-margin-list {
     margin-left: 15;
-    font-weight: bold;
-}
-.right-margin-list {
     margin-right: 15;
     font-weight: bold;
 }

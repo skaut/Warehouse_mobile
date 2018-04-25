@@ -69,7 +69,7 @@ export class Database {
             .then(id => {
                     // console.log("insert warehouse result", id);
                 }, () => {
-                    this.db.execSQL(`UPDATE warehouse SET id_unit = ${unitId} WHERE ID = ${warehouse.ID}`)
+                    this.db.execSQL(`UPDATE warehouse SET id_unit = ${unitId} WHERE id = ${warehouse.ID}`)
                         .then(id => {
                             }, error => {
                                 console.log("updating warehouse record error", error)
@@ -119,6 +119,16 @@ export class Database {
                     console.log("insert into item error", error)
                 }
             )
+    }
+
+    updateItemPhoto(item: WarehouseItem) {
+        return this.db.execSQL(`UPDATE item SET photo_content = '${item.PhotoContent}' WHERE id = ${item.ID}`)
+            .then(() => {
+                console.log('success updating item photo')
+                },
+                error => {
+                    console.log("error updating item photo: " + error)
+                })
     }
 
     /**

@@ -16,7 +16,7 @@ export const USER_UNIT_ID = "unitId";
 export const USER_ID = "userId";
 export const USER_PERSON_ID = "userPersonId";
 export const USER_PERSON_NAME = "userPersonName";
-export const USER_ROLE = "userRole"
+export const USER_ROLE = "userRole";
 export const USER_NAME = "userName";
 
 export const ALLOWED_ROLES = ["18", "22", "25", "44", "50", "51", "61", "103", "104"];

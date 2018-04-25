@@ -3,6 +3,7 @@ import { HttpClient } from "@angular/common/http";
 import { WarehouseAll } from "../../soap/requests/warehouseAll";
 import { WarehouseItemAll } from "../../soap/requests/warehouseItemAll";
 import { WarehouseItemDetailPhoto } from "../../soap/requests/warehouseItemDetailPhoto";
+import {TempFileInsert} from "../../soap/requests/tempFileInsert";
 
 
 @Injectable()

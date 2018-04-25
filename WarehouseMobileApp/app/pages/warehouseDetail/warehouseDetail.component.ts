@@ -5,6 +5,11 @@ import { RouterExtensions } from "nativescript-angular";
 import { ActivatedRoute } from "@angular/router";
 import { Database } from "../../utils/database";
 import { WarehouseItem } from "../../entities/warehouseItem/warehouseItem";
+import { ObservableArray } from "tns-core-modules/data/observable-array";
+import * as Camera from "nativescript-camera"
+import * as ImageSource from "tns-core-modules/image-source";
+import {UserService} from "../../entities/user/user.service";
+import {TempFileInsert} from "../../soap/requests/tempFileInsert";
 
 
 @Component({
@@ -12,11 +17,11 @@ import { WarehouseItem } from "../../entities/warehouseItem/warehouseItem";
     moduleId: module.id,
     templateUrl: "./warehouseDetail.html",
     styleUrls: ["./warehouseDetail.common.css"],
-    providers: []
+    providers: [],
 })
 
 export class WarehouseDetailComponent implements OnInit {
-    items: Array<WarehouseItem> = [];
+    items: ObservableArray<WarehouseItem>;
     warehouseId: string;
     listLoaded: boolean;
     icons: {};
@@ -25,7 +30,8 @@ export class WarehouseDetailComponent implements OnInit {
         private page: Page,
         private routerExtensions: RouterExtensions,
         private route: ActivatedRoute,
-        private database: Database)
+        private database: Database,
+        private userService: UserService)
     {
         this.listLoaded = false;
         this.route.queryParams.subscribe(params => {
@@ -41,21 +47,46 @@ export class WarehouseDetailComponent implements OnInit {
 
     ngOnInit(): void {
         this.page.actionBarHidden = true;
-    }
-
-    onLoaded(): void {
         this.items = this.database.selectAvailableItems(this.warehouseId)
             .then((items) => {
                 setTimeout(() => {
-                    this.items = items;
+                    console.log("loading items from db");
+                    this.items = new ObservableArray<WarehouseItem>(items);
                     this.listLoaded = true;
-                }, 400);
+                }, 900);
             });
     }
 
     onItemTap(eventData): void {
         const dataItem = eventData.view.bindingContext;
         dataItem.expanded = !dataItem.expanded;
+    }
+
+    onImageTap(eventData) {
+        const dataItem = eventData.view.bindingContext;
+        if (!dataItem.photo) {
+            if (Camera.isAvailable()) {
+                Camera.requestPermissions();
+                Camera.takePicture({width: 300, height: 300, keepAspectRatio: true, saveToGallery: false})
+                    .then(imageAsset => {
+                        ImageSource.fromAsset(imageAsset).then(imageSource => {
+                            dataItem.photo = imageSource;
+                            dataItem.PhotoContent = imageSource.toBase64String("jpeg", 100);
+                            this.database.updateItemPhoto(dataItem);
+                            // this.userService.insertPhotoTempFile(new TempFileInsert("jpeg",
+                            //     new Uint8Array(10)))
+                            //     .subscribe((resp) => {
+                            //             console.log("winwin");
+                            //             console.log(resp);
+                            //         },
+                            //         err => {
+                            //             console.log(err.error);
+                            //             console.log(err.message)
+                            //         })
+                        })
+                    })
+            }
+        }
     }
 
     logout(): void {
