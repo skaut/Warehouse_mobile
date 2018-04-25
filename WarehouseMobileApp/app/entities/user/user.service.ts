@@ -6,6 +6,7 @@ import { UserDetail } from "../../soap/requests/userDetail";
 import { UserRoleAll } from "../../soap/requests/userRoleAll";
 import { LoginUpdate } from "../../soap/requests/loginUpdate";
 import * as Constants from "../../constants"
+import {TempFileInsert} from "../../soap/requests/tempFileInsert";
 
 
 @Injectable()
@@ -35,6 +36,10 @@ export class UserService {
 
     updateUserRole(loginUpdate: LoginUpdate) {
         return loginUpdate.call(loginUpdate, this.serviceName, this.httpClient);
+    }
+
+    insertPhotoTempFile(tempFileInsert: TempFileInsert) {
+        return tempFileInsert.call(tempFileInsert, this.serviceName, this.httpClient)
     }
 
     /**

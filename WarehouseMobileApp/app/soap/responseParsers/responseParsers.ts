@@ -21,6 +21,7 @@ export const parseLoginResponse = (response: string): Status => {
             switch (element.attribute("name").value) {
                 case "skautIS_Token":
                     AppSettings.setString(USER_TOKEN, element.attribute("value").value);
+                    console.log(AppSettings.getString(USER_TOKEN));
                     break;
                 case "skautIS_IDRole":
                     AppSettings.setString(USER_ROLE_ID, element.attribute("value").value);

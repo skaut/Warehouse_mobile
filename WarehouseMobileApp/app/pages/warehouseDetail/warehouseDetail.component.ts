@@ -8,6 +8,8 @@ import { WarehouseItem } from "../../entities/warehouseItem/warehouseItem";
 import { ObservableArray } from "tns-core-modules/data/observable-array";
 import * as Camera from "nativescript-camera"
 import * as ImageSource from "tns-core-modules/image-source";
+import {UserService} from "../../entities/user/user.service";
+import {TempFileInsert} from "../../soap/requests/tempFileInsert";
 
 
 @Component({
@@ -28,7 +30,8 @@ export class WarehouseDetailComponent implements OnInit {
         private page: Page,
         private routerExtensions: RouterExtensions,
         private route: ActivatedRoute,
-        private database: Database)
+        private database: Database,
+        private userService: UserService)
     {
         this.listLoaded = false;
         this.route.queryParams.subscribe(params => {
@@ -70,6 +73,16 @@ export class WarehouseDetailComponent implements OnInit {
                             dataItem.photo = imageSource;
                             dataItem.PhotoContent = imageSource.toBase64String("jpeg", 100);
                             this.database.updateItemPhoto(dataItem);
+                            // this.userService.insertPhotoTempFile(new TempFileInsert("jpeg",
+                            //     new Uint8Array(10)))
+                            //     .subscribe((resp) => {
+                            //             console.log("winwin");
+                            //             console.log(resp);
+                            //         },
+                            //         err => {
+                            //             console.log(err.error);
+                            //             console.log(err.message)
+                            //         })
                         })
                     })
             }
