@@ -1,0 +1,88 @@
+<GridLayout rows="60, *, 60">
+    <GridLayout row="0" columns="auto, *, auto" class="layout-bottom-border layout-colored">
+        <Button col="0" text="ZPĚT" class="header-text-component generic-text-component" (tap)="back()"></Button>
+        <Label col="1" text="INVENTARIZACE" horizontalAlignment="center" verticalAlignment="center"
+               class="header-text-component generic-text-component"></Label>
+        <Button col="2" text="ODHLÁSIT" class="header-text-component generic-text-component"
+                (tap)="logout()"></Button>
+    </GridLayout>
+    <Label *ngIf="listLoaded" row="1" text="Ve skladu nejsou evidovány žádné položky."
+           verticalAlignment="center"
+           horizontalAlignment="center"
+           visibility="{{items.length > 0 ? 'hidden' : 'visible'}}"></Label>
+    <TabView *ngIf="listLoaded" row="1" selectedIndex="0" sdkExampleTitle
+             sdkToggleNavButton visibility="{{items.length > 0 ? 'visible' : 'hidden'}}">
+        <RadListView *tabItem="{title: 'K výběru'}" [items]="items" (itemTap)="onUninventorizedItemTap($event)">
+            <ng-template let-item="item">
+                <GridLayout rows="70" visibility="{{item.synced ? 'visible' : 'collapse'}}">
+                    <GridLayout row="0" columns="auto, *, auto">
+                        <Button col="0" visibility="hidden" text="ZPĚT"
+                                class="header-text-component generic-text-component"></Button>
+                        <GridLayout col="0" rows="*" class="circle-photo-layout">
+                            <Label row="0" [text]="icons.photo" class="icon-photo-big"
+                                   verticalAlignment="center" horizontalAlignment="center"></Label>
+                            <Image row="0" [src]="item.photo" horizontalAlignment="center"
+                                   verticalAlignment="center"></Image>
+                        </GridLayout>
+                        <StackLayout col="1" horizontalAlignment="center" verticalAlignment="center">
+                            <Label [text]="item.DisplayName" class="list-view-first-line" textWrap="true"
+                                   horizontalAlignment="center" verticalAlignment="center"></Label>
+                            <Label text="{{item.InWarehouse ? 'Ve skladu: Ano' : 'Ve skladu: Ne'}}"
+                                   class="list-view-second-line"
+                                   horizontalAlignment="center" verticalAlignment="center"></Label>
+                        </StackLayout>
+                        <Button col="2" visibility="hidden" text="ODHLÁSIT"
+                                class="header-text-component generic-text-component"></Button>
+                        <StackLayout col="2" orientation="horizontal" horizontalAlignment="right">
+                            <Label text="{{icons.info}}"
+                                   verticalAlignment="center"
+                                   class="icon icon-item"></Label>
+                            <Label text="{{item.expanded ? icons.caretDown : icons.caretLeft}}"
+                                   verticalAlignment="center"
+                                   class="icon icon-item"></Label>
+                        </StackLayout>
+                    </GridLayout>
+                </GridLayout>
+            </ng-template>
+        </RadListView>
+        <RadListView *tabItem="{title: 'Inventarizováno'}" [items]="items" (itemTap)="onInventorizedItemTap($event)">
+            <ng-template let-item="item">
+                <GridLayout rows="70" visibility="{{item.synced ? 'collapse' : 'visible'}}">
+                    <GridLayout row="0" columns="auto, *, auto">
+                        <Button col="0" visibility="hidden" text="ZPĚT"
+                                class="header-text-component generic-text-component"></Button>
+                        <GridLayout col="0" rows="*" class="circle-photo-layout">
+                            <Label row="0" [text]="icons.photo" class="icon-photo-big"
+                                   verticalAlignment="center" horizontalAlignment="center"></Label>
+                            <Image row="0" [src]="item.photo" horizontalAlignment="center"
+                                   verticalAlignment="center"></Image>
+                        </GridLayout>
+                        <StackLayout col="1" horizontalAlignment="center" verticalAlignment="center">
+                            <Label [text]="item.DisplayName" class="list-view-first-line" textWrap="true"
+                                   horizontalAlignment="center" verticalAlignment="center"></Label>
+                            <Label text="{{item.InWarehouse ? 'Ve skladu: Ano' : 'Ve skladu: Ne'}}"
+                                   class="list-view-second-line"
+                                   horizontalAlignment="center" verticalAlignment="center"></Label>
+                        </StackLayout>
+                        <Button col="2" visibility="hidden" text="ODHLÁSIT"
+                                class="header-text-component generic-text-component"></Button>
+                        <StackLayout col="2" orientation="horizontal" horizontalAlignment="right">
+                            <Label text="{{icons.info}}"
+                                   verticalAlignment="center"
+                                   class="icon icon-item"></Label>
+                            <Label text="{{item.expanded ? icons.caretDown : icons.caretLeft}}"
+                                   verticalAlignment="center"
+                                   class="icon icon-item"></Label>
+                        </StackLayout>
+                    </GridLayout>
+                </GridLayout>
+            </ng-template>
+        </RadListView>
+    </TabView>
+    <ActivityIndicator row="1" class="scout-blue-color" [busy]="!listLoaded" height="50"
+                       width="50"></ActivityIndicator>
+    <GridLayout row="2" rows="*" class="layout-colored layout-top-border">
+        <Button row="0" text="POTVRDIT INVENTARIZACI" class="header-text-component generic-text-component"
+                (tap)="onSubmitInventory()"></Button>
+    </GridLayout>
+</GridLayout>

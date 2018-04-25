@@ -89,6 +89,11 @@ export class WarehouseDetailComponent implements OnInit {
         }
     }
 
+    onInventoryTap() {
+        this.routerExtensions.navigate(["/inventory"],
+            {queryParams: {"warehouseId": this.warehouseId}})
+    }
+
     logout(): void {
         logout(this.routerExtensions)
     }
