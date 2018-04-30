@@ -1,12 +1,12 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, ElementRef, OnInit, ViewChild } from "@angular/core";
 import { logout } from "../../utils/functions"
 import { Page } from "ui/page";
 import { RouterExtensions } from "nativescript-angular";
 import { ActivatedRoute } from "@angular/router";
 import { Database } from "../../utils/database";
 import { WarehouseItem } from "../../entities/warehouseItem/warehouseItem";
-import { ObservableArray } from "tns-core-modules/data/observable-array";
-import {RadListView} from "nativescript-ui-listview";
+import { BarcodeScanner } from "nativescript-barcodescanner";
+import * as Dialogs from "ui/dialogs"
 
 
 @Component({
@@ -18,22 +18,27 @@ import {RadListView} from "nativescript-ui-listview";
 })
 
 export class InventoryComponent implements OnInit {
-    items: ObservableArray<WarehouseItem>;
+    items: Array<WarehouseItem>;
     warehouseId: string;
     listLoaded: boolean;
+    activityIndicatorBusy: boolean;
     icons: {};
+    @ViewChild('listNotInventory') listNotInventory: ElementRef;
+    @ViewChild('listInventory') listInventory: ElementRef;
 
     constructor(
         private page: Page,
         private routerExtensions: RouterExtensions,
         private route: ActivatedRoute,
-        private database: Database)
+        private database: Database,
+        private barcodeScanner: BarcodeScanner)
     {
         this.listLoaded = false;
+        this.activityIndicatorBusy = true;
         this.route.queryParams.subscribe(params => {
             this.warehouseId = params["warehouseId"];
         });
-        this.items = new ObservableArray<WarehouseItem>();
+        this.items = [];
         this.icons = {
             caretLeft: String.fromCharCode(0xea44),
             caretDown: String.fromCharCode(0xea43),
@@ -45,13 +50,15 @@ export class InventoryComponent implements OnInit {
     ngOnInit(): void {
         this.page.actionBarHidden = true;
         this.listLoaded = false;
+        this.activityIndicatorBusy = true;
         this.database.selectAvailableItems(this.warehouseId)
             .then((items) => {
                 setTimeout(() => {
-                    console.log("loading items from db");
-                    this.items = new ObservableArray<WarehouseItem>(items);
+                    console.log("loading items from db - inventory page");
+                    this.items = items;
                     this.listLoaded = true;
-                }, 900);
+                    this.activityIndicatorBusy = false;
+                }, 1300);
             });
     }
 
@@ -69,8 +76,49 @@ export class InventoryComponent implements OnInit {
         logout(this.routerExtensions)
     }
 
-    onSubmitInventory() {
+    onScanCodesTap() {
+        this.barcodeScanner.requestCameraPermission()
+            .then(() => {
+                this.barcodeScanner.scan({
+                    message: "Naskenujte barcode nebo QR kód, každý kód lze naskenovat jen jednou.",
+                    continuousScanCallback: (result) => {
+                        let partToSliceOut = "MA00000000";
+                        while (result.text.indexOf(partToSliceOut) === -1) {
+                            partToSliceOut = partToSliceOut.slice(0, partToSliceOut.length - 1 )
+                        }
+                        const itemId = result.text.slice(partToSliceOut.length, result.text.length);
+                        const warehouseItem = this.items.find((item) => {
+                            return item.ID === itemId;
+                        });
+                        warehouseItem.synced = false;
+                        Dialogs.confirm({
+                            title: "Výsledek skenu",
+                            message: "Název: " + warehouseItem.DisplayName,
+                            okButtonText: "Skenovat další",
+                            cancelButtonText: "Konec",
+                        }).then(result => {
+                            if (!result) {
+                                this.barcodeScanner.stop()
+                            }
+                        })
+                    },
+                    closeCallback: () => {
+                        // freeze in UI was better before
+                        this.activityIndicatorBusy = true;
+                        setTimeout(() => {
+                            this.listNotInventory.nativeElement.refresh();
+                            this.listInventory.nativeElement.refresh();
+                            this.activityIndicatorBusy = false;
+                        }, 1200)
+                    },
+                    showTorchButton: true,
+                    beepOnScan: false,
+                }).then(() => {})
+            })
+    }
 
+    onSubmitInventory() {
+        // todo
     }
 
     back(): void {

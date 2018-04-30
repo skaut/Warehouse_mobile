@@ -12,7 +12,7 @@
            visibility="{{items.length > 0 ? 'hidden' : 'visible'}}"></Label>
     <TabView *ngIf="listLoaded" row="1" selectedIndex="0" sdkExampleTitle
              sdkToggleNavButton visibility="{{items.length > 0 ? 'visible' : 'hidden'}}">
-        <RadListView *tabItem="{title: 'K výběru'}" [items]="items" (itemTap)="onUninventorizedItemTap($event)">
+        <RadListView #listNotInventory *tabItem="{title: 'K výběru'}" [items]="items" (itemTap)="onUninventorizedItemTap($event)">
             <ng-template let-item="item">
                 <GridLayout rows="70" visibility="{{item.synced ? 'visible' : 'collapse'}}">
                     <GridLayout row="0" columns="auto, *, auto">
@@ -45,7 +45,7 @@
                 </GridLayout>
             </ng-template>
         </RadListView>
-        <RadListView *tabItem="{title: 'Inventarizováno'}" [items]="items" (itemTap)="onInventorizedItemTap($event)">
+        <RadListView #listInventory *tabItem="{title: 'Inventarizováno'}" [items]="items" (itemTap)="onInventorizedItemTap($event)">
             <ng-template let-item="item">
                 <GridLayout rows="70" visibility="{{item.synced ? 'collapse' : 'visible'}}">
                     <GridLayout row="0" columns="auto, *, auto">
@@ -79,10 +79,12 @@
             </ng-template>
         </RadListView>
     </TabView>
-    <ActivityIndicator row="1" class="scout-blue-color" [busy]="!listLoaded" height="50"
+    <ActivityIndicator row="1" class="scout-blue-color" [busy]="activityIndicatorBusy" height="50"
                        width="50"></ActivityIndicator>
-    <GridLayout row="2" rows="*" class="layout-colored layout-top-border">
-        <Button row="0" text="POTVRDIT INVENTARIZACI" class="header-text-component generic-text-component"
+    <GridLayout row="2" rows="*" columns="*, *" class="layout-colored layout-top-border">
+        <Button col="0" text="SKENOVAT KÓDY" class="header-text-component generic-text-component"
+                (tap)="onScanCodesTap()"></Button>
+        <Button col="1" text="POTVRDIT" class="header-text-component generic-text-component"
                 (tap)="onSubmitInventory()"></Button>
     </GridLayout>
 </GridLayout>

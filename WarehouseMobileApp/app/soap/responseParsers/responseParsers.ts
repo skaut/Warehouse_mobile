@@ -25,9 +25,11 @@ export const parseLoginResponse = (response: string): Status => {
                     break;
                 case "skautIS_IDRole":
                     AppSettings.setString(USER_ROLE_ID, element.attribute("value").value);
+                    console.log(AppSettings.getString(USER_ROLE_ID));
                     break;
                 case "skautIS_IDUnit":
                     AppSettings.setString(USER_UNIT_ID, element.attribute("value").value);
+                    console.log("ID UNIT: ", AppSettings.getString(USER_UNIT_ID));
                     break;
             }
         });
