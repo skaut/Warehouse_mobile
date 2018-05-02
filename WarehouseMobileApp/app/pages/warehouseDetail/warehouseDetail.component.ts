@@ -5,11 +5,10 @@ import { RouterExtensions } from "nativescript-angular";
 import { ActivatedRoute } from "@angular/router";
 import { Database } from "../../utils/database";
 import { WarehouseItem } from "../../entities/warehouseItem/warehouseItem";
-import { ObservableArray } from "tns-core-modules/data/observable-array";
+import { UserService } from "../../entities/user/user.service";
+import { TempFileInsert } from "../../soap/requests/tempFileInsert";
 import * as Camera from "nativescript-camera"
 import * as ImageSource from "tns-core-modules/image-source";
-import {UserService} from "../../entities/user/user.service";
-import {TempFileInsert} from "../../soap/requests/tempFileInsert";
 
 
 @Component({
@@ -21,7 +20,7 @@ import {TempFileInsert} from "../../soap/requests/tempFileInsert";
 })
 
 export class WarehouseDetailComponent implements OnInit {
-    items: ObservableArray<WarehouseItem>;
+    items: Array<WarehouseItem>;
     warehouseId: string;
     listLoaded: boolean;
     icons: {};
@@ -37,6 +36,7 @@ export class WarehouseDetailComponent implements OnInit {
         this.route.queryParams.subscribe(params => {
             this.warehouseId = params["warehouseId"];
         });
+        this.items = [];
         this.icons = {
             caretLeft: String.fromCharCode(0xea44),
             caretDown: String.fromCharCode(0xea43),
@@ -50,15 +50,24 @@ export class WarehouseDetailComponent implements OnInit {
         this.items = this.database.selectAvailableItems(this.warehouseId)
             .then((items) => {
                 setTimeout(() => {
-                    console.log("loading items from db");
-                    this.items = new ObservableArray<WarehouseItem>(items);
+                    console.log("loading items from db - warehouse detail page");
+                    this.items = items;
                     this.listLoaded = true;
-                }, 900);
+                }, 700)
             });
     }
 
     onItemTap(eventData): void {
         const dataItem = eventData.view.bindingContext;
+        // const date = new Date();
+        // date.setHours(date.getHours() + 2);
+        // let datis = date.toISOString();
+        // console.log(date);
+        // console.log(datis);
+        // datis = datis.slice(0, datis.length - 1);
+        // console.log(datis);
+        // console.log(dataItem.ID);
+        // console.log(dataItem.ID_Warehouse);
         dataItem.expanded = !dataItem.expanded;
     }
 
@@ -71,7 +80,7 @@ export class WarehouseDetailComponent implements OnInit {
                     .then(imageAsset => {
                         ImageSource.fromAsset(imageAsset).then(imageSource => {
                             dataItem.photo = imageSource;
-                            dataItem.PhotoContent = imageSource.toBase64String("jpeg", 100);
+                            dataItem.PhotoContent = imageSource.toBase64String("jpeg", 90);
                             this.database.updateItemPhoto(dataItem);
                             // this.userService.insertPhotoTempFile(new TempFileInsert("jpeg",
                             //     new Uint8Array(10)))
@@ -87,6 +96,11 @@ export class WarehouseDetailComponent implements OnInit {
                     })
             }
         }
+    }
+
+    onInventoryTap() {
+        this.routerExtensions.navigate(["/inventory"],
+            {queryParams: {"warehouseId": this.warehouseId}})
     }
 
     logout(): void {

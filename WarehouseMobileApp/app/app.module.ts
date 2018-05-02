@@ -10,6 +10,7 @@ import { UserRoleAllResult } from "./soap/results/userRoleAllResult";
 import { UserService } from "./entities/user/user.service";
 import { WarehouseService } from "./entities/warehouse/warehouse.service";
 import { Database } from "./utils/database";
+import { BarcodeScanner } from "nativescript-barcodescanner";
 
 
 @NgModule({
@@ -32,6 +33,7 @@ import { Database } from "./utils/database";
         WarehouseService,
         UserRoleAllResult,
         Database,
+        BarcodeScanner
     ]
 })
 /*
