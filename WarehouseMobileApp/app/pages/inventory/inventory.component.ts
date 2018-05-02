@@ -42,7 +42,8 @@ export class InventoryComponent implements OnInit {
         this.icons = {
             caretLeft: String.fromCharCode(0xea44),
             caretDown: String.fromCharCode(0xea43),
-            info: String.fromCharCode(0xea0c),
+            check: String.fromCharCode(0xea10),
+            cross: String.fromCharCode(0xea0f),
             photo: String.fromCharCode(0xe90f),
         }
     }
@@ -103,13 +104,7 @@ export class InventoryComponent implements OnInit {
                         })
                     },
                     closeCallback: () => {
-                        // freeze in UI was better before
-                        this.activityIndicatorBusy = true;
-                        setTimeout(() => {
-                            this.listNotInventory.nativeElement.refresh();
-                            this.listInventory.nativeElement.refresh();
-                            this.activityIndicatorBusy = false;
-                        }, 1200)
+                        this.listNotInventory.nativeElement.refresh();
                     },
                     showTorchButton: true,
                     beepOnScan: false,
