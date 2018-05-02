@@ -1,87 +1,73 @@
-<GridLayout rows="60, *, 60">
-    <GridLayout row="0" columns="auto, *, auto" class="layout-bottom-border layout-colored">
-        <Button col="0" text="ZPĚT" class="header-text-component generic-text-component" (tap)="back()"></Button>
+<GridLayout rows="60, *, 20, 60" columns="*, auto, *">
+    <GridLayout row="0" col="0" colSpan="3" columns="*, auto, *" class="layout-bottom-border layout-colored">
+        <Button col="0" text="ZPĚT" horizontalAlignment="left" class="header-text-component generic-text-component"
+                (tap)="back()"></Button>
         <Label col="1" text="INVENTARIZACE" horizontalAlignment="center" verticalAlignment="center"
                class="header-text-component generic-text-component"></Label>
-        <Button col="2" text="ODHLÁSIT" class="header-text-component generic-text-component"
+        <Button col="2" text="ODHLÁSIT" horizontalAlignment="right" class="header-text-component generic-text-component"
                 (tap)="logout()"></Button>
     </GridLayout>
     <Label *ngIf="listLoaded" row="1" text="Ve skladu nejsou evidovány žádné položky."
            verticalAlignment="center"
            horizontalAlignment="center"
            visibility="{{items.length > 0 ? 'hidden' : 'visible'}}"></Label>
-    <TabView *ngIf="listLoaded" row="1" selectedIndex="0" sdkExampleTitle
+    <TabView *ngIf="listLoaded" row="1" col="0" colSpan="3" selectedIndex="0" sdkExampleTitle
              sdkToggleNavButton visibility="{{items.length > 0 ? 'visible' : 'hidden'}}">
-        <RadListView #listNotInventory *tabItem="{title: 'K výběru'}" [items]="items" (itemTap)="onUninventorizedItemTap($event)">
+        <RadListView #listNotInventory *tabItem="{title: 'K výběru'}" [items]="items"
+                     (itemTap)="onUninventorizedItemTap($event)">
             <ng-template let-item="item">
-                <GridLayout rows="70" visibility="{{item.synced ? 'visible' : 'collapse'}}">
-                    <GridLayout row="0" columns="auto, *, auto">
-                        <Button col="0" visibility="hidden" text="ZPĚT"
-                                class="header-text-component generic-text-component"></Button>
-                        <GridLayout col="0" rows="*" class="circle-photo-layout">
-                            <Label row="0" [text]="icons.photo" class="icon-photo-big"
-                                   verticalAlignment="center" horizontalAlignment="center"></Label>
-                            <Image row="0" [src]="item.photo" horizontalAlignment="center"
-                                   verticalAlignment="center"></Image>
-                        </GridLayout>
-                        <StackLayout col="1" horizontalAlignment="center" verticalAlignment="center">
-                            <Label [text]="item.DisplayName" class="list-view-first-line" textWrap="true"
-                                   horizontalAlignment="center" verticalAlignment="center"></Label>
-                            <Label text="{{item.InWarehouse ? 'Ve skladu: Ano' : 'Ve skladu: Ne'}}"
-                                   class="list-view-second-line"
-                                   horizontalAlignment="center" verticalAlignment="center"></Label>
-                        </StackLayout>
-                        <Button col="2" visibility="hidden" text="ODHLÁSIT"
-                                class="header-text-component generic-text-component"></Button>
-                        <StackLayout col="2" orientation="horizontal" horizontalAlignment="right">
-                            <Label text="{{icons.info}}"
-                                   verticalAlignment="center"
-                                   class="icon icon-item"></Label>
-                            <Label text="{{item.expanded ? icons.caretDown : icons.caretLeft}}"
-                                   verticalAlignment="center"
-                                   class="icon icon-item"></Label>
-                        </StackLayout>
-                    </GridLayout>
+                <GridLayout rows="35,35" columns="*, auto, *" visibility="{{item.synced ? 'visible' : 'collapse'}}">
+                    <Label *ngIf="!item.photo" row="0" rowSpan="2" col="0" verticalAlignment="center" width="60"
+                           height="60"
+                           horizontalAlignment="left" [text]="icons.photo" class="image-like-circular-label"></Label>
+                    <Image *ngIf="item.photo" row="0" rowSpan="2" col="0" verticalAlignment="center" width="60"
+                           height="60" horizontalAlignment="left" [src]="item.photo"></Image>
+                    <Label row="0" col="1" [text]="item.DisplayName" class="list-view-first-line"
+                           textWrap="true"
+                           horizontalAlignment="center" verticalAlignmnet="bottom"></Label>
+                    <Label row="1" col="1" text="{{item.InWarehouse ? 'Ve skladu: Ano' : 'Ve skladu: Ne'}}"
+                           class="list-view-second-line" textWrap="true"
+                           horizontalAlignment="center" verticalAlignment="top"></Label>
+                    <Label row="0" rowSpan="2" col="2" text="{{icons.info}}"
+                           verticalAlignment="center" horizontalAlignment="right"
+                           class="icon icon-item-left"></Label>
+                    <Label row="0" rowSpan="2" col="2" text="{{item.expanded ? icons.caretDown : icons.caretLeft}}"
+                           verticalAlignment="center" horizontalAlignment="right"
+                           class="icon icon-item-rightmost"></Label>
                 </GridLayout>
             </ng-template>
         </RadListView>
-        <RadListView #listInventory *tabItem="{title: 'Inventarizováno'}" [items]="items" (itemTap)="onInventorizedItemTap($event)">
+        <RadListView #listInventory *tabItem="{title: 'Inventarizováno'}" [items]="items"
+                     (itemTap)="onInventorizedItemTap($event)">
             <ng-template let-item="item">
-                <GridLayout rows="70" visibility="{{item.synced ? 'collapse' : 'visible'}}">
-                    <GridLayout row="0" columns="auto, *, auto">
-                        <Button col="0" visibility="hidden" text="ZPĚT"
-                                class="header-text-component generic-text-component"></Button>
-                        <GridLayout col="0" rows="*" class="circle-photo-layout">
-                            <Label row="0" [text]="icons.photo" class="icon-photo-big"
-                                   verticalAlignment="center" horizontalAlignment="center"></Label>
-                            <Image row="0" [src]="item.photo" horizontalAlignment="center"
-                                   verticalAlignment="center"></Image>
-                        </GridLayout>
-                        <StackLayout col="1" horizontalAlignment="center" verticalAlignment="center">
-                            <Label [text]="item.DisplayName" class="list-view-first-line" textWrap="true"
-                                   horizontalAlignment="center" verticalAlignment="center"></Label>
-                            <Label text="{{item.InWarehouse ? 'Ve skladu: Ano' : 'Ve skladu: Ne'}}"
-                                   class="list-view-second-line"
-                                   horizontalAlignment="center" verticalAlignment="center"></Label>
-                        </StackLayout>
-                        <Button col="2" visibility="hidden" text="ODHLÁSIT"
-                                class="header-text-component generic-text-component"></Button>
-                        <StackLayout col="2" orientation="horizontal" horizontalAlignment="right">
-                            <Label text="{{icons.info}}"
-                                   verticalAlignment="center"
-                                   class="icon icon-item"></Label>
-                            <Label text="{{item.expanded ? icons.caretDown : icons.caretLeft}}"
-                                   verticalAlignment="center"
-                                   class="icon icon-item"></Label>
-                        </StackLayout>
-                    </GridLayout>
+                <GridLayout rows="35,35" columns="*, auto, *" visibility="{{item.synced ? 'collapse' : 'visible'}}">
+                    <Label *ngIf="!item.photo" row="0" rowSpan="2" col="0" verticalAlignment="center" width="60"
+                           height="60"
+                           horizontalAlignment="left" [text]="icons.photo" class="image-like-circular-label"></Label>
+                    <Image *ngIf="item.photo" row="0" rowSpan="2" col="0" verticalAlignment="center" width="60"
+                           height="60" horizontalAlignment="left" [src]="item.photo"></Image>
+                    <Label row="0" col="1" [text]="item.DisplayName" class="list-view-first-line"
+                           textWrap="true"
+                           horizontalAlignment="center" verticalAlignmnet="bottom"></Label>
+                    <Label row="1" col="1" text="{{item.InWarehouse ? 'Ve skladu: Ano' : 'Ve skladu: Ne'}}"
+                           class="list-view-second-line" textWrap="true"
+                           horizontalAlignment="center" verticalAlignment="top"></Label>
+                    <Label row="0" rowSpan="2" col="2" text="{{icons.info}}"
+                           verticalAlignment="center" horizontalAlignment="right"
+                           class="icon icon-item-left"></Label>
+                    <Label row="0" rowSpan="2" col="2" text="{{item.expanded ? icons.caretDown : icons.caretLeft}}"
+                           verticalAlignment="center" horizontalAlignment="right"
+                           class="icon icon-item-rightmost"></Label>
                 </GridLayout>
             </ng-template>
         </RadListView>
     </TabView>
-    <ActivityIndicator row="1" class="scout-blue-color" [busy]="activityIndicatorBusy" height="50"
+    <ActivityIndicator row="1" col="0" colSpan="3" class="scout-blue-color" [busy]="activityIndicatorBusy" height="50"
                        width="50"></ActivityIndicator>
-    <GridLayout row="2" rows="*" columns="*, *" class="layout-colored layout-top-border">
+    <StackLayout row="2" col="0" colSpan="3" height="1" backgroundColor="#9e9e9e" verticalAlignment="top"></StackLayout>
+    <Label row="2" col="0" colSpan="3" text="*popis jak docilit ceho, tap pro inventarizaci atd."
+           horizontalAlignment="left" class="margin-left" textWrap="true"></Label>
+    <GridLayout row="3" col="0" colSpan="3" columns="*, *" class="layout-colored layout-top-border">
         <Button col="0" text="SKENOVAT KÓDY" class="header-text-component generic-text-component"
                 (tap)="onScanCodesTap()"></Button>
         <Button col="1" text="POTVRDIT" class="header-text-component generic-text-component"

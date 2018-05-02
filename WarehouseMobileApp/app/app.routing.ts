@@ -4,6 +4,7 @@ import { WarehouseListComponent } from "./pages/warehouseList/warehouseList.comp
 import { WarehouseDetailComponent } from "./pages/warehouseDetail/warehouseDetail.component";
 import { InventoryComponent } from "./pages/inventory/inventory.component";
 
+
 export const routes = [
     { path: "", component: LoginComponent },
     { path: "selectRole", component: SelectRoleComponent },

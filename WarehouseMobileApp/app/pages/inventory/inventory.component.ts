@@ -118,7 +118,7 @@ export class InventoryComponent implements OnInit {
     }
 
     onSubmitInventory() {
-        // todo
+        // todo - submit inventory
     }
 
     back(): void {
