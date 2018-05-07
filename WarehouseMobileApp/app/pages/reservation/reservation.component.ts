@@ -2,6 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { logout } from "../../utils/functions"
 import { Page } from "ui/page";
 import { RouterExtensions } from "nativescript-angular";
+import { DatePicker } from "tns-core-modules/ui/date-picker";
 import { SearchBar } from "tns-core-modules/ui/search-bar";
 import { isAndroid } from "tns-core-modules/platform";
 import { Item } from "../../entities/item/item";
@@ -10,8 +11,8 @@ import { WarehouseItemAllBorrowable } from "../../soap/requests/warehouseItemAll
 import { parseSoapResponse } from "../../soap/responseParsers/responseParsers";
 import { WarehouseItemAllBorrowableResult } from "../../soap/results/warehouseItemAllBorrowableResult";
 import { WarehouseService } from "../../entities/warehouse/warehouse.service";
-import {WarehouseItemDetailPhoto} from "../../soap/requests/warehouseItemDetailPhoto";
-import {WarehouseItemDetailPhotoResult} from "../../soap/results/warehouseItemDetailPhotoResult";
+import { WarehouseItemDetailPhoto } from "../../soap/requests/warehouseItemDetailPhoto";
+import { WarehouseItemDetailPhotoResult } from "../../soap/results/warehouseItemDetailPhotoResult";
 import * as ImageSource from "tns-core-modules/image-source";
 
 
@@ -27,9 +28,10 @@ export class ReservationComponent implements OnInit {
     isLoading: boolean;
     listLoaded: boolean;
     pageMessage: string;
-    photoInPopover: {
+    popover: {
         visibility: string,
         photo: ImageSource.ImageSource,
+        calendarMode: boolean;
     };
     icons: {};
 
@@ -53,9 +55,10 @@ export class ReservationComponent implements OnInit {
     ngOnInit(): void {
         this.page.actionBarHidden = true;
         this.items = [];
-        this.photoInPopover = {
+        this.popover = {
             visibility: 'hidden',
             photo: null,
+            calendarMode: null,
         };
         this.pageMessage = "K zapůjčení nejsou dostupné žádné položky.";
         this.isLoading = true;
@@ -84,10 +87,6 @@ export class ReservationComponent implements OnInit {
                         this.listLoaded = true;
                         this.isLoading = false;
                         this.pageMessage = "Nastala chyba při komunikaci se službou SkautIS, zkontrolujte připojení k internetu.";
-                        // console.log(err.message);
-                        // console.log(err.error);
-                        // console.log(err.status);
-                        // console.log(err);
                     }
                 )
         }, 800);
@@ -107,19 +106,41 @@ export class ReservationComponent implements OnInit {
 
     onImageTap(eventData): void {
         const dataItem = eventData.view.bindingContext;
-        this.photoInPopover.photo = dataItem.photo;
-        if  (this.photoInPopover.photo) {
-            this.photoInPopover.visibility = 'visible'
+        this.popover.photo = dataItem.photo;
+        this.popover.calendarMode = false;
+        if  (this.popover.photo) {
+            this.popover.visibility = 'visible'
         }
     }
 
-    onDismissPhotoTap(): void {
-        this.photoInPopover.visibility = 'hidden';
+    onReserveTap(eventData): void {
+        const dataItem = eventData.view.bindingContext;
+        this.popover.calendarMode = true;
+        this.popover.visibility = 'visible';
+    }
+
+    onDismissPopover(): void {
+        this.popover.visibility = 'hidden';
+    }
+
+    onPickerLoaded(eventData): void {
+        let picker = <DatePicker>eventData.object;
+        picker.minDate = new Date()
+    }
+
+    onReserveConfirmTap() {
+        const fromPicker = <DatePicker>this.page.getViewById("fromPicker");
+        const toPicker = <DatePicker>this.page.getViewById("toPicker");
+        console.log(fromPicker.date);
+        console.log(toPicker.date);
+        // todo - handle reservation and when to < from
     }
 
     back(): void {
         this.routerExtensions.backToPreviousPage();
     }
+
+    ignore(): void {}
 
     logout(): void {
         logout(this.routerExtensions)

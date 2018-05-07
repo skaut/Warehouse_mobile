@@ -20,7 +20,8 @@
                 <GridLayout rows="{{item.expanded ? '70, *' : '70'}}" columns="*, auto, *"
                             backgroundColor="{{item.expanded ? '#BDD4DF' : 'white' }}">
                     <Label *ngIf="!item.photo" col="0" verticalAlignment="center" width="60" height="60"
-                           horizontalAlignment="left" [text]="icons.photo" class="image-like-circular-label"></Label>
+                           horizontalAlignment="left" [text]="icons.photo" class="image-like-circular-label"
+                           (tap)="ignore()"></Label>
                     <Image *ngIf="item.photo" col="0" verticalAlignment="center" width="60" class="circular-list-image"
                            height="60" horizontalAlignment="left" [src]="item.photo" (tap)="onImageTap($event)"></Image>
                     <Label col="1" [text]="item.DisplayName" class="reservation-item-name"
@@ -28,7 +29,7 @@
                            horizontalAlignment="center" verticalAlignmnet="center"></Label>
                     <Label col="2" text="{{icons.check}}"
                            verticalAlignment="center" horizontalAlignment="right"
-                           class="icon icon-item-left"></Label>
+                           class="icon icon-item-left" (tap)="onReserveTap($event)"></Label>
                     <Label col="2" text="{{item.expanded ? icons.caretDown : icons.caretLeft}}"
                            verticalAlignment="center" horizontalAlignment="right"
                            class="icon icon-item-rightmost"></Label>
@@ -52,10 +53,23 @@
         </RadListView>
         <ActivityIndicator row="2" col="0" colSpan="3" class="scout-blue-color" [busy]="isLoading" height="50"
                            width="50"></ActivityIndicator>
-        <GridLayout row="0" col="0" rowSpan="3" colSpan="3" [visibility]="photoInPopover.visibility"
-                     (tap)="onDismissPhotoTap()" class="popover-image-container">
-            <Image [src]="photoInPopover.photo" verticalAlignment="center" horizontalAlignment="center"
-                   class="popover-image"></Image>
+        <GridLayout row="0" col="0" rowSpan="3" colSpan="3" [visibility]="popover.visibility" (tap)="onDismissPopover()"
+                    class="popover-image-container">
+            <Image *ngIf="!popover.calendarMode" [src]="popover.photo" verticalAlignment="center"
+                   horizontalAlignment="center" class="popover-inner"></Image>
+            <GridLayout *ngIf="popover.calendarMode" rows="auto, *, auto, *, auto" columns="*, *"
+                        backgroundColor="white" class="popover-inner" (tap)="ignore()">
+                <Label row="0" col="0" colSpan="2" horizontalAlignment="center" textAlignment="center"
+                       text="OD" class="popover-text-big"></Label>
+                <DatePicker id="fromPicker" row="1" col="0" colSpan="2" horizontalAlignment="center"
+                            verticalAlignment="center" (loaded)="onPickerLoaded($event)"></DatePicker>
+                <Label row="2" col="0" colSpan="2" horizontalAlignment="center" textAlignment="center"
+                       text="DO" class="popover-text-big"></Label>
+                <DatePicker id="toPicker" row="3" col="0" colSpan="2" horizontalAlignment="center"
+                            verticalAlignment="center" (loaded)="onPickerLoaded($event)"></DatePicker>
+                <Button row="4" col="0" text="ZRUŠIT" class="generic-text-component" (tap)="onDismissPopover()"></Button>
+                <Button row="4" col="1" text="REZERVOVAT" class="generic-text-component" (tap)="onReserveConfirmTap()"></Button>
+            </GridLayout>
         </GridLayout>
     </GridLayout>
 </Page>

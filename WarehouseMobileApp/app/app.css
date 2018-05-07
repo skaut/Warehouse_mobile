@@ -114,11 +114,15 @@ refer to http://docs.nativescript.org/ui/theme.
     border-color: #9e9e9e;
     background-color: white;
 }
-.popover-image {
+.popover-inner {
     border-radius: 10%;
     margin: 40;
 }
 .popover-image-container {
     background-color: #B3303030;
 }
-
+.popover-text-big {
+    font-weight: bold;
+    font-size: 16;
+    margin-top: 5;
+}
