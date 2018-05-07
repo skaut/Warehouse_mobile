@@ -78,6 +78,10 @@ export class SelectRoleComponent implements OnInit {
         logout(this.routerExtensions)
     }
 
+    reservationButtonTapped(): void {
+        this.routerExtensions.navigate(["/reservation"])
+    }
+
     /**
      * Event handler for select role button tap. Calls LoginUpdate request for selected role.
      * After receiving response calls getWarehouses() with its button as argument (to enable it later).

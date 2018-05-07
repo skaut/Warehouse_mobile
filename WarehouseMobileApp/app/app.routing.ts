@@ -3,6 +3,7 @@ import { SelectRoleComponent } from "./pages/selectRole/selectRole.component";
 import { WarehouseListComponent } from "./pages/warehouseList/warehouseList.component";
 import { WarehouseDetailComponent } from "./pages/warehouseDetail/warehouseDetail.component";
 import { InventoryComponent } from "./pages/inventory/inventory.component";
+import { ReservationComponent } from "./pages/reservation/reservation.component";
 
 
 export const routes = [
@@ -11,6 +12,7 @@ export const routes = [
     { path: "warehouseList", component: WarehouseListComponent },
     { path: "warehouseDetail", component: WarehouseDetailComponent },
     { path: "inventory", component: InventoryComponent },
+    { path: "reservation", component: ReservationComponent },
 ];
 
 export const navigatableComponents = [
@@ -19,4 +21,5 @@ export const navigatableComponents = [
     WarehouseListComponent,
     WarehouseDetailComponent,
     InventoryComponent,
+    ReservationComponent,
 ];

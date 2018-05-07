@@ -1,0 +1,19 @@
+<Page (loaded)="onLoaded()">
+    <GridLayout rows="60, *">
+        <GridLayout row="0" columns="auto, *, auto" class="layout-bottom-border layout-colored">
+            <Button col="0" text="ZPĚT" class="header-text-component generic-text-component" (tap)="back()"></Button>
+            <Label col="1" #reservation text="REZERVACE" horizontalAlignment="center" verticalAlignment="center"
+                   class="header-text-component generic-text-component"></Label>
+            <Button col="2" text="ODHLÁSIT" class="header-text-component generic-text-component"
+                    (tap)="logout()"></Button>
+        </GridLayout>
+        <GridLayout row="1" rows="auto, *">
+            <SearchBar row="0" id="searchBar" hint="Hledaný předmět"></SearchBar>
+            <RadListView row="1" [items]="items">
+                <ng-template let-item="item">
+                    <Label [text]="item"></Label>
+                </ng-template>
+            </RadListView>
+        </GridLayout>
+    </GridLayout>
+</Page>

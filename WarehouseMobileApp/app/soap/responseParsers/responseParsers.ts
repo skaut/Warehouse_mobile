@@ -48,6 +48,7 @@ export const parseLoginResponse = (response: string): Status => {
  * @param entity - result entity to map received parameters to. In case of multiple outputs in result
  *  (e.g. response to UserRoleAll) entity object must have list parameter of entities to map results to with name
  *  in this format - UserRoles: Array<UserRole>() (or Warehouses: Array<Warehouse>());
+ *  This means the field has to be named exactly as the mapping entity + 's' in the end.
  * @param createSingleOutputEntity - function to create entity object to map single output to
  */
 export const parseSoapResponse = (response: string, entity: any, createSingleOutputEntity?: () => any): any => {
