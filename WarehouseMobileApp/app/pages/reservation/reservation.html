@@ -14,10 +14,11 @@
                verticalAlignment="center"
                horizontalAlignment="center"
                visibility="{{items.length > 0 ? 'hidden' : 'visible'}}"></Label>
-        <RadListView *ngIf="listLoaded" row="2" col="0" colSpan="3" [items]="items"
+        <RadListView *ngIf="listLoaded" row="2" col="0" colSpan="3" [items]="items" (itemTap)="onItemTap($event)"
                      visibility="{{items.length > 0 ? 'visible' : 'hidden'}}">
             <ng-template let-item="item">
-                <GridLayout rows="70" columns="*, auto, *">
+                <GridLayout rows="{{item.expanded ? '70, *' : '70'}}" columns="*, auto, *"
+                            backgroundColor="{{item.expanded ? '#BDD4DF' : 'white' }}">
                     <Label *ngIf="!item.photo" col="0" verticalAlignment="center" width="60" height="60"
                            horizontalAlignment="left" [text]="icons.photo" class="image-like-circular-label"></Label>
                     <Image *ngIf="item.photo" col="0" verticalAlignment="center" width="60"
@@ -31,6 +32,21 @@
                     <Label col="2" text="{{item.expanded ? icons.caretDown : icons.caretLeft}}"
                            verticalAlignment="center" horizontalAlignment="right"
                            class="icon icon-item-rightmost"></Label>
+                    <GridLayout row="1" col="0" colSpan="3" rows="*, *, *, *" backgroundColor="white"
+                                visibility="{{item.expanded ? 'visible' : 'collapse'}}">
+                        <Label row="0" verticalAlignment="center" horizontalAlignment="left" textWrap="true"
+                               class="left-right-margin-list top-bot-margin-list"
+                               text="{{'Město: ' + item.City}}"></Label>
+                        <Label row="1" verticalAlignment="center" horizontalAlignment="left" textWrap="true"
+                               class="left-right-margin-list bot-margin-list"
+                               text="{{'Jednotka: ' + item.UnitWithRegistrationNumber}}"></Label>
+                        <Label row="2" verticalAlignment="center" horizontalAlignment="left" textWrap="true"
+                               class="left-right-margin-list bot-margin-list"
+                               text="{{'Půjčovací cena: ' + item.RentPrice}}"></Label>
+                        <Label row="3" verticalAlignment="center" horizontalAlignment="left" textWrap="true"
+                               class="left-right-margin-list bot-margin-list"
+                               text="{{'Poznámka k půjčení: ' + item.RentNote}}" textWrap="true"></Label>
+                    </GridLayout>
                 </GridLayout>
             </ng-template>
         </RadListView>

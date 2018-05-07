@@ -69,6 +69,9 @@ export class ReservationComponent implements OnInit {
                         this.listLoaded = true;
                         this.isLoading = false;
                         console.log(err.message);
+                        console.log(err.error);
+                        console.log(err.status);
+                        console.log(err);
                     }
                 )
         }, 800);
@@ -79,6 +82,11 @@ export class ReservationComponent implements OnInit {
         if (isAndroid) {
             searchBar.android.clearFocus();
         }
+    }
+
+    onItemTap(eventData): void {
+        const dataItem = eventData.view.bindingContext;
+        dataItem.expanded = !dataItem.expanded;
     }
 
     back(): void {
