@@ -98,3 +98,8 @@ refer to http://docs.nativescript.org/ui/theme.
 .margin-left {
     margin-left: 15;
 }
+.reservation-item-name {
+    font-weight: bold;
+    font-size: 18;
+    margin-top: 20;
+}

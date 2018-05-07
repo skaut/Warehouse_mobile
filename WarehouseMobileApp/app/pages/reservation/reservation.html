@@ -1,19 +1,40 @@
 <Page (loaded)="onLoaded()">
-    <GridLayout rows="60, *">
-        <GridLayout row="0" columns="auto, *, auto" class="layout-bottom-border layout-colored">
-            <Button col="0" text="ZPĚT" class="header-text-component generic-text-component" (tap)="back()"></Button>
+    <GridLayout rows="60, auto, *" columns="*, auto, *">
+        <GridLayout row="0" col="0" colSpan="3" columns="*, auto, *" class="layout-bottom-border layout-colored">
+            <Button col="0" text="ZPĚT" horizontalAlignment="left" class="header-text-component generic-text-component"
+                    (tap)="back()"></Button>
             <Label col="1" #reservation text="REZERVACE" horizontalAlignment="center" verticalAlignment="center"
                    class="header-text-component generic-text-component"></Label>
-            <Button col="2" text="ODHLÁSIT" class="header-text-component generic-text-component"
+            <Button col="2" text="ODHLÁSIT" horizontalAlignment="right"
+                    class="header-text-component generic-text-component"
                     (tap)="logout()"></Button>
         </GridLayout>
-        <GridLayout row="1" rows="auto, *">
-            <SearchBar row="0" id="searchBar" hint="Hledaný předmět"></SearchBar>
-            <RadListView row="1" [items]="items">
-                <ng-template let-item="item">
-                    <Label [text]="item"></Label>
-                </ng-template>
-            </RadListView>
-        </GridLayout>
+        <SearchBar row="1" col="0" colSpan="3" id="searchBar" hint="Hledaný předmět"></SearchBar>
+        <Label *ngIf="listLoaded" row="2" col="0" colSpan="3" text="K zapůjčení nejsou dostupné žádné položky."
+               verticalAlignment="center"
+               horizontalAlignment="center"
+               visibility="{{items.length > 0 ? 'hidden' : 'visible'}}"></Label>
+        <RadListView *ngIf="listLoaded" row="2" col="0" colSpan="3" [items]="items"
+                     visibility="{{items.length > 0 ? 'visible' : 'hidden'}}">
+            <ng-template let-item="item">
+                <GridLayout rows="70" columns="*, auto, *">
+                    <Label *ngIf="!item.photo" col="0" verticalAlignment="center" width="60" height="60"
+                           horizontalAlignment="left" [text]="icons.photo" class="image-like-circular-label"></Label>
+                    <Image *ngIf="item.photo" col="0" verticalAlignment="center" width="60"
+                           height="60" horizontalAlignment="left" [src]="item.photo"></Image>
+                    <Label col="1" [text]="item.DisplayName" class="reservation-item-name"
+                           textWrap="true"
+                           horizontalAlignment="center" verticalAlignmnet="center"></Label>
+                    <Label col="2" text="{{icons.check}}"
+                           verticalAlignment="center" horizontalAlignment="right"
+                           class="icon icon-item-left"></Label>
+                    <Label col="2" text="{{item.expanded ? icons.caretDown : icons.caretLeft}}"
+                           verticalAlignment="center" horizontalAlignment="right"
+                           class="icon icon-item-rightmost"></Label>
+                </GridLayout>
+            </ng-template>
+        </RadListView>
+        <ActivityIndicator row="2" col="0" colSpan="3" class="scout-blue-color" [busy]="isLoading" height="50"
+                           width="50"></ActivityIndicator>
     </GridLayout>
 </Page>

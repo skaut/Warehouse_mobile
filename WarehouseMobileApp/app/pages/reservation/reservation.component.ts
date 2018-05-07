@@ -19,18 +19,59 @@ import { WarehouseItemAllBorrowableResult } from "../../soap/results/warehouseIt
 })
 
 export class ReservationComponent implements OnInit {
-    items: Array<Item> = [];
+    items: Array<Item>;
     isLoading: boolean;
+    listLoaded: boolean;
+    icons: {};
 
     constructor(
         private page: Page,
         private routerExtensions: RouterExtensions,
-        private itemService: ItemService
-    ) {}
+        private itemService: ItemService)
+    {
+        this.listLoaded = false;
+        this.items = [];
+        this.icons = {
+            caretLeft: String.fromCharCode(0xea44),
+            caretDown: String.fromCharCode(0xea43),
+            check: String.fromCharCode(0xea10),
+            cross: String.fromCharCode(0xea0f),
+            photo: String.fromCharCode(0xe90f),
+        }
+    }
 
     ngOnInit(): void {
         this.page.actionBarHidden = true;
-        this.getBorrowableItems();
+        this.items = [];
+        this.isLoading = true;
+        this.listLoaded = false;
+        setTimeout(() => {
+            this.itemService.getBorrowableItems(new WarehouseItemAllBorrowable())
+                .subscribe(
+                    resp => {
+                        // console.log(resp);
+                        this.items = parseSoapResponse(resp, new WarehouseItemAllBorrowableResult(),
+                            () => new Item())["Items"];
+                        this.items.map(item => {
+                            console.log(item.toFullString())
+                        });
+                        this.items.sort((item1, item2) => {
+                            return item1.DisplayName.toLowerCase()
+                                .localeCompare(item2.DisplayName.toLowerCase(), undefined, {
+                                numeric: true,
+                                sensitivity: 'base'
+                            });
+                        });
+                        this.listLoaded = true;
+                        this.isLoading = false;
+                    },
+                    err => {
+                        this.listLoaded = true;
+                        this.isLoading = false;
+                        console.log(err.message);
+                    }
+                )
+        }, 800);
     }
 
     onLoaded(): void {
@@ -38,24 +79,6 @@ export class ReservationComponent implements OnInit {
         if (isAndroid) {
             searchBar.android.clearFocus();
         }
-    }
-
-    private getBorrowableItems(): void {
-        this.isLoading = true;
-        this.itemService.getBorrowableItems(new WarehouseItemAllBorrowable())
-            .subscribe(
-                resp => {
-                    console.log(resp);
-                    this.items = parseSoapResponse(resp, new WarehouseItemAllBorrowableResult(),
-                        () => new Item())["Items"];
-                    console.log(this.items);
-                    this.isLoading = false;
-                },
-                err => {
-                    console.log(err.message);
-                    this.isLoading = false;
-                }
-            )
     }
 
     back(): void {
