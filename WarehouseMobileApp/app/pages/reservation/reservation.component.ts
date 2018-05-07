@@ -9,6 +9,10 @@ import { ItemService } from "../../entities/item/item.service";
 import { WarehouseItemAllBorrowable } from "../../soap/requests/warehouseItemAllBorrowable";
 import { parseSoapResponse } from "../../soap/responseParsers/responseParsers";
 import { WarehouseItemAllBorrowableResult } from "../../soap/results/warehouseItemAllBorrowableResult";
+import { WarehouseService } from "../../entities/warehouse/warehouse.service";
+import {WarehouseItemDetailPhoto} from "../../soap/requests/warehouseItemDetailPhoto";
+import {WarehouseItemDetailPhotoResult} from "../../soap/results/warehouseItemDetailPhotoResult";
+import * as ImageSource from "tns-core-modules/image-source";
 
 
 @Component({
@@ -22,12 +26,18 @@ export class ReservationComponent implements OnInit {
     items: Array<Item>;
     isLoading: boolean;
     listLoaded: boolean;
+    pageMessage: string;
+    photoInPopover: {
+        visibility: string,
+        photo: ImageSource.ImageSource,
+    };
     icons: {};
 
     constructor(
         private page: Page,
         private routerExtensions: RouterExtensions,
-        private itemService: ItemService)
+        private itemService: ItemService,
+        private warehouseService: WarehouseService)
     {
         this.listLoaded = false;
         this.items = [];
@@ -43,6 +53,11 @@ export class ReservationComponent implements OnInit {
     ngOnInit(): void {
         this.page.actionBarHidden = true;
         this.items = [];
+        this.photoInPopover = {
+            visibility: 'hidden',
+            photo: null,
+        };
+        this.pageMessage = "K zapůjčení nejsou dostupné žádné položky.";
         this.isLoading = true;
         this.listLoaded = false;
         setTimeout(() => {
@@ -52,9 +67,6 @@ export class ReservationComponent implements OnInit {
                         // console.log(resp);
                         this.items = parseSoapResponse(resp, new WarehouseItemAllBorrowableResult(),
                             () => new Item())["Items"];
-                        this.items.map(item => {
-                            console.log(item.toFullString())
-                        });
                         this.items.sort((item1, item2) => {
                             return item1.DisplayName.toLowerCase()
                                 .localeCompare(item2.DisplayName.toLowerCase(), undefined, {
@@ -62,16 +74,20 @@ export class ReservationComponent implements OnInit {
                                 sensitivity: 'base'
                             });
                         });
+                        this.items.map(item => {
+                            this.getItemPhoto(item)
+                        });
                         this.listLoaded = true;
                         this.isLoading = false;
                     },
                     err => {
                         this.listLoaded = true;
                         this.isLoading = false;
-                        console.log(err.message);
-                        console.log(err.error);
-                        console.log(err.status);
-                        console.log(err);
+                        this.pageMessage = "Nastala chyba při komunikaci se službou SkautIS, zkontrolujte připojení k internetu.";
+                        // console.log(err.message);
+                        // console.log(err.error);
+                        // console.log(err.status);
+                        // console.log(err);
                     }
                 )
         }, 800);
@@ -89,11 +105,37 @@ export class ReservationComponent implements OnInit {
         dataItem.expanded = !dataItem.expanded;
     }
 
+    onImageTap(eventData): void {
+        const dataItem = eventData.view.bindingContext;
+        this.photoInPopover.photo = dataItem.photo;
+        if  (this.photoInPopover.photo) {
+            this.photoInPopover.visibility = 'visible'
+        }
+    }
+
+    onDismissPhotoTap(): void {
+        this.photoInPopover.visibility = 'hidden';
+    }
+
     back(): void {
         this.routerExtensions.backToPreviousPage();
     }
 
     logout(): void {
         logout(this.routerExtensions)
+    }
+
+    private getItemPhoto(item: Item): void {
+        this.warehouseService.getWarehouseItemPhoto(new WarehouseItemDetailPhoto(item.ID))
+            .subscribe(
+                resp => {
+                    const photoResult = parseSoapResponse(resp, new WarehouseItemDetailPhotoResult());
+                    item.PhotoContent = photoResult["PhotoContent"];
+                    item.setImageSource();
+                },
+                () => {
+                    this.pageMessage = "Nastala chyba při komunikaci se službou SkautIS, zkontrolujte připojení k internetu.";
+                }
+            )
     }
 }

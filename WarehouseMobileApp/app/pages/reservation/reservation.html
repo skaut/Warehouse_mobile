@@ -10,8 +10,8 @@
                     (tap)="logout()"></Button>
         </GridLayout>
         <SearchBar row="1" col="0" colSpan="3" id="searchBar" hint="Hledaný předmět"></SearchBar>
-        <Label *ngIf="listLoaded" row="2" col="0" colSpan="3" text="K zapůjčení nejsou dostupné žádné položky."
-               verticalAlignment="center"
+        <Label *ngIf="listLoaded" row="2" col="0" colSpan="3" [text]="pageMessage" textWrap="true"
+               verticalAlignment="center" textAlignment="center" marginLeft="15" marginRight="15"
                horizontalAlignment="center"
                visibility="{{items.length > 0 ? 'hidden' : 'visible'}}"></Label>
         <RadListView *ngIf="listLoaded" row="2" col="0" colSpan="3" [items]="items" (itemTap)="onItemTap($event)"
@@ -21,8 +21,8 @@
                             backgroundColor="{{item.expanded ? '#BDD4DF' : 'white' }}">
                     <Label *ngIf="!item.photo" col="0" verticalAlignment="center" width="60" height="60"
                            horizontalAlignment="left" [text]="icons.photo" class="image-like-circular-label"></Label>
-                    <Image *ngIf="item.photo" col="0" verticalAlignment="center" width="60"
-                           height="60" horizontalAlignment="left" [src]="item.photo"></Image>
+                    <Image *ngIf="item.photo" col="0" verticalAlignment="center" width="60" class="circular-list-image"
+                           height="60" horizontalAlignment="left" [src]="item.photo" (tap)="onImageTap($event)"></Image>
                     <Label col="1" [text]="item.DisplayName" class="reservation-item-name"
                            textWrap="true"
                            horizontalAlignment="center" verticalAlignmnet="center"></Label>
@@ -52,5 +52,10 @@
         </RadListView>
         <ActivityIndicator row="2" col="0" colSpan="3" class="scout-blue-color" [busy]="isLoading" height="50"
                            width="50"></ActivityIndicator>
+        <GridLayout row="0" col="0" rowSpan="3" colSpan="3" [visibility]="photoInPopover.visibility"
+                     (tap)="onDismissPhotoTap()" class="popover-image-container">
+            <Image [src]="photoInPopover.photo" verticalAlignment="center" horizontalAlignment="center"
+                   class="popover-image"></Image>
+        </GridLayout>
     </GridLayout>
 </Page>

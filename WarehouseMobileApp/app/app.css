@@ -103,3 +103,22 @@ refer to http://docs.nativescript.org/ui/theme.
     font-size: 18;
     margin-top: 20;
 }
+.failed-action-panel {
+    color: white;
+    font-weight: bold;
+}
+.circular-list-image {
+    border-radius: 50%;
+    margin-left: 15;
+    border-width: 1;
+    border-color: #9e9e9e;
+    background-color: white;
+}
+.popover-image {
+    border-radius: 10%;
+    margin: 40;
+}
+.popover-image-container {
+    background-color: #B3303030;
+}
+

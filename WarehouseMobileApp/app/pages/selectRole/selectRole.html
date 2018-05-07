@@ -1,11 +1,15 @@
-<GridLayout rows="60, *, 60">
-    <GridLayout row="0" columns="auto, *, auto" class="layout-bottom-border layout-colored">
+<GridLayout rows="auto, 60, *, 60">
+    <GridLayout row="0" class="login-failed-container" [visibility]="failedActionPanel.visibility">
+        <Label class="failed-action-panel" verticalAlignment="center" textAlignment="center"
+               [text]="failedActionPanel.message"></Label>
+    </GridLayout>
+    <GridLayout row="1" columns="auto, *, auto" class="layout-bottom-border layout-colored">
         <Button col="0" text="ZPĚT" class="header-text-component generic-text-component" (tap)="logout()"></Button>
         <Label col="1" text="VYBERTE JEDNOTKU" horizontalAlignment="center" verticalAlignment="center"
                class="header-text-component generic-text-component"></Label>
         <Button col="2" visibility="hidden" text="ZPĚT" class="header-text-component generic-text-component"></Button>
     </GridLayout>
-    <GridLayout row="1" rows="*">
+    <GridLayout row="2" rows="*">
         <Label row="0" text="Uživatel nemá práva pro správu majetku."
                verticalAlignment="center"
                horizontalAlignment="center"
@@ -17,9 +21,9 @@
             <Button text="VYBRAT" class="generic-text-component" (tap)="roleSelected($event)"></Button>
         </StackLayout>
     </GridLayout>
-    <ActivityIndicator row="1" class="scout-blue-color" [busy]="isLoading" height="50"
+    <ActivityIndicator row="2" class="scout-blue-color" [busy]="isLoading" height="50"
                        width="50"></ActivityIndicator>
-    <GridLayout row="2" columns="*" class="layout-colored layout-top-border">
+    <GridLayout row="3" columns="*" class="layout-colored layout-top-border">
         <Button col="0" text="REZERVACE MAJETKU" class="header-text-component generic-text-component"
                 (tap)="reservationButtonTapped()"></Button>
     </GridLayout>

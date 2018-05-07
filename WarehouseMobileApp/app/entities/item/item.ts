@@ -31,6 +31,12 @@ export class Item {
         this.expanded = false;
     }
 
+    setImageSource() {
+        if (this.PhotoContent) {
+            this.photo = ImageSource.fromBase64(this.PhotoContent)
+        }
+    }
+
     toString() {
         return this.DisplayName
     }
