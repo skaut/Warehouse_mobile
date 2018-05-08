@@ -6,6 +6,11 @@ import { ActivatedRoute } from "@angular/router";
 import { Database } from "../../utils/database";
 import { WarehouseItem } from "../../entities/warehouseItem/warehouseItem";
 import { BarcodeScanner } from "nativescript-barcodescanner";
+import { InventoryService } from "../../entities/inventory/inventory.service";
+import { StockTakingAll } from "../../soap/requests/stockTakingAll";
+import { parseSoapResponse } from "../../soap/responseParsers/responseParsers";
+import { StockTakingAllResult } from "../../soap/results/stockTakingAllResult";
+import { Inventory } from "../../entities/inventory/inventory";
 import * as Dialogs from "ui/dialogs"
 
 
@@ -14,7 +19,7 @@ import * as Dialogs from "ui/dialogs"
     moduleId: module.id,
     templateUrl: "./inventory.html",
     styleUrls: ["./inventory.common.css"],
-    providers: [],
+    providers: [InventoryService],
 })
 
 export class InventoryComponent implements OnInit {
@@ -31,7 +36,8 @@ export class InventoryComponent implements OnInit {
         private routerExtensions: RouterExtensions,
         private route: ActivatedRoute,
         private database: Database,
-        private barcodeScanner: BarcodeScanner)
+        private barcodeScanner: BarcodeScanner,
+        private inventoryService: InventoryService)
     {
         this.listLoaded = false;
         this.activityIndicatorBusy = true;
@@ -52,6 +58,7 @@ export class InventoryComponent implements OnInit {
         this.page.actionBarHidden = true;
         this.listLoaded = false;
         this.activityIndicatorBusy = true;
+        this.getInventories();
         this.database.selectAvailableItems(this.warehouseId)
             .then((items) => {
                 setTimeout(() => {
@@ -114,6 +121,31 @@ export class InventoryComponent implements OnInit {
 
     onSubmitInventory() {
         // todo - submit inventory
+    }
+
+    private getInventories() {
+        this.inventoryService.getStockTakingAll(new StockTakingAll())
+            .subscribe(
+                resp => {
+                    let inventories = parseSoapResponse(resp, new StockTakingAllResult(),
+                        () => new Inventory())["Inventorys"];
+                    inventories.map(inventory => {
+                        console.log(inventory);
+                    });
+                    console.log("=======================");
+                    // todo - chain filter to previous call instead
+                    inventories = inventories.filter(inventory => {
+                        return inventory.ID_StockTakingState === "new";
+                    });
+                    inventories.map(inventory => {
+                        console.log(inventory);
+                    })
+                },
+                () => {
+                    console.log("ERROR LOADING INVENTORIES")
+                    // todo - handle error
+                }
+            )
     }
 
     back(): void {

@@ -7,7 +7,7 @@
         <Button col="2" text="ODHLÁSIT" horizontalAlignment="right" class="header-text-component generic-text-component"
                 (tap)="logout()"></Button>
     </GridLayout>
-    <Label *ngIf="listLoaded" row="1" text="Ve skladu nejsou evidovány žádné položky."
+    <Label *ngIf="listLoaded" row="1" col="0" colSpan="3" text="Ve skladu nejsou evidovány žádné položky."
            verticalAlignment="center"
            horizontalAlignment="center"
            visibility="{{items.length > 0 ? 'hidden' : 'visible'}}"></Label>
@@ -69,8 +69,8 @@
            horizontalAlignment="left" class="margin-left" textWrap="true"></Label>
     <GridLayout row="3" col="0" colSpan="3" columns="*, *" class="layout-colored layout-top-border">
         <Button col="0" text="SKENOVAT KÓDY" class="header-text-component generic-text-component"
-                (tap)="onScanCodesTap()"></Button>
+                (tap)="onScanCodesTap()" horizontalAlignment="left"></Button>
         <Button col="1" text="POTVRDIT" class="header-text-component generic-text-component"
-                (tap)="onSubmitInventory()"></Button>
+                (tap)="onSubmitInventory()" horizontalAlignment="right"></Button>
     </GridLayout>
 </GridLayout>
