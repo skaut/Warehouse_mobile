@@ -16,7 +16,7 @@
         </GridLayout>
         <SearchBar row="2" col="0" colSpan="3" id="searchBar" hint="Hledaný předmět"
                    (submit)="onSearchSubmit($event)" (clear)="onSearchClear()"></SearchBar>
-        <Label *ngIf="listLoaded" row="2" col="0" colSpan="3" [text]="pageMessage" textWrap="true"
+        <Label *ngIf="listLoaded" row="3" col="0" colSpan="3" [text]="pageMessage" textWrap="true"
                verticalAlignment="center" textAlignment="center" marginLeft="15" marginRight="15"
                horizontalAlignment="center"
                visibility="{{items.length > 0 ? 'hidden' : 'visible'}}"></Label>
