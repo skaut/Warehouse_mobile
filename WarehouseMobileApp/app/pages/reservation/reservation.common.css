@@ -1,3 +1,9 @@
 SearchBar {
     margin-bottom: 5;
 }
+.reservation-item-name-popover {
+    font-weight: bold;
+    font-size: 18;
+    margin-top: 5;
+    margin-bottom: 5;
+}

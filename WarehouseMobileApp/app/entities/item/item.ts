@@ -1,5 +1,9 @@
 import * as ImageSource from "tns-core-modules/image-source";
 
+
+/**
+ * Class represents item which is offered for borrowing
+ */
 export class Item {
     ID: string;
     DisplayName: string;
@@ -12,6 +16,8 @@ export class Item {
     InStock: boolean;
     PhotoContent: string;
 
+    // field below is necessary for successful reservation insertion and is not received from initial
+    ID_Warehouse: string;
     // fields below are not received from server and are only used locally by app
     photo: ImageSource.ImageSource;
     expanded: boolean;
@@ -27,6 +33,7 @@ export class Item {
         this.RentNote = "";
         this.InStock = null;
         this.PhotoContent = null;
+        this.ID_Warehouse = null;
         this.photo = null;
         this.expanded = false;
     }
@@ -51,6 +58,7 @@ export class Item {
         Unit: ${this.Unit}
         RenPrice: ${this.RentPrice}
         RentNote: ${this.RentNote}
-        InStock: ${this.InStock}`
+        InStock: ${this.InStock}
+        ID_Warehouse: ${this.ID_Warehouse}`
     }
 }

@@ -34,8 +34,11 @@ refer to http://docs.nativescript.org/ui/theme.
     font-size: 16;
     font-weight: bold;
 }
-.login-failed-container {
+.request-failed-container {
     background-color: red;
+    height: 30;
+}
+.status-bar-container-size {
     height: 30;
 }
 .list-view-first-line {

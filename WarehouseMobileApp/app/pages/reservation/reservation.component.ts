@@ -13,6 +13,10 @@ import { WarehouseItemAllBorrowableResult } from "../../soap/results/warehouseIt
 import { WarehouseService } from "../../entities/warehouse/warehouse.service";
 import { WarehouseItemDetailPhoto } from "../../soap/requests/warehouseItemDetailPhoto";
 import { WarehouseItemDetailPhotoResult } from "../../soap/results/warehouseItemDetailPhotoResult";
+import { WarehouseItemDetail } from "../../soap/requests/warehouseItemDetail";
+import { WarehouseItemDetailResult } from "../../soap/results/warehouseItemDetailResult";
+import { WarehouseItemReservationInsert } from "../../soap/requests/warehouseItemReservationInsert";
+import { WarehouseItemReservationInsertResult } from "../../soap/results/warehouseItemReservationInsertResult";
 import * as ImageSource from "tns-core-modules/image-source";
 
 
@@ -32,8 +36,20 @@ export class ReservationComponent implements OnInit {
         visibility: string,
         photo: ImageSource.ImageSource,
         calendarMode: boolean;
+        item: Item,
     };
-    icons: {};
+    statusBar: {
+        message: string;
+        visibility: string;
+    };
+    icons: {
+        caretLeft: string;
+        caretDown: string;
+        check: string;
+        cross: string;
+        photo: string;
+    };
+    errorOccurred: boolean;
 
     constructor(
         private page: Page,
@@ -42,6 +58,11 @@ export class ReservationComponent implements OnInit {
         private warehouseService: WarehouseService)
     {
         this.listLoaded = false;
+        this.errorOccurred = false;
+        this.statusBar = {
+            message: "Nastala chyba při komunikaci se službou SkautIS.",
+            visibility: "collapse",
+        };
         this.items = [];
         this.icons = {
             caretLeft: String.fromCharCode(0xea44),
@@ -52,6 +73,10 @@ export class ReservationComponent implements OnInit {
         }
     }
 
+    /**
+     * Method sets fields to default values and performs call to get borrowable items
+     * After successful call items are sorted and for each item it's photo is requested
+     */
     ngOnInit(): void {
         this.page.actionBarHidden = true;
         this.items = [];
@@ -59,7 +84,9 @@ export class ReservationComponent implements OnInit {
             visibility: 'hidden',
             photo: null,
             calendarMode: null,
+            item: null,
         };
+        this.errorOccurred = false;
         this.pageMessage = "K zapůjčení nejsou dostupné žádné položky.";
         this.isLoading = true;
         this.listLoaded = false;
@@ -92,6 +119,18 @@ export class ReservationComponent implements OnInit {
         }, 800);
     }
 
+    private showResponseStatusBar(message?: string): void {
+        if (message) {
+            this.statusBar.message = message;
+        }
+        this.statusBar.visibility = "visible";
+        setTimeout(() => {
+            this.statusBar.visibility = "collapse";
+            this.errorOccurred = false;
+            this.statusBar.message = "Nastala chyba při komunikaci se službou SkautIS.";
+        }, 3000)
+    }
+
     onLoaded(): void {
         const searchBar = <SearchBar>this.page.getViewById("searchBar");
         if (isAndroid) {
@@ -114,13 +153,24 @@ export class ReservationComponent implements OnInit {
     }
 
     onReserveTap(eventData): void {
-        const dataItem = eventData.view.bindingContext;
+        this.popover.item = <Item>eventData.view.bindingContext;
         this.popover.calendarMode = true;
         this.popover.visibility = 'visible';
+        this.itemService.getBorrowableItemDetail(new WarehouseItemDetail(this.popover.item.ID))
+            .subscribe(
+                resp => {
+                    this.popover.item.ID_Warehouse = parseSoapResponse(resp, new WarehouseItemDetailResult())
+                        ["ID_Warehouse"];
+                },
+                () => {
+                    this.errorOccurred = true;
+                }
+            )
     }
 
     onDismissPopover(): void {
         this.popover.visibility = 'hidden';
+        this.errorOccurred = false;
     }
 
     onPickerLoaded(eventData): void {
@@ -128,12 +178,33 @@ export class ReservationComponent implements OnInit {
         picker.minDate = new Date()
     }
 
-    onReserveConfirmTap() {
+    onReserveConfirmTap(): void {
+        if (this.errorOccurred) {
+            return
+        }
         const fromPicker = <DatePicker>this.page.getViewById("fromPicker");
         const toPicker = <DatePicker>this.page.getViewById("toPicker");
-        console.log(fromPicker.date);
-        console.log(toPicker.date);
-        // todo - handle reservation and when to < from
+        this.itemService.insertItemReservation(new WarehouseItemReservationInsert(
+            this.popover.item, fromPicker.date.toISOString(), toPicker.date.toISOString()))
+            .subscribe(
+                resp => {
+                    this.popover.visibility = 'hidden';
+                    this.showResponseStatusBar("Předmět " + this.popover.item.DisplayName + " úspěšně zarezervován.");
+                },
+                () => {
+                    this.errorOccurred = true;
+                    this.popover.visibility = 'hidden';
+                    this.showResponseStatusBar();
+                }
+            )
+    }
+
+    onDateChanged(eventData): void {
+        const fromPicker = <DatePicker>this.page.getViewById("fromPicker");
+        const toPicker = <DatePicker>this.page.getViewById("toPicker");
+        if (fromPicker.date > toPicker.date) {
+            toPicker.date = fromPicker.date;
+        }
     }
 
     back(): void {
