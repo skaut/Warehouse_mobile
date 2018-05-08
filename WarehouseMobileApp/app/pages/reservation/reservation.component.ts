@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import {Component, ElementRef, OnInit, ViewChild} from "@angular/core";
 import { logout } from "../../utils/functions"
 import { Page } from "ui/page";
 import { RouterExtensions } from "nativescript-angular";
@@ -16,7 +16,6 @@ import { WarehouseItemDetailPhotoResult } from "../../soap/results/warehouseItem
 import { WarehouseItemDetail } from "../../soap/requests/warehouseItemDetail";
 import { WarehouseItemDetailResult } from "../../soap/results/warehouseItemDetailResult";
 import { WarehouseItemReservationInsert } from "../../soap/requests/warehouseItemReservationInsert";
-import { WarehouseItemReservationInsertResult } from "../../soap/results/warehouseItemReservationInsertResult";
 import * as ImageSource from "tns-core-modules/image-source";
 
 
@@ -29,9 +28,11 @@ import * as ImageSource from "tns-core-modules/image-source";
 
 export class ReservationComponent implements OnInit {
     items: Array<Item>;
+    itemsHolder: Array<Item>;
     isLoading: boolean;
     listLoaded: boolean;
     pageMessage: string;
+    errorOccurred: boolean;
     popover: {
         visibility: string,
         photo: ImageSource.ImageSource,
@@ -49,7 +50,7 @@ export class ReservationComponent implements OnInit {
         cross: string;
         photo: string;
     };
-    errorOccurred: boolean;
+    @ViewChild('list') list: ElementRef;
 
     constructor(
         private page: Page,
@@ -64,6 +65,7 @@ export class ReservationComponent implements OnInit {
             visibility: "collapse",
         };
         this.items = [];
+        this.itemsHolder = [];
         this.icons = {
             caretLeft: String.fromCharCode(0xea44),
             caretDown: String.fromCharCode(0xea43),
@@ -80,6 +82,7 @@ export class ReservationComponent implements OnInit {
     ngOnInit(): void {
         this.page.actionBarHidden = true;
         this.items = [];
+        this.itemsHolder = [];
         this.popover = {
             visibility: 'hidden',
             photo: null,
@@ -94,9 +97,10 @@ export class ReservationComponent implements OnInit {
             this.itemService.getBorrowableItems(new WarehouseItemAllBorrowable())
                 .subscribe(
                     resp => {
-                        // console.log(resp);
-                        this.items = parseSoapResponse(resp, new WarehouseItemAllBorrowableResult(),
-                            () => new Item())["Items"];
+                        const warehouseItemAllBorrowableResult = parseSoapResponse(resp,
+                            new WarehouseItemAllBorrowableResult(), () => new Item());
+                        this.items = warehouseItemAllBorrowableResult["Items"];
+                        this.itemsHolder = warehouseItemAllBorrowableResult["Items"];
                         this.items.sort((item1, item2) => {
                             return item1.DisplayName.toLowerCase()
                                 .localeCompare(item2.DisplayName.toLowerCase(), undefined, {
@@ -204,6 +208,22 @@ export class ReservationComponent implements OnInit {
         const toPicker = <DatePicker>this.page.getViewById("toPicker");
         if (fromPicker.date > toPicker.date) {
             toPicker.date = fromPicker.date;
+        }
+    }
+
+    onSearchClear(): void {
+        this.items = this.itemsHolder;
+        this.list.nativeElement.refresh();
+    }
+
+    onSearchSubmit(eventData): void {
+        const searchBar = eventData.object;
+        const searchTerm = searchBar.text.toLowerCase();
+        if (searchTerm !== "") {
+            this.items = this.items.filter(item => {
+                return item.DisplayName.toLowerCase().indexOf(searchTerm) !== -1;
+            });
+            this.list.nativeElement.refresh();
         }
     }
 

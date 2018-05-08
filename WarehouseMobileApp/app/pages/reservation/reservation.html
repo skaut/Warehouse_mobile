@@ -14,12 +14,13 @@
                     class="header-text-component generic-text-component"
                     (tap)="logout()"></Button>
         </GridLayout>
-        <SearchBar row="2" col="0" colSpan="3" id="searchBar" hint="Hledaný předmět"></SearchBar>
+        <SearchBar row="2" col="0" colSpan="3" id="searchBar" hint="Hledaný předmět"
+                   (submit)="onSearchSubmit($event)" (clear)="onSearchClear()"></SearchBar>
         <Label *ngIf="listLoaded" row="2" col="0" colSpan="3" [text]="pageMessage" textWrap="true"
                verticalAlignment="center" textAlignment="center" marginLeft="15" marginRight="15"
                horizontalAlignment="center"
                visibility="{{items.length > 0 ? 'hidden' : 'visible'}}"></Label>
-        <RadListView *ngIf="listLoaded" row="3" col="0" colSpan="3" [items]="items" (itemTap)="onItemTap($event)"
+        <RadListView *ngIf="listLoaded" #list row="3" col="0" colSpan="3" [items]="items" (itemTap)="onItemTap($event)"
                      visibility="{{items.length > 0 ? 'visible' : 'hidden'}}">
             <ng-template let-item="item">
                 <GridLayout rows="{{item.expanded ? '70, *' : '70'}}" columns="*, auto, *"
@@ -42,16 +43,17 @@
                                 visibility="{{item.expanded ? 'visible' : 'collapse'}}">
                         <Label row="0" verticalAlignment="center" horizontalAlignment="left" textWrap="true"
                                class="left-right-margin-list top-bot-margin-list"
-                               text="{{'Město: ' + item.City}}"></Label>
+                               text="{{'Město: ' + (item.City ? item.City : '\u2014')}}"></Label>
                         <Label row="1" verticalAlignment="center" horizontalAlignment="left" textWrap="true"
                                class="left-right-margin-list bot-margin-list"
-                               text="{{'Jednotka: ' + item.UnitWithRegistrationNumber}}"></Label>
+                               text="{{'Jednotka: ' + (item.UnitWithRegistrationNumber ? item.UnitWithRegistrationNumber : '\u2014')}}"></Label>
                         <Label row="2" verticalAlignment="center" horizontalAlignment="left" textWrap="true"
                                class="left-right-margin-list bot-margin-list"
-                               text="{{'Půjčovací cena: ' + item.RentPrice}}"></Label>
+                               text="{{'Půjčovací cena: ' + (item.RentPrice ? item.RentPrice.slice(0, item.RentPrice.length - 2) + ' Kč' : '\u2014')}}"></Label>
                         <Label row="3" verticalAlignment="center" horizontalAlignment="left" textWrap="true"
                                class="left-right-margin-list bot-margin-list"
-                               text="{{'Poznámka k půjčení: ' + item.RentNote}}" textWrap="true"></Label>
+                               text="{{'Poznámka k půjčení: ' + (item.RentNote ? item.RentNote : '\u2014')}}"
+                               textWrap="true"></Label>
                     </GridLayout>
                 </GridLayout>
             </ng-template>
