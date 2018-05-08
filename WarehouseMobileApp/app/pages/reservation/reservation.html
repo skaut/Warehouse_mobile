@@ -26,8 +26,7 @@
                 <GridLayout rows="{{item.expanded ? '70, *' : '70'}}" columns="*, auto, *"
                             backgroundColor="{{item.expanded ? '#BDD4DF' : 'white' }}">
                     <Label *ngIf="!item.photo" col="0" verticalAlignment="center" width="60" height="60"
-                           horizontalAlignment="left" [text]="icons.photo" class="image-like-circular-label"
-                           (tap)="ignore()"></Label>
+                           horizontalAlignment="left" [text]="icons.photo" class="image-like-circular-label"></Label>
                     <Image *ngIf="item.photo" col="0" verticalAlignment="center" width="60" class="circular-list-image"
                            height="60" horizontalAlignment="left" [src]="item.photo" (tap)="onImageTap($event)"></Image>
                     <Label col="1" [text]="item.DisplayName" class="reservation-item-name"
