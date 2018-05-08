@@ -20,8 +20,7 @@ export class BaseRequest {
      * @param {string} serviceName to call on backend api
      * @returns {Observable<any>} result of post request
      */
-    call(entity: any, serviceName: string, httpClient: HttpClient): Observable<any> {
-        // const entityName = entity.constructor.name;
+    call(entity: any, serviceName: string, httpClient: HttpClient, shouldRemoveInsertPart?: boolean): Observable<any> {
         const options = {
             headers: new HttpHeaders({
                 "Content-Type": "text/xml",
@@ -31,20 +30,29 @@ export class BaseRequest {
         };
         return httpClient.post(
             Constants.BASE_SERVICE_URL + serviceName + ".asmx",
-            this.getBody(entity, entity.constructor.name),
+            this.getBody(entity, entity.constructor.name, shouldRemoveInsertPart),
             options
         );
     }
 
-    private getBody(entity: any, entityName: string): string {
+    /**
+     * Method to generate body for the http service call from mapping entity.
+     * It uses names of entity and its fields to create the body.
+     *
+     * @param entity - mapping entity
+     * @param {string} entityName - name of the entity
+     * @param shouldRemoveInsertPart - In some cases soap api has different format. When this occur we need to remove the extra part from name
+     * @returns {string} - body for soap call
+     */
+    private getBody(entity: any, entityName: string, shouldRemoveInsertPart?: boolean): string {
         const requestParams = Object.getOwnPropertyNames(entity)
             .map(element => `<${element}>${entity[element]}</${element}>`);
         return `<soap12:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://www.w3.org/2003/05/soap-envelope">
                   <soap12:Body>
                     <${entityName} xmlns="https://is.skaut.cz/">
-                      <${lowerCaseFirstLetter(entityName)}Input>
+                      <${shouldRemoveInsertPart ? lowerCaseFirstLetter(entityName).split("Insert")[0] : lowerCaseFirstLetter(entityName) + 'Input'}>
                         ${requestParams.join('')}
-                      </${lowerCaseFirstLetter(entityName)}Input>
+                      </${shouldRemoveInsertPart ? lowerCaseFirstLetter(entityName).split("Insert")[0] : lowerCaseFirstLetter(entityName) + 'Input'}>
                     </${entityName}>
                   </soap12:Body>
                 </soap12:Envelope>`;

@@ -36,6 +36,10 @@ export class SelectRoleComponent implements OnInit {
     selectedRoleIndex: number;
     selectedRole: UserRole;
     isLoading: boolean = false;
+    failedActionPanel: {
+        message: string;
+        visibility: string;
+    };
 
     constructor(
         private page: Page,
@@ -51,6 +55,10 @@ export class SelectRoleComponent implements OnInit {
      */
     ngOnInit(): void {
         this.page.actionBarHidden = true;
+        this.failedActionPanel = {
+            visibility: 'collapse',
+            message: 'Nastala chyba při komunikaci se službou SkautIS.',
+        };
         if (this.userRoleAllResult.UserRoles.length > 0) {
             this.userRoleAllResult.UserRoles = this.userRoleAllResult.UserRoles.sort((role1, role2) => {
                 if (role1.Unit > role2.Unit) {
@@ -69,6 +77,17 @@ export class SelectRoleComponent implements OnInit {
         }
     }
 
+    private showErrorBar(message?: string): void {
+        if (message) {
+            this.failedActionPanel.message = message;
+        }
+        this.failedActionPanel.visibility = "visible";
+        setTimeout(() => {
+            this.failedActionPanel.visibility = "collapse";
+            this.failedActionPanel.message = "Nastala chyba při komunikaci se službou SkautIS.";
+        }, 3000)
+    }
+
     selectedIndexChanged(args): void {
         const picker = <ListPicker>args.object;
         this.selectedRole = this.userRoleAllResult.UserRoles[picker.selectedIndex];
@@ -76,6 +95,10 @@ export class SelectRoleComponent implements OnInit {
 
     logout(): void {
         logout(this.routerExtensions)
+    }
+
+    reservationButtonTapped(): void {
+        this.routerExtensions.navigate(["/reservation"])
     }
 
     /**
@@ -96,8 +119,8 @@ export class SelectRoleComponent implements OnInit {
                         this.getWarehouses(button);
                     },
                     () => {
+                        this.showErrorBar();
                         this.enableButton(button);
-                        // todo - handle errors (red bar with message?)
                     }
                 )
         }
@@ -122,7 +145,7 @@ export class SelectRoleComponent implements OnInit {
                         () => new Warehouse())["Warehouses"];
                     warehouses.map(warehouse => {
                         this.database.insertWarehouse(warehouse, this.selectedRole.ID_Unit);
-                        this.getWarehouseItems(warehouse.ID_Unit);
+                        this.getWarehouseItems(warehouse.ID_Unit, button);
                     });
                     if (warehouses.length > 0) {
                         setTimeout(() => {
@@ -136,6 +159,7 @@ export class SelectRoleComponent implements OnInit {
                     }
                 },
                 () => {
+                    this.showErrorBar();
                     this.enableButton(button);
                     // todo - handle errors (maybe red bar with error message?)
                 }
@@ -147,7 +171,7 @@ export class SelectRoleComponent implements OnInit {
      *
      * @param {string} unitId - id of unit to request data from.
      */
-    private getWarehouseItems(unitId: string): void {
+    private getWarehouseItems(unitId: string, button: Button): void {
         this.warehouseService.getWarehouseItemAll(new WarehouseItemAll(unitId))
             .subscribe(
                 resp => {
@@ -161,11 +185,16 @@ export class SelectRoleComponent implements OnInit {
                                     item.PhotoContent = photoResult["PhotoContent"];
                                     this.database.insertItem(item);
                                 },
-                                () => {}
+                                () => {
+                                    this.showErrorBar();
+                                    this.enableButton(button);
+                                }
                             );
                     });
                 },
                 () => {
+                    this.showErrorBar();
+                    this.enableButton(button);
                     // todo - handle errors, should provide offline functionality
                 }
             )

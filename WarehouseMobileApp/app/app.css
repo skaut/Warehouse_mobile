@@ -34,8 +34,11 @@ refer to http://docs.nativescript.org/ui/theme.
     font-size: 16;
     font-weight: bold;
 }
-.login-failed-container {
+.request-failed-container {
     background-color: red;
+    height: 30;
+}
+.status-bar-container-size {
     height: 30;
 }
 .list-view-first-line {
@@ -97,4 +100,32 @@ refer to http://docs.nativescript.org/ui/theme.
 }
 .margin-left {
     margin-left: 15;
+}
+.reservation-item-name {
+    font-weight: bold;
+    font-size: 18;
+    margin-top: 20;
+}
+.failed-action-panel {
+    color: white;
+    font-weight: bold;
+}
+.circular-list-image {
+    border-radius: 50%;
+    margin-left: 15;
+    border-width: 1;
+    border-color: #9e9e9e;
+    background-color: white;
+}
+.popover-inner {
+    border-radius: 10%;
+    margin: 40;
+}
+.popover-image-container {
+    background-color: #B3303030;
+}
+.popover-text-big {
+    font-weight: bold;
+    font-size: 16;
+    margin-top: 5;
 }
