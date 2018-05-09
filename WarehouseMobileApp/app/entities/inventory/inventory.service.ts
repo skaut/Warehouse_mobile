@@ -1,6 +1,7 @@
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { StockTakingAll } from "../../soap/requests/stockTakingAll";
+import { StockTakingWarehouseItemInsert } from "../../soap/requests/stockTakingWarehouseItemInsert";
 
 
 @Injectable()
@@ -11,5 +12,10 @@ export class InventoryService {
 
     getStockTakingAll(stockTakingAll: StockTakingAll) {
         return stockTakingAll.call(stockTakingAll, this.serviceName, this.httpClient);
+    }
+
+    inventorizeItem(stockTakingWarehouseItemInsert: StockTakingWarehouseItemInsert) {
+        return stockTakingWarehouseItemInsert.call(stockTakingWarehouseItemInsert,
+            this.serviceName, this.httpClient);
     }
 }

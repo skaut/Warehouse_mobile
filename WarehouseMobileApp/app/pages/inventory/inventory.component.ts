@@ -12,6 +12,7 @@ import { parseSoapResponse } from "../../soap/responseParsers/responseParsers";
 import { StockTakingAllResult } from "../../soap/results/stockTakingAllResult";
 import { Inventory } from "../../entities/inventory/inventory";
 import { Warehouse } from "../../entities/warehouse/warehouse";
+import { trimArrayElements } from "../../utils/functions";
 import * as Dialogs from "ui/dialogs"
 import * as ImageSource from "tns-core-modules/image-source";
 import * as Camera from "nativescript-camera";
@@ -31,6 +32,7 @@ export class InventoryComponent implements OnInit {
     currentWarehouse: Warehouse;
     warehouseId: string;
     listLoaded: boolean;
+    errorOccurred: boolean;
     activityIndicatorBusy: boolean;
     statusBar: {
         visibility: string;
@@ -53,6 +55,7 @@ export class InventoryComponent implements OnInit {
         private inventoryService: InventoryService)
     {
         this.listLoaded = false;
+        this.errorOccurred = false;
         this.activityIndicatorBusy = true;
         this.currentInventory = null;
         this.currentWarehouse = new Warehouse();
@@ -76,6 +79,7 @@ export class InventoryComponent implements OnInit {
     ngOnInit(): void {
         this.page.actionBarHidden = true;
         this.listLoaded = false;
+        this.errorOccurred = false;
         this.activityIndicatorBusy = true;
         this.popover = {
             visibility: 'hidden',
@@ -85,15 +89,14 @@ export class InventoryComponent implements OnInit {
         this.database.selectSingleWarehouse(this.warehouseId)
             .then(warehouse => {
                 this.currentWarehouse = warehouse;
-                if (this.currentWarehouse) {
-                    console.log(this.currentWarehouse.toFullString());
-                }
+                console.log(this.currentWarehouse.toFullString())
             });
         this.database.selectAvailableItems(this.warehouseId)
             .then((items) => {
                 setTimeout(() => {
                     console.log("loading items from db - inventory page");
                     this.items = items;
+                    // console.log("inventory: " + this.currentInventory.ID);
                     this.listLoaded = true;
                     this.activityIndicatorBusy = false;
                 }, 1300);
@@ -107,6 +110,7 @@ export class InventoryComponent implements OnInit {
         this.statusBar.visibility = "visible";
         setTimeout(() => {
             this.statusBar.visibility = "collapse";
+            this.errorOccurred = false;
             this.statusBar.message = "Nastala chyba při komunikaci se službou SkautIS.";
         }, 2500)
     }
@@ -117,13 +121,21 @@ export class InventoryComponent implements OnInit {
     }
 
     onUninventorizedItemTap(eventData): void {
-        if (this.currentInventory.Warehouses.split(",").indexOf(this.currentWarehouse.DisplayName) !== -1) {
-            const dataItem = eventData.view.bindingContext;
-            dataItem.synced = false;
-            dataItem.expanded = false;
+        if (this.currentInventory) {
+            const warehouses = trimArrayElements(this.currentInventory.Warehouses.split(","));
+            if (warehouses.indexOf(this.currentWarehouse.DisplayName.trim()) !== -1) {
+                const dataItem = eventData.view.bindingContext;
+                dataItem.synced = false;
+                dataItem.expanded = false;
+            }
+            else {
+                this.errorOccurred = true;
+                this.showStatusBar("Pro tento sklad není založena žádná inventura.");
+            }
         }
         else {
-            this.showStatusBar("Pro tento sklad není založena žádná inventura.");
+            this.errorOccurred = true;
+            this.showStatusBar("Tato jednotka nemá založenou žádnou inventuru.");
         }
     }
 
@@ -140,55 +152,72 @@ export class InventoryComponent implements OnInit {
     /**
      * Method to continuously scan barcodes. In the continueScanCallback function we try to map the scanned code to a item.
      * If successful we mark it for inventarization.
+     * Method only proceeds to scanning if there is a available inventory for this warehouse/unit.
      */
     onScanCodesTap(): void {
-        if (this.currentInventory.Warehouses.split(",").indexOf(this.currentWarehouse.DisplayName) !== -1) {
-            this.barcodeScanner.requestCameraPermission()
-                .then(() => {
-                    this.barcodeScanner.scan({
-                        message: "Naskenujte barcode nebo QR kód, každý kód lze naskenovat jen jednou.",
-                        continuousScanCallback: (result) => {
-                            let partToSliceOut = "MA00000000";
-                            while (result.text.indexOf(partToSliceOut) === -1) {
-                                partToSliceOut = partToSliceOut.slice(0, partToSliceOut.length - 1 )
-                            }
-                            const itemId = result.text.slice(partToSliceOut.length, result.text.length);
-                            const warehouseItem = this.items.find((item) => {
-                                return item.ID === itemId;
-                            });
-                            if (warehouseItem) {
-                                warehouseItem.synced = false;
-                            }
-                            Dialogs.confirm({
-                                title: "Výsledek skenu",
-                                message: warehouseItem ? "Název: " + warehouseItem.DisplayName : "Kódu neodpovídá žádný předmět.",
-                                okButtonText: "Skenovat další",
-                                cancelButtonText: "Konec",
-                            }).then(result => {
-                                if (!result) {
-                                    this.barcodeScanner.stop()
+        if (this.currentInventory) {
+            const warehouses = trimArrayElements(this.currentInventory.Warehouses.split(","));
+            if (warehouses.indexOf(this.currentWarehouse.DisplayName.trim()) !== -1) {
+                this.barcodeScanner.requestCameraPermission()
+                    .then(() => {
+                        this.barcodeScanner.scan({
+                            message: "Naskenujte barcode nebo QR kód, každý kód lze naskenovat jen jednou.",
+                            continuousScanCallback: (result) => {
+                                let partToSliceOut = "MA00000000";
+                                while (result.text.indexOf(partToSliceOut) === -1) {
+                                    partToSliceOut = partToSliceOut.slice(0, partToSliceOut.length - 1 )
                                 }
-                            })
-                        },
-                        closeCallback: () => {
-                            this.listNotInventory.nativeElement.refresh();
-                        },
-                        showTorchButton: true,
-                        beepOnScan: false,
-                    }).then(() => {})
-                })
+                                const itemId = result.text.slice(partToSliceOut.length, result.text.length);
+                                const warehouseItem = this.items.find((item) => {
+                                    return item.ID === itemId;
+                                });
+                                if (warehouseItem) {
+                                    warehouseItem.synced = false;
+                                }
+                                Dialogs.confirm({
+                                    title: "Výsledek skenu",
+                                    message: warehouseItem ? "Název: " + warehouseItem.DisplayName : "Kódu neodpovídá žádný předmět.",
+                                    okButtonText: "Skenovat další",
+                                    cancelButtonText: "Konec",
+                                }).then(result => {
+                                    if (!result) {
+                                        this.barcodeScanner.stop()
+                                    }
+                                })
+                            },
+                            closeCallback: () => {
+                                this.listNotInventory.nativeElement.refresh();
+                            },
+                            showTorchButton: true,
+                            beepOnScan: false,
+                        }).then(() => {})
+                    })
+            }
+            else {
+                this.errorOccurred = true;
+                this.showStatusBar("Pro tento sklad není založena žádná inventura.");
+            }
         }
         else {
-            this.showStatusBar("Pro tento sklad není založena žádná inventura.");
+            this.errorOccurred = true;
+            this.showStatusBar("Tato jednotka nemá založenou žádnou inventuru.");
         }
     }
 
     onSubmitInventory(): void {
-        if (this.currentInventory.Warehouses.split(",").indexOf(this.currentWarehouse.DisplayName) !== -1) {
-            // todo
+        if (this.currentInventory) {
+            const warehouses = trimArrayElements(this.currentInventory.Warehouses.split(","));
+            if (warehouses.indexOf(this.currentWarehouse.DisplayName.trim()) !== -1) {
+                // todo
+            }
+            else {
+                this.errorOccurred = true;
+                this.showStatusBar("Pro tento sklad není založena žádná inventura.");
+            }
         }
         else {
-            this.showStatusBar("Pro tento sklad není založena žádná inventura.");
+            this.errorOccurred = true;
+            this.showStatusBar("Tato jednotka nemá založenou žádnou inventuru.");
         }
     }
 
@@ -250,6 +279,7 @@ export class InventoryComponent implements OnInit {
                 },
                 () => {
                     console.log("ERROR LOADING INVENTORIES");
+                    this.errorOccurred = true;
                     this.showStatusBar();
                 }
             )

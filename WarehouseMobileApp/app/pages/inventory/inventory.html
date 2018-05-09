@@ -1,5 +1,6 @@
 <GridLayout rows="auto, 60, *, 20, 60" columns="*, auto, *">
-    <GridLayout row="0" col="0" colSpan="3" class="request-failed-container" [visibility]="statusBar.visibility">
+    <GridLayout row="0" col="0" colSpan="3" backgroundColor="{{errorOccurred ? 'red' : '#008836'}}"
+                class="status-bar-container-size" [visibility]="statusBar.visibility">
         <Label class="failed-action-panel" verticalAlignment="center" textAlignment="center"
                [text]="statusBar.message"></Label>
     </GridLayout>
