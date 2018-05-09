@@ -14,6 +14,7 @@ import { Inventory } from "../../entities/inventory/inventory";
 import { Warehouse } from "../../entities/warehouse/warehouse";
 import * as Dialogs from "ui/dialogs"
 import * as ImageSource from "tns-core-modules/image-source";
+import * as Camera from "nativescript-camera";
 
 
 @Component({
@@ -136,39 +137,50 @@ export class InventoryComponent implements OnInit {
         logout(this.routerExtensions)
     }
 
+    /**
+     * Method to continuously scan barcodes. In the continueScanCallback function we try to map the scanned code to a item.
+     * If successful we mark it for inventarization.
+     */
     onScanCodesTap(): void {
-        this.barcodeScanner.requestCameraPermission()
-            .then(() => {
-                this.barcodeScanner.scan({
-                    message: "Naskenujte barcode nebo QR kód, každý kód lze naskenovat jen jednou.",
-                    continuousScanCallback: (result) => {
-                        let partToSliceOut = "MA00000000";
-                        while (result.text.indexOf(partToSliceOut) === -1) {
-                            partToSliceOut = partToSliceOut.slice(0, partToSliceOut.length - 1 )
-                        }
-                        const itemId = result.text.slice(partToSliceOut.length, result.text.length);
-                        const warehouseItem = this.items.find((item) => {
-                            return item.ID === itemId;
-                        });
-                        warehouseItem.synced = false;
-                        Dialogs.confirm({
-                            title: "Výsledek skenu",
-                            message: "Název: " + warehouseItem.DisplayName,
-                            okButtonText: "Skenovat další",
-                            cancelButtonText: "Konec",
-                        }).then(result => {
-                            if (!result) {
-                                this.barcodeScanner.stop()
+        if (this.currentInventory.Warehouses.split(",").indexOf(this.currentWarehouse.DisplayName) !== -1) {
+            this.barcodeScanner.requestCameraPermission()
+                .then(() => {
+                    this.barcodeScanner.scan({
+                        message: "Naskenujte barcode nebo QR kód, každý kód lze naskenovat jen jednou.",
+                        continuousScanCallback: (result) => {
+                            let partToSliceOut = "MA00000000";
+                            while (result.text.indexOf(partToSliceOut) === -1) {
+                                partToSliceOut = partToSliceOut.slice(0, partToSliceOut.length - 1 )
                             }
-                        })
-                    },
-                    closeCallback: () => {
-                        this.listNotInventory.nativeElement.refresh();
-                    },
-                    showTorchButton: true,
-                    beepOnScan: false,
-                }).then(() => {})
-            })
+                            const itemId = result.text.slice(partToSliceOut.length, result.text.length);
+                            const warehouseItem = this.items.find((item) => {
+                                return item.ID === itemId;
+                            });
+                            if (warehouseItem) {
+                                warehouseItem.synced = false;
+                            }
+                            Dialogs.confirm({
+                                title: "Výsledek skenu",
+                                message: warehouseItem ? "Název: " + warehouseItem.DisplayName : "Kódu neodpovídá žádný předmět.",
+                                okButtonText: "Skenovat další",
+                                cancelButtonText: "Konec",
+                            }).then(result => {
+                                if (!result) {
+                                    this.barcodeScanner.stop()
+                                }
+                            })
+                        },
+                        closeCallback: () => {
+                            this.listNotInventory.nativeElement.refresh();
+                        },
+                        showTorchButton: true,
+                        beepOnScan: false,
+                    }).then(() => {})
+                })
+        }
+        else {
+            this.showStatusBar("Pro tento sklad není založena žádná inventura.");
+        }
     }
 
     onSubmitInventory(): void {
@@ -189,7 +201,34 @@ export class InventoryComponent implements OnInit {
         this.popover.photo = dataItem.photo;
         if (this.popover.photo) {
             this.popover.visibility = 'visible';
-        };
+        }
+    }
+
+    onTakeImageTap(eventData): void {
+        const dataItem = eventData.view.bindingContext;
+        if (!dataItem.photo) {
+            if (Camera.isAvailable()) {
+                Camera.requestPermissions();
+                Camera.takePicture({width: 300, height: 300, keepAspectRatio: true, saveToGallery: false})
+                    .then(imageAsset => {
+                        ImageSource.fromAsset(imageAsset).then(imageSource => {
+                            dataItem.photo = imageSource;
+                            dataItem.PhotoContent = imageSource.toBase64String("jpeg", 90);
+                            this.database.updateItemPhoto(dataItem);
+                            // this.userService.insertPhotoTempFile(new TempFileInsert("jpeg",
+                            //     new Uint8Array(10)))
+                            //     .subscribe((resp) => {
+                            //             console.log("winwin");
+                            //             console.log(resp);
+                            //         },
+                            //         err => {
+                            //             console.log(err.error);
+                            //             console.log(err.message)
+                            //         })
+                        })
+                    })
+            }
+        }
     }
 
     /**

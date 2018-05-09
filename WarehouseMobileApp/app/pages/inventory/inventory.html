@@ -27,7 +27,7 @@
                                 visibility="{{item.synced ? 'visible' : 'collapse'}}"
                                 backgroundColor="{{item.expanded ? '#BDD4DF' : 'white' }}">
                         <Label *ngIf="!item.photo" row="0" rowSpan="2" col="0" verticalAlignment="center" width="60"
-                               height="60"
+                               height="60" (tap)="onTakeImageTap($event)"
                                horizontalAlignment="left" [text]="icons.photo"
                                class="image-like-circular-label"></Label>
                         <Image *ngIf="item.photo" row="0" rowSpan="2" col="0" verticalAlignment="center" width="60"
@@ -73,7 +73,7 @@
                                 visibility="{{item.synced ? 'collapse' : 'visible'}}"
                                 backgroundColor="{{item.expanded ? '#BDD4DF' : 'white' }}">
                         <Label *ngIf="!item.photo" row="0" rowSpan="2" col="0" verticalAlignment="center" width="60"
-                               height="60"
+                               height="60" (tap)="onTakeImageTap($event)"
                                horizontalAlignment="left" [text]="icons.photo"
                                class="image-like-circular-label"></Label>
                         <Image *ngIf="item.photo" row="0" rowSpan="2" col="0" verticalAlignment="center" width="60"

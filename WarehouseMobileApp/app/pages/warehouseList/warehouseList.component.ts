@@ -45,7 +45,7 @@ export class WarehouseListComponent implements OnInit {
     }
 
     warehouseSelected(args): void {
-        this.routerExtensions.navigate(["/warehouseDetail"],
+        this.routerExtensions.navigate(["/inventory"],
             {queryParams: {"warehouseId": args.object.id}})
     }
 }
