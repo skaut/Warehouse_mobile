@@ -132,7 +132,7 @@ export class ReservationComponent implements OnInit {
             this.statusBar.visibility = "collapse";
             this.errorOccurred = false;
             this.statusBar.message = "Nastala chyba při komunikaci se službou SkautIS.";
-        }, 3000)
+        }, 1750)
     }
 
     onLoaded(): void {
@@ -203,7 +203,7 @@ export class ReservationComponent implements OnInit {
             )
     }
 
-    onDateChanged(eventData): void {
+    onDateChanged(): void {
         const fromPicker = <DatePicker>this.page.getViewById("fromPicker");
         const toPicker = <DatePicker>this.page.getViewById("toPicker");
         if (fromPicker.date > toPicker.date) {
@@ -219,6 +219,7 @@ export class ReservationComponent implements OnInit {
     onSearchSubmit(eventData): void {
         const searchBar = eventData.object;
         const searchTerm = searchBar.text.toLowerCase();
+        this.items = this.itemsHolder;
         if (searchTerm !== "") {
             this.items = this.items.filter(item => {
                 return item.DisplayName.toLowerCase().indexOf(searchTerm) !== -1;
@@ -241,8 +242,7 @@ export class ReservationComponent implements OnInit {
         this.warehouseService.getWarehouseItemPhoto(new WarehouseItemDetailPhoto(item.ID))
             .subscribe(
                 resp => {
-                    const photoResult = parseSoapResponse(resp, new WarehouseItemDetailPhotoResult());
-                    item.PhotoContent = photoResult["PhotoContent"];
+                    item.PhotoContent = parseSoapResponse(resp, new WarehouseItemDetailPhotoResult())["PhotoContent"];
                     item.setImageSource();
                 },
                 () => {

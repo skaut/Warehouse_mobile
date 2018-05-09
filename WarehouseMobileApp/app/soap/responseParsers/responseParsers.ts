@@ -2,6 +2,7 @@ import { USER_TOKEN, USER_ROLE_ID, USER_UNIT_ID } from "../../constants";
 import { Status } from "../../utils/enums";
 import * as XmlObjects from "nativescript-xmlobjects";
 import * as AppSettings from "application-settings";
+import {WarehouseItemAllStockTakingResult} from "../results/warehouseItemAllStockTakingResult";
 
 
 /**

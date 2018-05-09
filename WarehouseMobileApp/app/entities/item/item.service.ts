@@ -2,7 +2,7 @@ import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { WarehouseItemAllBorrowable } from "../../soap/requests/warehouseItemAllBorrowable";
 import { WarehouseItemDetail } from "../../soap/requests/warehouseItemDetail";
-import {WarehouseItemReservationInsert} from "../../soap/requests/warehouseItemReservationInsert";
+import { WarehouseItemReservationInsert } from "../../soap/requests/warehouseItemReservationInsert";
 
 
 @Injectable()

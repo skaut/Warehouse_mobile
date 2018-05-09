@@ -31,3 +31,10 @@ export const enableButton = (button: Button) => {
     button.isEnabled = true;
     button.backgroundColor = new Color("#255C9E");
 };
+
+export const trimArrayElements = (array: Array<string>): Array<string> => {
+    array.forEach((str, index) => {
+        array[index] = str.trim()
+    });
+    return array
+};

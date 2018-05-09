@@ -16,6 +16,8 @@ export class WarehouseItem {
     photo: ImageSource.ImageSource;
     synced: boolean;
     expanded: boolean;
+    // to prevent multiple inventarization attempts
+    lastInventoryId: string;
 
     constructor() {
         this.ID = null;
@@ -31,6 +33,7 @@ export class WarehouseItem {
         this.photo = null;
         this.synced = true;
         this.expanded = false;
+        this.lastInventoryId = null;
     }
 
     setImageSource() {
@@ -57,6 +60,7 @@ export class WarehouseItem {
         InventoryDate: ${this.InventoryDate}
         PhotoContent: ${photo}
         synced: ${this.synced}
-        expanded: ${this.expanded}`
+        expanded: ${this.expanded}
+        lastInventoryId: ${this.lastInventoryId}`
     }
 }

@@ -97,6 +97,7 @@ refer to http://docs.nativescript.org/ui/theme.
     text-align: center;
     padding: 13;
     margin-left: 15;
+    background-color: white;
 }
 .margin-left {
     margin-left: 15;

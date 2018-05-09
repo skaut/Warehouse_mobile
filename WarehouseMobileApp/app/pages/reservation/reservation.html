@@ -25,10 +25,11 @@
             <ng-template let-item="item">
                 <GridLayout rows="{{item.expanded ? '70, *' : '70'}}" columns="*, auto, *"
                             backgroundColor="{{item.expanded ? '#BDD4DF' : 'white' }}">
-                    <Label *ngIf="!item.photo" col="0" verticalAlignment="center" width="60" height="60"
+                    <Label *ngIf="!item.photo" col="0" verticalAlignment="center" width="60" height="60" backgroundColor="white"
                            horizontalAlignment="left" [text]="icons.photo" class="image-like-circular-label"></Label>
                     <Image *ngIf="item.photo" col="0" verticalAlignment="center" width="60" class="circular-list-image"
-                           height="60" horizontalAlignment="left" [src]="item.photo" (tap)="onImageTap($event)"></Image>
+                           height="60" horizontalAlignment="left" [src]="item.photo" (tap)="onImageTap($event)"
+                           backgroundColor="white"></Image>
                     <Label col="1" [text]="item.DisplayName" class="reservation-item-name"
                            textWrap="true"
                            horizontalAlignment="center" verticalAlignmnet="center"></Label>
@@ -71,12 +72,12 @@
                 <Label *ngIf="!errorOccurred" row="1" col="0" colSpan="2" horizontalAlignment="center"
                        textAlignment="center" text="OD" class="popover-text-big"></Label>
                 <DatePicker *ngIf="!errorOccurred" id="fromPicker" row="2" col="0" colSpan="2"
-                            horizontalAlignment="center" (dateChange)="onDateChanged($event)"
+                            horizontalAlignment="center" (dateChange)="onDateChanged()"
                             verticalAlignment="center" (loaded)="onPickerLoaded($event)"></DatePicker>
                 <Label *ngIf="!errorOccurred" row="3" col="0" colSpan="2" horizontalAlignment="center"
                        textAlignment="center" text="DO" class="popover-text-big"></Label>
                 <DatePicker *ngIf="!errorOccurred" id="toPicker" row="4" col="0" colSpan="2"
-                            horizontalAlignment="center" (dateChange)="onDateChanged($event)"
+                            horizontalAlignment="center" (dateChange)="onDateChanged()"
                             verticalAlignment="center" (loaded)="onPickerLoaded($event)"></DatePicker>
                 <Label *ngIf="errorOccurred" row="1" col="0" colSpan="2" rowSpan="4" horizontalAlignment="center"
                        textAlignment="center" verticalAlignment="center" text="Nepodařilo se načíct detail položky"
