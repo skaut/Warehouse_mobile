@@ -219,6 +219,7 @@ export class ReservationComponent implements OnInit {
     onSearchSubmit(eventData): void {
         const searchBar = eventData.object;
         const searchTerm = searchBar.text.toLowerCase();
+        this.items = this.itemsHolder;
         if (searchTerm !== "") {
             this.items = this.items.filter(item => {
                 return item.DisplayName.toLowerCase().indexOf(searchTerm) !== -1;
