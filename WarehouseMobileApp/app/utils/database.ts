@@ -183,6 +183,23 @@ export class Database {
             })
     }
 
+    /**
+     * Method to select current warehouse from db.
+     *
+     * @param {string} warehouseId
+     */
+    selectSingleWarehouse(warehouseId: string) {
+        let result = null;
+        return this.db.each(`SELECT * FROM warehouse WHERE id = ${warehouseId}`, (err, row) => {
+            result = this.createWarehouseObject(new Warehouse(), row);
+        })
+            .then(() => {
+                return new Promise((resolve, reject) => {
+                    resolve(result);
+                })
+            })
+    }
+
     private createWarehouseObject(warehouse: Warehouse, dbRow: Array<any>): Warehouse {
         warehouse.ID = dbRow[0];
         warehouse.DisplayName = dbRow[1];
@@ -191,6 +208,13 @@ export class Database {
         return warehouse
     }
 
+    /**
+     * Method creates WarehouseItem object with data from db. It also parses ISO date to dd/mm/yyyy format.
+     *
+     * @param {WarehouseItem} item - object to fill with data
+     * @param {Array<any>} dbRow - db row containing data
+     * @returns {WarehouseItem} - returned composed object
+     */
     private createItemObject(item: WarehouseItem, dbRow: Array<any>): WarehouseItem {
         item.ID = dbRow[0];
         item.DisplayName = dbRow[1];
@@ -199,11 +223,34 @@ export class Database {
         item.Description = dbRow[4];
         item.PurchasePrice = dbRow[5];
         item.InWarehouse = dbRow[6] === 1;
-        item.PurchaseDate = dbRow[7];
-        item.InventoryDate = dbRow[8];
+        if (dbRow[7]) {
+            let dateTmp = new Date(Date.parse(dbRow[7]));
+            item.PurchaseDate = this.pad(dateTmp.getDate())+"/"+this.pad(dateTmp.getMonth()+1)+"/"+dateTmp.getFullYear();
+        }
+        else {
+            item.PurchaseDate = dbRow[7];
+        }
+        if (dbRow[8]) {
+            let dateTmp = new Date(Date.parse(dbRow[8]));
+            item.InventoryDate = this.pad(dateTmp.getDate())+"/"+this.pad(dateTmp.getMonth()+1)+"/"+dateTmp.getFullYear();
+        }
+        else {
+            item.InventoryDate = dbRow[8];
+        }
         item.PhotoContent = dbRow[9];
         item.synced = dbRow[10] === 1;
         item.setImageSource();
         return item
     }
+
+    /**
+     * Stack overflow function to help format date
+     *
+     * @param n
+     * @returns {string}
+     */
+    private pad(n) {
+        return n < 10 ? "0"+n : n;
+    }
 }
+

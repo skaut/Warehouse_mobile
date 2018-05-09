@@ -11,6 +11,7 @@ import { StockTakingAll } from "../../soap/requests/stockTakingAll";
 import { parseSoapResponse } from "../../soap/responseParsers/responseParsers";
 import { StockTakingAllResult } from "../../soap/results/stockTakingAllResult";
 import { Inventory } from "../../entities/inventory/inventory";
+import { Warehouse } from "../../entities/warehouse/warehouse";
 import * as Dialogs from "ui/dialogs"
 
 
@@ -24,9 +25,15 @@ import * as Dialogs from "ui/dialogs"
 
 export class InventoryComponent implements OnInit {
     items: Array<WarehouseItem>;
+    currentInventory: Inventory;
+    currentWarehouse: Warehouse;
     warehouseId: string;
     listLoaded: boolean;
     activityIndicatorBusy: boolean;
+    statusBar: {
+        visibility: string;
+        message: string;
+    };
     icons: {};
     @ViewChild('listNotInventory') listNotInventory: ElementRef;
     @ViewChild('listInventory') listInventory: ElementRef;
@@ -41,10 +48,16 @@ export class InventoryComponent implements OnInit {
     {
         this.listLoaded = false;
         this.activityIndicatorBusy = true;
+        this.currentInventory = null;
+        this.currentWarehouse = new Warehouse();
         this.route.queryParams.subscribe(params => {
             this.warehouseId = params["warehouseId"];
         });
         this.items = [];
+        this.statusBar = {
+            visibility: 'collapse',
+            message: 'Nastala chyba při komunikaci se službou SkautIS',
+        };
         this.icons = {
             caretLeft: String.fromCharCode(0xea44),
             caretDown: String.fromCharCode(0xea43),
@@ -59,6 +72,13 @@ export class InventoryComponent implements OnInit {
         this.listLoaded = false;
         this.activityIndicatorBusy = true;
         this.getInventories();
+        this.database.selectSingleWarehouse(this.warehouseId)
+            .then(warehouse => {
+                this.currentWarehouse = warehouse;
+                if (this.currentWarehouse) {
+                    console.log(this.currentWarehouse.toFullString());
+                }
+            });
         this.database.selectAvailableItems(this.warehouseId)
             .then((items) => {
                 setTimeout(() => {
@@ -70,21 +90,44 @@ export class InventoryComponent implements OnInit {
             });
     }
 
-    onUninventorizedItemTap(eventData) {
-        const dataItem = eventData.view.bindingContext;
-        dataItem.synced = false;
+    private showStatusBar(message?: string): void {
+        if (message) {
+            this.statusBar.message = message;
+        }
+        this.statusBar.visibility = "visible";
+        setTimeout(() => {
+            this.statusBar.visibility = "collapse";
+            this.statusBar.message = "Nastala chyba při komunikaci se službou SkautIS.";
+        }, 2500)
     }
 
-    onInventorizedItemTap(eventData) {
+    onItemTap(eventData): void {
+        const dataItem = eventData.view.bindingContext;
+        dataItem.expanded = !dataItem.expanded;
+    }
+
+    onUninventorizedItemTap(eventData): void {
+        if (this.currentInventory.Warehouses.split(",").indexOf(this.currentWarehouse.DisplayName) !== -1) {
+            const dataItem = eventData.view.bindingContext;
+            dataItem.synced = false;
+            dataItem.expanded = false;
+        }
+        else {
+            this.showStatusBar("Pro tento sklad není založena žádná inventura.");
+        }
+    }
+
+    onInventorizedItemTap(eventData): void {
         const dataItem = eventData.view.bindingContext;
         dataItem.synced = true;
+        dataItem.expanded = false;
     }
 
     logout(): void {
         logout(this.routerExtensions)
     }
 
-    onScanCodesTap() {
+    onScanCodesTap(): void {
         this.barcodeScanner.requestCameraPermission()
             .then(() => {
                 this.barcodeScanner.scan({
@@ -119,31 +162,36 @@ export class InventoryComponent implements OnInit {
             })
     }
 
-    onSubmitInventory() {
-        // todo - submit inventory
+    onSubmitInventory(): void {
+        if (this.currentInventory.Warehouses.split(",").indexOf(this.currentWarehouse.DisplayName) !== -1) {
+            // todo
+        }
+        else {
+            this.showStatusBar("Pro tento sklad není založena žádná inventura.");
+        }
     }
 
-    private getInventories() {
+
+    /**
+     * Method performs soap call to get list of all inventories. From these it filters only active ones.
+     * Newest active inventory is then assigned as the current inventory to which items will be inventorized.
+     */
+    private getInventories(): void {
         this.inventoryService.getStockTakingAll(new StockTakingAll())
             .subscribe(
                 resp => {
-                    let inventories = parseSoapResponse(resp, new StockTakingAllResult(),
-                        () => new Inventory())["Inventorys"];
-                    inventories.map(inventory => {
-                        console.log(inventory);
-                    });
-                    console.log("=======================");
-                    // todo - chain filter to previous call instead
-                    inventories = inventories.filter(inventory => {
-                        return inventory.ID_StockTakingState === "new";
-                    });
-                    inventories.map(inventory => {
-                        console.log(inventory);
-                    })
+                    const inventories = parseSoapResponse(resp, new StockTakingAllResult(),
+                        () => new Inventory())["Inventorys"]
+                        .filter(inventory => {
+                            return inventory.ID_StockTakingState === "new";
+                        });
+                    this.currentInventory = inventories[inventories.length - 1];
+                    console.log(this.currentInventory.Warehouses)
+
                 },
                 () => {
-                    console.log("ERROR LOADING INVENTORIES")
-                    // todo - handle error
+                    console.log("ERROR LOADING INVENTORIES");
+                    this.showStatusBar();
                 }
             )
     }

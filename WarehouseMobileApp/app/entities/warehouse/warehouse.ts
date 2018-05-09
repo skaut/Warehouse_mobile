@@ -7,7 +7,7 @@ export class Warehouse {
 
     constructor() {
         this.ID = null;
-        this.DisplayName = null;
+        this.DisplayName = "";
         this.ID_WarehouseMain = null;
         this.ID_Unit = null;
     }
