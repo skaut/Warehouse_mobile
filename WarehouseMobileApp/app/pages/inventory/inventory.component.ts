@@ -13,6 +13,10 @@ import { StockTakingAllResult } from "../../soap/results/stockTakingAllResult";
 import { Inventory } from "../../entities/inventory/inventory";
 import { Warehouse } from "../../entities/warehouse/warehouse";
 import { trimArrayElements } from "../../utils/functions";
+import { WarehouseItemAllStockTaking } from "../../soap/requests/warehouseItemAllStockTaking";
+import { WarehouseItemAllStockTakingResult } from "../../soap/results/warehouseItemAllStockTakingResult";
+import { StockTakingWarehouseItemInsert } from "../../soap/requests/stockTakingWarehouseItemInsert";
+import * as Connectivity  from "tns-core-modules/connectivity";
 import * as Dialogs from "ui/dialogs"
 import * as ImageSource from "tns-core-modules/image-source";
 import * as Camera from "nativescript-camera";
@@ -85,22 +89,21 @@ export class InventoryComponent implements OnInit {
             visibility: 'hidden',
             photo: null,
         };
-        this.getInventories();
-        this.database.selectSingleWarehouse(this.warehouseId)
-            .then(warehouse => {
-                this.currentWarehouse = warehouse;
-                console.log(this.currentWarehouse.toFullString())
-            });
         this.database.selectAvailableItems(this.warehouseId)
             .then((items) => {
                 setTimeout(() => {
                     console.log("loading items from db - inventory page");
                     this.items = items;
-                    // console.log("inventory: " + this.currentInventory.ID);
+                    this.getInventories();
+                    this.database.selectSingleWarehouse(this.warehouseId)
+                        .then(warehouse => {
+                            this.currentWarehouse = warehouse;
+                        });
                     this.listLoaded = true;
                     this.activityIndicatorBusy = false;
                 }, 1300);
             });
+        console.log("warehouse ID: " + this.warehouseId);
     }
 
     private showStatusBar(message?: string): void {
@@ -112,7 +115,7 @@ export class InventoryComponent implements OnInit {
             this.statusBar.visibility = "collapse";
             this.errorOccurred = false;
             this.statusBar.message = "Nastala chyba při komunikaci se službou SkautIS.";
-        }, 2500)
+        }, 1750)
     }
 
     onItemTap(eventData): void {
@@ -122,10 +125,16 @@ export class InventoryComponent implements OnInit {
 
     onUninventorizedItemTap(eventData): void {
         if (this.currentInventory) {
+            const dataItem = eventData.view.bindingContext;
+            if (dataItem.lastInventoryId === this.currentInventory.ID) {
+                this.errorOccurred = true;
+                this.showStatusBar("Předmět už byl inventarizován.");
+                return
+            }
             const warehouses = trimArrayElements(this.currentInventory.Warehouses.split(","));
             if (warehouses.indexOf(this.currentWarehouse.DisplayName.trim()) !== -1) {
-                const dataItem = eventData.view.bindingContext;
                 dataItem.synced = false;
+                dataItem.lastInventoryId = this.currentInventory.ID;
                 dataItem.expanded = false;
             }
             else {
@@ -141,8 +150,15 @@ export class InventoryComponent implements OnInit {
 
     onInventorizedItemTap(eventData): void {
         const dataItem = eventData.view.bindingContext;
-        dataItem.synced = true;
-        dataItem.expanded = false;
+        if (!dataItem.synced) {
+            dataItem.synced = true;
+            dataItem.lastInventoryId = null;
+            dataItem.expanded = false;
+        }
+        else {
+            this.errorOccurred = true;
+            this.showStatusBar("Předmět už byl inventarizován, operaci nelze zrušit.");
+        }
     }
 
     logout(): void {
@@ -163,27 +179,7 @@ export class InventoryComponent implements OnInit {
                         this.barcodeScanner.scan({
                             message: "Naskenujte barcode nebo QR kód, každý kód lze naskenovat jen jednou.",
                             continuousScanCallback: (result) => {
-                                let partToSliceOut = "MA00000000";
-                                while (result.text.indexOf(partToSliceOut) === -1) {
-                                    partToSliceOut = partToSliceOut.slice(0, partToSliceOut.length - 1 )
-                                }
-                                const itemId = result.text.slice(partToSliceOut.length, result.text.length);
-                                const warehouseItem = this.items.find((item) => {
-                                    return item.ID === itemId;
-                                });
-                                if (warehouseItem) {
-                                    warehouseItem.synced = false;
-                                }
-                                Dialogs.confirm({
-                                    title: "Výsledek skenu",
-                                    message: warehouseItem ? "Název: " + warehouseItem.DisplayName : "Kódu neodpovídá žádný předmět.",
-                                    okButtonText: "Skenovat další",
-                                    cancelButtonText: "Konec",
-                                }).then(result => {
-                                    if (!result) {
-                                        this.barcodeScanner.stop()
-                                    }
-                                })
+                                this.handleOneItemScanned(result);
                             },
                             closeCallback: () => {
                                 this.listNotInventory.nativeElement.refresh();
@@ -204,20 +200,71 @@ export class InventoryComponent implements OnInit {
         }
     }
 
+    private handleOneItemScanned(result) {
+        let partToSliceOut = "MA00000000";
+        while (result.text.indexOf(partToSliceOut) === -1) {
+            partToSliceOut = partToSliceOut.slice(0, partToSliceOut.length - 1 )
+        }
+        const itemId = result.text.slice(partToSliceOut.length, result.text.length);
+        const warehouseItem = this.items.find((item) => {
+            return item.ID === itemId;
+        });
+        if (warehouseItem) {
+            if (warehouseItem.lastInventoryId === this.currentInventory.ID) {
+                Dialogs.alert({
+                    title: "Výsledek skenu",
+                    message: "Předmět: " + warehouseItem.DisplayName + " už byl inventarizován.",
+                    okButtonText: "Pokračovat",
+                })
+            }
+            else {
+                warehouseItem.synced = false;
+                warehouseItem.lastInventoryId = this.currentInventory.ID;
+            }
+        }
+        Dialogs.confirm({
+            title: "Výsledek skenu",
+            message: warehouseItem ? "Název: " + warehouseItem.DisplayName : "Kódu neodpovídá žádný předmět.",
+            okButtonText: "Skenovat další",
+            cancelButtonText: "Konec",
+        }).then(result => {
+            if (!result) {
+                this.barcodeScanner.stop()
+            }
+        })
+    }
+
     onSubmitInventory(): void {
-        if (this.currentInventory) {
-            const warehouses = trimArrayElements(this.currentInventory.Warehouses.split(","));
-            if (warehouses.indexOf(this.currentWarehouse.DisplayName.trim()) !== -1) {
-                // todo
+        const connectionType = Connectivity.getConnectionType();
+        if (connectionType !== Connectivity.connectionType.none) {
+            if (this.currentInventory) {
+                const warehouses = trimArrayElements(this.currentInventory.Warehouses.split(","));
+                if (warehouses.indexOf(this.currentWarehouse.DisplayName.trim()) !== -1) {
+                    const toInventorize = this.items.filter((item) => {
+                        return item.synced === false;
+                    });
+                    if (toInventorize.length > 0) {
+                        this.submitInventorizedItems(toInventorize);
+                        this.showStatusBar("Předměty úspěšně zainventarizovány.");
+                    }
+                    else {
+                        this.errorOccurred = true;
+                        this.showStatusBar("K inventarizaci nebyly vybrány žádné nové předměty.")
+                    }
+                }
+                else {
+                    this.errorOccurred = true;
+                    this.showStatusBar("Pro tento sklad není založena žádná inventura.");
+                }
             }
             else {
                 this.errorOccurred = true;
-                this.showStatusBar("Pro tento sklad není založena žádná inventura.");
+                this.showStatusBar("Tato jednotka nemá založenou žádnou inventuru.");
             }
         }
         else {
             this.errorOccurred = true;
-            this.showStatusBar("Tato jednotka nemá založenou žádnou inventuru.");
+            this.showStatusBar("Zkontrolujte připojení k internetu.");
         }
     }
 
@@ -274,8 +321,7 @@ export class InventoryComponent implements OnInit {
                             return inventory.ID_StockTakingState === "new";
                         });
                     this.currentInventory = inventories[inventories.length - 1];
-                    console.log(this.currentInventory.Warehouses)
-
+                    this.getAlreadyInventorizedItems()
                 },
                 () => {
                     console.log("ERROR LOADING INVENTORIES");
@@ -283,6 +329,48 @@ export class InventoryComponent implements OnInit {
                     this.showStatusBar();
                 }
             )
+    }
+
+    private getAlreadyInventorizedItems(): void {
+        if (this.currentInventory.ID) {
+            this.inventoryService.getInventorizedItems(new WarehouseItemAllStockTaking(this.currentInventory.ID,
+                this.warehouseId))
+                .subscribe(
+                    resp => {
+                        const inventorizedItems = parseSoapResponse(resp, new WarehouseItemAllStockTakingResult(),
+                            () => new WarehouseItem())["WarehouseItems"];
+                        inventorizedItems.map(inventorizedItem => {
+                            const matchingItem = this.items.find(item => {
+                                return item.ID === inventorizedItem.ID;
+                            });
+                            if (matchingItem) {
+                                matchingItem.lastInventoryId = this.currentInventory.ID;
+                                this.database.updateItemLastInventoryId(matchingItem);
+                            }
+                        })
+                    },
+                    error => {
+                        console.log("ERROR LOADING ALREADY INVENTORIZED ITEMS");
+                    }
+                )
+        }
+    }
+
+
+    private submitInventorizedItems(toInventorize): void {
+        toInventorize.map(item => {
+            this.inventoryService.inventorizeItem(new StockTakingWarehouseItemInsert(
+                this.currentInventory.ID, item.ID))
+                .subscribe(
+                    resp => {
+                        item.synced = true;
+                        this.database.updateItemLastInventoryId(item);
+                    },
+                    () => {
+                        console.log("ERROR INSERTING INVENTORIZED ITEM");
+                    }
+                )
+        })
     }
 
     back(): void {

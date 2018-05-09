@@ -44,6 +44,7 @@ export class Database {
                         inventory_date TEXT,
                         photo_content BLOB,
                         synced INTEGER,
+                        last_inventory_id TEXT,
                         FOREIGN KEY(id_warehouse) REFERENCES warehouse(id)
                     )`)
                     .then(() => {
@@ -99,7 +100,8 @@ export class Database {
                 purchase_date,
                 inventory_date,
                 photo_content,
-                synced) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+                synced,
+                last_inventory_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
             [
                 item.ID,
                 item.DisplayName,
@@ -111,7 +113,8 @@ export class Database {
                 item.PurchaseDate,
                 item.InventoryDate,
                 item.PhotoContent,
-                item.synced ? 1 : 0
+                item.synced ? 1 : 0,
+                item.lastInventoryId
             ])
             .then(() => {
                 },
@@ -128,6 +131,16 @@ export class Database {
                 },
                 error => {
                     console.log("error updating item photo: " + error)
+                })
+    }
+
+    updateItemLastInventoryId(item: WarehouseItem) {
+        return this.db.execSQL(`UPDATE item SET last_inventory_id = '${item.lastInventoryId}' WHERE id = ${item.ID}`)
+            .then(() => {
+                    console.log("success updating item lastInventoryId")
+                },
+                error => {
+                    console.log("error updating lastInventoryId: " + error);
                 })
     }
 
@@ -239,6 +252,7 @@ export class Database {
         }
         item.PhotoContent = dbRow[9];
         item.synced = dbRow[10] === 1;
+        item.lastInventoryId = dbRow[11];
         item.setImageSource();
         return item
     }

@@ -132,7 +132,7 @@ export class ReservationComponent implements OnInit {
             this.statusBar.visibility = "collapse";
             this.errorOccurred = false;
             this.statusBar.message = "Nastala chyba při komunikaci se službou SkautIS.";
-        }, 2500)
+        }, 1750)
     }
 
     onLoaded(): void {
