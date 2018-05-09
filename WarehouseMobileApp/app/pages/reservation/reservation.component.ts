@@ -203,7 +203,7 @@ export class ReservationComponent implements OnInit {
             )
     }
 
-    onDateChanged(eventData): void {
+    onDateChanged(): void {
         const fromPicker = <DatePicker>this.page.getViewById("fromPicker");
         const toPicker = <DatePicker>this.page.getViewById("toPicker");
         if (fromPicker.date > toPicker.date) {
@@ -242,8 +242,7 @@ export class ReservationComponent implements OnInit {
         this.warehouseService.getWarehouseItemPhoto(new WarehouseItemDetailPhoto(item.ID))
             .subscribe(
                 resp => {
-                    const photoResult = parseSoapResponse(resp, new WarehouseItemDetailPhotoResult());
-                    item.PhotoContent = photoResult["PhotoContent"];
+                    item.PhotoContent = parseSoapResponse(resp, new WarehouseItemDetailPhotoResult())["PhotoContent"];
                     item.setImageSource();
                 },
                 () => {

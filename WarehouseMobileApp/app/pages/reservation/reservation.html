@@ -71,12 +71,12 @@
                 <Label *ngIf="!errorOccurred" row="1" col="0" colSpan="2" horizontalAlignment="center"
                        textAlignment="center" text="OD" class="popover-text-big"></Label>
                 <DatePicker *ngIf="!errorOccurred" id="fromPicker" row="2" col="0" colSpan="2"
-                            horizontalAlignment="center" (dateChange)="onDateChanged($event)"
+                            horizontalAlignment="center" (dateChange)="onDateChanged()"
                             verticalAlignment="center" (loaded)="onPickerLoaded($event)"></DatePicker>
                 <Label *ngIf="!errorOccurred" row="3" col="0" colSpan="2" horizontalAlignment="center"
                        textAlignment="center" text="DO" class="popover-text-big"></Label>
                 <DatePicker *ngIf="!errorOccurred" id="toPicker" row="4" col="0" colSpan="2"
-                            horizontalAlignment="center" (dateChange)="onDateChanged($event)"
+                            horizontalAlignment="center" (dateChange)="onDateChanged()"
                             verticalAlignment="center" (loaded)="onPickerLoaded($event)"></DatePicker>
                 <Label *ngIf="errorOccurred" row="1" col="0" colSpan="2" rowSpan="4" horizontalAlignment="center"
                        textAlignment="center" verticalAlignment="center" text="Nepodařilo se načíct detail položky"
