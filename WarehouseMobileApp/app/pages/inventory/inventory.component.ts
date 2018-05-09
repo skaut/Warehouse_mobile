@@ -13,6 +13,7 @@ import { StockTakingAllResult } from "../../soap/results/stockTakingAllResult";
 import { Inventory } from "../../entities/inventory/inventory";
 import { Warehouse } from "../../entities/warehouse/warehouse";
 import * as Dialogs from "ui/dialogs"
+import * as ImageSource from "tns-core-modules/image-source";
 
 
 @Component({
@@ -33,6 +34,10 @@ export class InventoryComponent implements OnInit {
     statusBar: {
         visibility: string;
         message: string;
+    };
+    popover: {
+        visibility: string,
+        photo: ImageSource.ImageSource,
     };
     icons: {};
     @ViewChild('listNotInventory') listNotInventory: ElementRef;
@@ -71,6 +76,10 @@ export class InventoryComponent implements OnInit {
         this.page.actionBarHidden = true;
         this.listLoaded = false;
         this.activityIndicatorBusy = true;
+        this.popover = {
+            visibility: 'hidden',
+            photo: null,
+        };
         this.getInventories();
         this.database.selectSingleWarehouse(this.warehouseId)
             .then(warehouse => {
@@ -171,6 +180,17 @@ export class InventoryComponent implements OnInit {
         }
     }
 
+    onDismissPopover(): void {
+        this.popover.visibility = 'hidden';
+    }
+
+    onImageTap(eventData): void {
+        const dataItem = eventData.view.bindingContext;
+        this.popover.photo = dataItem.photo;
+        if (this.popover.photo) {
+            this.popover.visibility = 'visible';
+        };
+    }
 
     /**
      * Method performs soap call to get list of all inventories. From these it filters only active ones.

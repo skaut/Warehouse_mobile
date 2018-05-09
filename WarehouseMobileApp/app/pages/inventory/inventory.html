@@ -16,99 +16,104 @@
            verticalAlignment="center"
            horizontalAlignment="center"
            visibility="{{items.length > 0 ? 'hidden' : 'visible'}}"></Label>
-    <TabView *ngIf="listLoaded" row="2" col="0" colSpan="3" selectedIndex="0" sdkExampleTitle
-             sdkToggleNavButton visibility="{{items.length > 0 ? 'visible' : 'hidden'}}">
-        <RadListView #listNotInventory *tabItem="{title: 'K výběru'}" [items]="items"
-                     (itemTap)="onItemTap($event)">
-            <ng-template let-item="item">
-                <GridLayout rows="{{item.expanded ? '35, 35, *' : '35, 35'}}" columns="*, auto, *"
-                            visibility="{{item.synced ? 'visible' : 'collapse'}}"
-                            backgroundColor="{{item.expanded ? '#BDD4DF' : 'white' }}">
-                    <Label *ngIf="!item.photo" row="0" rowSpan="2" col="0" verticalAlignment="center" width="60"
-                           height="60"
-                           horizontalAlignment="left" [text]="icons.photo" class="image-like-circular-label"></Label>
-                    <Image *ngIf="item.photo" row="0" rowSpan="2" col="0" verticalAlignment="center" width="60"
-                           height="60" horizontalAlignment="left" [src]="item.photo" backgroundColor="white"
-                           class="circular-list-image"></Image>
-                    <Label row="0" col="1" [text]="item.DisplayName" class="list-view-first-line"
-                           textWrap="true"
-                           horizontalAlignment="center" verticalAlignmnet="bottom"></Label>
-                    <Label row="1" col="1" text="{{item.InWarehouse ? 'Ve skladu: Ano' : 'Ve skladu: Ne'}}"
-                           class="list-view-second-line" textWrap="true"
-                           horizontalAlignment="center" verticalAlignment="top"></Label>
-                    <Label row="0" rowSpan="2" col="2" text="{{icons.check}}"
-                           verticalAlignment="center" horizontalAlignment="right"
-                           class="icon icon-item-left" (tap)="onUninventorizedItemTap($event)"></Label>
-                    <Label row="0" rowSpan="2" col="2" text="{{item.expanded ? icons.caretDown : icons.caretLeft}}"
-                           verticalAlignment="center" horizontalAlignment="right"
-                           class="icon icon-item-rightmost"></Label>
-                    <GridLayout *ngIf="item.expanded" row="2" col="0" colSpan="3" rows="auto, auto, auto, auto, *"
-                                backgroundColor="white">
-                        <Label row="0" verticalAlignment="center" horizontalAlignment="left" textWrap="true"
-                               class="left-right-margin-list top-bot-margin-list"
-                               text="{{'Pořizovací cena: ' + (item.PurchasePrice ? item.PurchasePrice.slice(0, item.PurchasePrice.length - 2) + ' Kč' : '\u2014')}}"></Label>
-                        <Label row="1" verticalAlignment="center" horizontalAlignment="left" textWrap="true"
-                               class="left-right-margin-list bot-margin-list"
-                               text="{{'Datum pořízení: ' + (item.PurchaseDate ? item.PurchaseDate : '\u2014')}}"></Label>
-                        <Label row="2" verticalAlignment="center" horizontalAlignment="left" textWrap="true"
-                               class="left-right-margin-list bot-margin-list"
-                               text="{{'Číslo inventury: ' + (item.InventoryNumber ? item.InventoryNumber : '\u2014')}}"></Label>
-                        <Label row="3" verticalAlignment="center" horizontalAlignment="left" textWrap="true"
-                               class="left-right-margin-list bot-margin-list"
-                               text="{{'Datum inventury: ' + (item.InventoryDate ? item.InventoryDate : '\u2014')}}"></Label>
-                        <Label row="4" text="{{'Popis: ' + (item.Description ? item.Description : '\u2014')}}"
-                               class="left-right-margin-list bot-margin-list" textWrap="true"
-                               verticalAlignment="center" horizontalAlignment="left"></Label>
+    <!--StackLayout below is necessary wrapper otherwise photo popover won't work (on android api 19+)-->
+    <StackLayout *ngIf="listLoaded" row="2" col="0" colSpan="3">
+        <TabView selectedIndex="0" sdkExampleTitle
+                 sdkToggleNavButton visibility="{{items.length > 0 ? 'visible' : 'hidden'}}">
+            <RadListView #listNotInventory *tabItem="{title: 'K výběru'}" [items]="items"
+                         (itemTap)="onItemTap($event)">
+                <ng-template let-item="item">
+                    <GridLayout rows="{{item.expanded ? '35, 35, *' : '35, 35'}}" columns="*, auto, *"
+                                visibility="{{item.synced ? 'visible' : 'collapse'}}"
+                                backgroundColor="{{item.expanded ? '#BDD4DF' : 'white' }}">
+                        <Label *ngIf="!item.photo" row="0" rowSpan="2" col="0" verticalAlignment="center" width="60"
+                               height="60"
+                               horizontalAlignment="left" [text]="icons.photo"
+                               class="image-like-circular-label"></Label>
+                        <Image *ngIf="item.photo" row="0" rowSpan="2" col="0" verticalAlignment="center" width="60"
+                               height="60" horizontalAlignment="left" [src]="item.photo" backgroundColor="white"
+                               class="circular-list-image" (tap)="onImageTap($event)"></Image>
+                        <Label row="0" col="1" [text]="item.DisplayName" class="list-view-first-line"
+                               textWrap="true"
+                               horizontalAlignment="center" verticalAlignmnet="bottom"></Label>
+                        <Label row="1" col="1" text="{{item.InWarehouse ? 'Ve skladu: Ano' : 'Ve skladu: Ne'}}"
+                               class="list-view-second-line" textWrap="true"
+                               horizontalAlignment="center" verticalAlignment="top"></Label>
+                        <Label row="0" rowSpan="2" col="2" text="{{icons.check}}"
+                               verticalAlignment="center" horizontalAlignment="right"
+                               class="icon icon-item-left" (tap)="onUninventorizedItemTap($event)"></Label>
+                        <Label row="0" rowSpan="2" col="2" text="{{item.expanded ? icons.caretDown : icons.caretLeft}}"
+                               verticalAlignment="center" horizontalAlignment="right"
+                               class="icon icon-item-rightmost"></Label>
+                        <GridLayout *ngIf="item.expanded" row="2" col="0" colSpan="3" rows="auto, auto, auto, auto, *"
+                                    backgroundColor="white">
+                            <Label row="0" verticalAlignment="center" horizontalAlignment="left" textWrap="true"
+                                   class="left-right-margin-list top-bot-margin-list"
+                                   text="{{'Pořizovací cena: ' + (item.PurchasePrice ? item.PurchasePrice.slice(0, item.PurchasePrice.length - 2) + ' Kč' : '\u2014')}}"></Label>
+                            <Label row="1" verticalAlignment="center" horizontalAlignment="left" textWrap="true"
+                                   class="left-right-margin-list bot-margin-list"
+                                   text="{{'Datum pořízení: ' + (item.PurchaseDate ? item.PurchaseDate : '\u2014')}}"></Label>
+                            <Label row="2" verticalAlignment="center" horizontalAlignment="left" textWrap="true"
+                                   class="left-right-margin-list bot-margin-list"
+                                   text="{{'Číslo inventury: ' + (item.InventoryNumber ? item.InventoryNumber : '\u2014')}}"></Label>
+                            <Label row="3" verticalAlignment="center" horizontalAlignment="left" textWrap="true"
+                                   class="left-right-margin-list bot-margin-list"
+                                   text="{{'Datum inventury: ' + (item.InventoryDate ? item.InventoryDate : '\u2014')}}"></Label>
+                            <Label row="4" text="{{'Popis: ' + (item.Description ? item.Description : '\u2014')}}"
+                                   class="left-right-margin-list bot-margin-list" textWrap="true"
+                                   verticalAlignment="center" horizontalAlignment="left"></Label>
+                        </GridLayout>
                     </GridLayout>
-                </GridLayout>
-            </ng-template>
-        </RadListView>
-        <RadListView #listInventory *tabItem="{title: 'Inventarizováno'}" [items]="items"
-                     (itemTap)="onItemTap($event)">
-            <ng-template let-item="item">
-                <GridLayout rows="{{item.expanded ? '35, 35, *' : '35, 35'}}" columns="*, auto, *"
-                            visibility="{{item.synced ? 'collapse' : 'visible'}}"
-                            backgroundColor="{{item.expanded ? '#BDD4DF' : 'white' }}">
-                    <Label *ngIf="!item.photo" row="0" rowSpan="2" col="0" verticalAlignment="center" width="60"
-                           height="60"
-                           horizontalAlignment="left" [text]="icons.photo" class="image-like-circular-label"></Label>
-                    <Image *ngIf="item.photo" row="0" rowSpan="2" col="0" verticalAlignment="center" width="60"
-                           height="60" horizontalAlignment="left" [src]="item.photo" backgroundColor="white"
-                           class="circular-list-image"></Image>
-                    <Label row="0" col="1" [text]="item.DisplayName" class="list-view-first-line"
-                           textWrap="true"
-                           horizontalAlignment="center" verticalAlignmnet="bottom"></Label>
-                    <Label row="1" col="1" text="{{item.InWarehouse ? 'Ve skladu: Ano' : 'Ve skladu: Ne'}}"
-                           class="list-view-second-line" textWrap="true"
-                           horizontalAlignment="center" verticalAlignment="top"></Label>
-                    <Label row="0" rowSpan="2" col="2" text="{{icons.cross}}" (tap)="onInventorizedItemTap($event)"
-                           verticalAlignment="center" horizontalAlignment="right"
-                           class="icon icon-item-left"></Label>
-                    <Label row="0" rowSpan="2" col="2" text="{{item.expanded ? icons.caretDown : icons.caretLeft}}"
-                           verticalAlignment="center" horizontalAlignment="right"
-                           class="icon icon-item-rightmost"></Label>
-                    <GridLayout *ngIf="item.expanded" row="2" col="0" colSpan="3" rows="auto, auto, auto, auto, *"
-                                backgroundColor="white">
-                        <Label row="0" verticalAlignment="center" horizontalAlignment="left" textWrap="true"
-                               class="left-right-margin-list top-bot-margin-list"
-                               text="{{'Pořizovací cena: ' + (item.PurchasePrice ? item.PurchasePrice.slice(0, item.PurchasePrice.length - 2) + ' Kč' : '\u2014')}}"></Label>
-                        <Label row="1" verticalAlignment="center" horizontalAlignment="left" textWrap="true"
-                               class="left-right-margin-list bot-margin-list"
-                               text="{{'Datum pořízení: ' + (item.PurchaseDate ? item.PurchaseDate : '\u2014')}}"></Label>
-                        <Label row="2" verticalAlignment="center" horizontalAlignment="left" textWrap="true"
-                               class="left-right-margin-list bot-margin-list"
-                               text="{{'Číslo inventury: ' + (item.InventoryNumber ? item.InventoryNumber : '\u2014')}}"></Label>
-                        <Label row="3" verticalAlignment="center" horizontalAlignment="left" textWrap="true"
-                               class="left-right-margin-list bot-margin-list"
-                               text="{{'Datum inventury: ' + (item.InventoryDate ? item.InventoryDate : '\u2014')}}"></Label>
-                        <Label row="4" text="{{'Popis: ' + (item.Description ? item.Description : '\u2014')}}"
-                               class="left-right-margin-list bot-margin-list" textWrap="true"
-                               verticalAlignment="center" horizontalAlignment="left"></Label>
+                </ng-template>
+            </RadListView>
+            <RadListView #listInventory *tabItem="{title: 'Inventarizováno'}" [items]="items"
+                         (itemTap)="onItemTap($event)">
+                <ng-template let-item="item">
+                    <GridLayout rows="{{item.expanded ? '35, 35, *' : '35, 35'}}" columns="*, auto, *"
+                                visibility="{{item.synced ? 'collapse' : 'visible'}}"
+                                backgroundColor="{{item.expanded ? '#BDD4DF' : 'white' }}">
+                        <Label *ngIf="!item.photo" row="0" rowSpan="2" col="0" verticalAlignment="center" width="60"
+                               height="60"
+                               horizontalAlignment="left" [text]="icons.photo"
+                               class="image-like-circular-label"></Label>
+                        <Image *ngIf="item.photo" row="0" rowSpan="2" col="0" verticalAlignment="center" width="60"
+                               height="60" horizontalAlignment="left" [src]="item.photo" backgroundColor="white"
+                               class="circular-list-image" (tap)="onImageTap($event)"></Image>
+                        <Label row="0" col="1" [text]="item.DisplayName" class="list-view-first-line"
+                               textWrap="true"
+                               horizontalAlignment="center" verticalAlignmnet="bottom"></Label>
+                        <Label row="1" col="1" text="{{item.InWarehouse ? 'Ve skladu: Ano' : 'Ve skladu: Ne'}}"
+                               class="list-view-second-line" textWrap="true"
+                               horizontalAlignment="center" verticalAlignment="top"></Label>
+                        <Label row="0" rowSpan="2" col="2" text="{{icons.cross}}" (tap)="onInventorizedItemTap($event)"
+                               verticalAlignment="center" horizontalAlignment="right"
+                               class="icon icon-item-left"></Label>
+                        <Label row="0" rowSpan="2" col="2" text="{{item.expanded ? icons.caretDown : icons.caretLeft}}"
+                               verticalAlignment="center" horizontalAlignment="right"
+                               class="icon icon-item-rightmost"></Label>
+                        <GridLayout *ngIf="item.expanded" row="2" col="0" colSpan="3" rows="auto, auto, auto, auto, *"
+                                    backgroundColor="white">
+                            <Label row="0" verticalAlignment="center" horizontalAlignment="left" textWrap="true"
+                                   class="left-right-margin-list top-bot-margin-list"
+                                   text="{{'Pořizovací cena: ' + (item.PurchasePrice ? item.PurchasePrice.slice(0, item.PurchasePrice.length - 2) + ' Kč' : '\u2014')}}"></Label>
+                            <Label row="1" verticalAlignment="center" horizontalAlignment="left" textWrap="true"
+                                   class="left-right-margin-list bot-margin-list"
+                                   text="{{'Datum pořízení: ' + (item.PurchaseDate ? item.PurchaseDate : '\u2014')}}"></Label>
+                            <Label row="2" verticalAlignment="center" horizontalAlignment="left" textWrap="true"
+                                   class="left-right-margin-list bot-margin-list"
+                                   text="{{'Číslo inventury: ' + (item.InventoryNumber ? item.InventoryNumber : '\u2014')}}"></Label>
+                            <Label row="3" verticalAlignment="center" horizontalAlignment="left" textWrap="true"
+                                   class="left-right-margin-list bot-margin-list"
+                                   text="{{'Datum inventury: ' + (item.InventoryDate ? item.InventoryDate : '\u2014')}}"></Label>
+                            <Label row="4" text="{{'Popis: ' + (item.Description ? item.Description : '\u2014')}}"
+                                   class="left-right-margin-list bot-margin-list" textWrap="true"
+                                   verticalAlignment="center" horizontalAlignment="left"></Label>
+                        </GridLayout>
                     </GridLayout>
-                </GridLayout>
-            </ng-template>
-        </RadListView>
-    </TabView>
+                </ng-template>
+            </RadListView>
+        </TabView>
+    </StackLayout>
     <ActivityIndicator row="2" col="0" colSpan="3" class="scout-blue-color" [busy]="activityIndicatorBusy" height="50"
                        width="50"></ActivityIndicator>
     <StackLayout row="3" col="0" colSpan="3" height="1" backgroundColor="#9e9e9e" verticalAlignment="top"></StackLayout>
@@ -119,5 +124,10 @@
                 (tap)="onScanCodesTap()" horizontalAlignment="left"></Button>
         <Button col="1" text="POTVRDIT" class="header-text-component generic-text-component"
                 (tap)="onSubmitInventory()" horizontalAlignment="right"></Button>
+    </GridLayout>
+    <GridLayout row="0" col="0" rowSpan="5" colSpan="3" class="popover-image-container" (tap)="onDismissPopover()"
+                [visibility]="popover.visibility">
+        <Image [src]="popover.photo" verticalAlignment="center" horizontalAlignment="center"
+               class="popover-inner"></Image>
     </GridLayout>
 </GridLayout>
