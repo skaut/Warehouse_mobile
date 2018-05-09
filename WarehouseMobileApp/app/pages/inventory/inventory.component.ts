@@ -209,8 +209,10 @@ export class InventoryComponent implements OnInit {
         const warehouseItem = this.items.find((item) => {
             return item.ID === itemId;
         });
+        let alertShown = false;
         if (warehouseItem) {
             if (warehouseItem.lastInventoryId === this.currentInventory.ID) {
+                alertShown = true;
                 Dialogs.alert({
                     title: "Výsledek skenu",
                     message: "Předmět: " + warehouseItem.DisplayName + " už byl inventarizován.",
@@ -222,16 +224,18 @@ export class InventoryComponent implements OnInit {
                 warehouseItem.lastInventoryId = this.currentInventory.ID;
             }
         }
-        Dialogs.confirm({
-            title: "Výsledek skenu",
-            message: warehouseItem ? "Název: " + warehouseItem.DisplayName : "Kódu neodpovídá žádný předmět.",
-            okButtonText: "Skenovat další",
-            cancelButtonText: "Konec",
-        }).then(result => {
-            if (!result) {
-                this.barcodeScanner.stop()
-            }
-        })
+        if (!alertShown) {
+            Dialogs.confirm({
+                title: "Výsledek skenu",
+                message: warehouseItem ? "Název: " + warehouseItem.DisplayName : "Kódu neodpovídá žádný předmět.",
+                okButtonText: "Skenovat další",
+                cancelButtonText: "Konec",
+            }).then(result => {
+                if (!result) {
+                    this.barcodeScanner.stop();
+                }
+            })
+        }
     }
 
     onSubmitInventory(): void {
