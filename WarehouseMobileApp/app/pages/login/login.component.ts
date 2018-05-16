@@ -139,13 +139,7 @@ export class LoginComponent implements OnInit {
                             return ALLOWED_ROLES.some(value => value === role["ID_Role"])
                         });
                         this.enableButton(button);
-                        if (this.userRoleAllResult.UserRoles.length === 1) {
-                            // todo - load warehouses for user with one role only!
-                            this.routerExtensions.navigate(["/warehouseList"], {clearHistory: true})
-                        }
-                        else {
-                            this.routerExtensions.navigate(["/selectRole"], {clearHistory: true});
-                        }
+                        this.routerExtensions.navigate(["/selectRole"], {clearHistory: true});
                     }
                     catch {
                         this.showErrorBar("Nepodařilo se načíst uživatelské role.");
