@@ -42,14 +42,13 @@ export class LoginComponent implements OnInit {
         this.isLoading = false;
         this.user = new User();
         this.user.name = AppSettings.getString(USER_NAME, "");
-        this.user.password = "koprivnice.Web5";
     }
 
     ngOnInit(): void {
         this.page.actionBarHidden = true;
         this.failedLoginLabel = {
             message: "Nastala chyba při komunikaci se službou SkautIS.",
-            visibility: "hidden"
+            visibility: "collapse"
         }
     }
 
@@ -57,9 +56,9 @@ export class LoginComponent implements OnInit {
         this.failedLoginLabel.message = message;
         this.failedLoginLabel.visibility = "visible";
         setTimeout(() => {
-            this.failedLoginLabel.visibility = "hidden";
+            this.failedLoginLabel.visibility = "collapse";
             this.failedLoginLabel.message = "Nastala chyba při komunikaci se službou SkautIS.";
-        }, 3000)
+        }, 1750)
     }
 
     /**

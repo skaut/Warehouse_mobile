@@ -25,11 +25,12 @@
             <ng-template let-item="item">
                 <GridLayout rows="{{item.expanded ? '70, *' : '70'}}" columns="*, auto, *"
                             backgroundColor="{{item.expanded ? '#BDD4DF' : 'white' }}">
-                    <Label *ngIf="!item.photo" col="0" verticalAlignment="center" width="60" height="60" backgroundColor="white"
-                           horizontalAlignment="left" [text]="icons.photo" class="image-like-circular-label"></Label>
-                    <Image *ngIf="item.photo" col="0" verticalAlignment="center" width="60" class="circular-list-image"
+                    <Label col="0" verticalAlignment="center" width="60" height="60" backgroundColor="white"
+                           horizontalAlignment="left" [text]="icons.photo" class="image-like-circular-label"
+                            visibility="{{item.photo ? 'hidden' : 'visible'}}"></Label>
+                    <Image col="0" verticalAlignment="center" width="60" class="circular-list-image"
                            height="60" horizontalAlignment="left" [src]="item.photo" (tap)="onImageTap($event)"
-                           backgroundColor="white"></Image>
+                           backgroundColor="white" visibility="{{item.photo ? 'visible' : 'hidden'}}"></Image>
                     <Label col="1" [text]="item.DisplayName" class="reservation-item-name"
                            textWrap="true"
                            horizontalAlignment="center" verticalAlignmnet="center"></Label>

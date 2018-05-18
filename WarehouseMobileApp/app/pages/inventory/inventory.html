@@ -27,11 +27,13 @@
                     <GridLayout rows="{{item.expanded ? '35, 35, *' : '35, 35'}}" columns="*, auto, *"
                                 visibility="{{item.lastInventoryId ? 'collapse' : 'visible'}}"
                                 backgroundColor="{{item.expanded ? '#BDD4DF' : (item.lastInventoryId ? '#A4D2B2' : 'white') }}">
-                        <Label *ngIf="!item.photo" row="0" rowSpan="2" col="0" verticalAlignment="center" width="60"
+                        <Label row="0" rowSpan="2" col="0" verticalAlignment="center" width="60"
                                height="60" (tap)="onTakeImageTap($event)"
+                               visibility="{{item.photo ? 'hidden' : 'visible'}}"
                                horizontalAlignment="left" [text]="icons.photo"
                                class="image-like-circular-label"></Label>
-                        <Image *ngIf="item.photo" row="0" rowSpan="2" col="0" verticalAlignment="center" width="60"
+                        <Image visibility="{{item.photo ? 'visible' : 'hidden'}}" row="0" rowSpan="2" col="0"
+                               verticalAlignment="center" width="60"
                                height="60" horizontalAlignment="left" [src]="item.photo" backgroundColor="white"
                                class="circular-list-image" (tap)="onImageTap($event)"></Image>
                         <Label row="0" col="1" [text]="item.DisplayName" class="list-view-first-line"
@@ -46,8 +48,8 @@
                         <Label row="0" rowSpan="2" col="2" text="{{item.expanded ? icons.caretDown : icons.caretLeft}}"
                                verticalAlignment="center" horizontalAlignment="right"
                                class="icon icon-item-rightmost"></Label>
-                        <GridLayout *ngIf="item.expanded" row="2" col="0" colSpan="3" rows="auto, auto, auto, auto, *"
-                                    backgroundColor="white">
+                        <GridLayout row="2" col="0" colSpan="3" rows="auto, auto, auto, auto, *"
+                                    backgroundColor="white" visibility="{{item.expanded ? 'visible' : 'collapse'}}">
                             <Label row="0" verticalAlignment="center" horizontalAlignment="left" textWrap="true"
                                    class="left-right-margin-list top-bot-margin-list"
                                    text="{{'Pořizovací cena: ' + (item.PurchasePrice ? item.PurchasePrice.slice(0, item.PurchasePrice.length - 2) + ' Kč' : '\u2014')}}"></Label>
@@ -73,11 +75,13 @@
                     <GridLayout rows="{{item.expanded ? '35, 35, *' : '35, 35'}}" columns="*, auto, *"
                                 visibility="{{item.lastInventoryId ? 'visible' : 'collapse'}}"
                                 backgroundColor="{{item.expanded ? '#BDD4DF' : (item.synced ? '#A4D2B2' : 'white')}}">
-                        <Label *ngIf="!item.photo" row="0" rowSpan="2" col="0" verticalAlignment="center" width="60"
+                        <Label row="0" rowSpan="2" col="0" verticalAlignment="center" width="60"
                                height="60" (tap)="onTakeImageTap($event)"
+                               visibility="{{item.photo ? 'hidden' : 'visible'}}"
                                horizontalAlignment="left" [text]="icons.photo"
                                class="image-like-circular-label"></Label>
-                        <Image *ngIf="item.photo" row="0" rowSpan="2" col="0" verticalAlignment="center" width="60"
+                        <Image visibility="{{item.photo ? 'visible' : 'hidden'}}" row="0" rowSpan="2" col="0"
+                               verticalAlignment="center" width="60"
                                height="60" horizontalAlignment="left" [src]="item.photo" backgroundColor="white"
                                class="circular-list-image" (tap)="onImageTap($event)"></Image>
                         <Label row="0" col="1" [text]="item.DisplayName" class="list-view-first-line"
@@ -92,8 +96,8 @@
                         <Label row="0" rowSpan="2" col="2" text="{{item.expanded ? icons.caretDown : icons.caretLeft}}"
                                verticalAlignment="center" horizontalAlignment="right"
                                class="icon icon-item-rightmost"></Label>
-                        <GridLayout *ngIf="item.expanded" row="2" col="0" colSpan="3" rows="auto, auto, auto, auto, *"
-                                    backgroundColor="white">
+                        <GridLayout row="2" col="0" colSpan="3" rows="auto, auto, auto, auto, *"
+                                    backgroundColor="white" visibility="{{item.expanded ? 'visible' : 'collapse'}}">
                             <Label row="0" verticalAlignment="center" horizontalAlignment="left" textWrap="true"
                                    class="left-right-margin-list top-bot-margin-list"
                                    text="{{'Pořizovací cena: ' + (item.PurchasePrice ? item.PurchasePrice.slice(0, item.PurchasePrice.length - 2) + ' Kč' : '\u2014')}}"></Label>
