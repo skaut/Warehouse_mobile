@@ -2,4 +2,4 @@
 layout: home
 ---
 
-A Site Starter Materialize Templates for Jekyll.
+Warehouse mobile je mobilní aplikace, která zpřístupňuje vybrané služby agendy majetku informačního systému Junáka skautIS.

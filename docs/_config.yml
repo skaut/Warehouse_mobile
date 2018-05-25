@@ -1,11 +1,11 @@
-title: Starter Template
-author: Panoramedia
-email: panoramedia@gmail.com
+title: Warehouse Mobile 
+author: Honza Crha pro Junák - český skaut, z.s. 
+email: infoodbor@skaut.cz
 description: > # this means to ignore newlines until "baseurl:"
   A Site Starter Materialize Templates for Jekyll
 
 twitter_username: macrod68
 github_username:  macrod68
-
+baseurl: /index.html
 sass:
     style: compressed
