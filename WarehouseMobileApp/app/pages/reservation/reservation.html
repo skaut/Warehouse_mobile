@@ -1,93 +1,109 @@
-<Page (loaded)="onLoaded()">
-    <GridLayout rows="auto, 60, auto, *" columns="*, auto, *">
-        <GridLayout row="0" col="0" colSpan="3" backgroundColor="{{errorOccurred ? 'red' : '#008836'}}"
-                    class="status-bar-container-size" [visibility]="statusBar.visibility">
-            <Label class="failed-action-panel" verticalAlignment="center" textAlignment="center"
-                   [text]="statusBar.message"></Label>
-        </GridLayout>
-        <GridLayout row="1" col="0" colSpan="3" columns="*, auto, *" class="layout-bottom-border layout-colored">
-            <Button col="0" text="ZPĚT" horizontalAlignment="left" class="header-text-component generic-text-component"
-                    (tap)="back()"></Button>
-            <Label col="1" #reservation text="REZERVACE" horizontalAlignment="center" verticalAlignment="center"
-                   class="header-text-component generic-text-component"></Label>
-            <Button col="2" text="ODHLÁSIT" horizontalAlignment="right"
-                    class="header-text-component generic-text-component"
-                    (tap)="logout()"></Button>
-        </GridLayout>
-        <SearchBar row="2" col="0" colSpan="3" id="searchBar" hint="Hledaný předmět"
-                   (submit)="onSearchSubmit($event)" (clear)="onSearchClear()"></SearchBar>
-        <Label *ngIf="listLoaded" row="3" col="0" colSpan="3" [text]="pageMessage" textWrap="true"
-               verticalAlignment="center" textAlignment="center" marginLeft="15" marginRight="15"
-               horizontalAlignment="center"
-               visibility="{{items.length > 0 ? 'hidden' : 'visible'}}"></Label>
-        <RadListView *ngIf="listLoaded" #list row="3" col="0" colSpan="3" [items]="items" (itemTap)="onItemTap($event)"
-                     visibility="{{items.length > 0 ? 'visible' : 'hidden'}}">
-            <ng-template let-item="item">
-                <GridLayout rows="{{item.expanded ? '70, *' : '70'}}" columns="*, auto, *"
-                            backgroundColor="{{item.expanded ? '#BDD4DF' : 'white' }}">
-                    <Label col="0" verticalAlignment="center" width="60" height="60" backgroundColor="white"
-                           horizontalAlignment="left" [text]="icons.photo" class="image-like-circular-label"
-                            visibility="{{item.photo ? 'hidden' : 'visible'}}"></Label>
-                    <Image col="0" verticalAlignment="center" width="60" class="circular-list-image"
-                           height="60" horizontalAlignment="left" [src]="item.photo" (tap)="onImageTap($event)"
-                           backgroundColor="white" visibility="{{item.photo ? 'visible' : 'hidden'}}"></Image>
-                    <Label col="1" [text]="item.DisplayName" class="reservation-item-name"
-                           textWrap="true"
-                           horizontalAlignment="center" verticalAlignmnet="center"></Label>
-                    <Label col="2" text="{{icons.check}}"
-                           verticalAlignment="center" horizontalAlignment="right"
-                           class="icon icon-item-left" (tap)="onReserveTap($event)"></Label>
-                    <Label col="2" text="{{item.expanded ? icons.caretDown : icons.caretLeft}}"
-                           verticalAlignment="center" horizontalAlignment="right"
-                           class="icon icon-item-rightmost"></Label>
-                    <GridLayout row="1" col="0" colSpan="3" rows="*, *, *, *" backgroundColor="white"
-                                visibility="{{item.expanded ? 'visible' : 'collapse'}}">
-                        <Label row="0" verticalAlignment="center" horizontalAlignment="left" textWrap="true"
-                               class="left-right-margin-list top-bot-margin-list"
-                               text="{{'Město: ' + (item.City ? item.City : '\u2014')}}"></Label>
-                        <Label row="1" verticalAlignment="center" horizontalAlignment="left" textWrap="true"
-                               class="left-right-margin-list bot-margin-list"
-                               text="{{'Jednotka: ' + (item.UnitWithRegistrationNumber ? item.UnitWithRegistrationNumber : '\u2014')}}"></Label>
-                        <Label row="2" verticalAlignment="center" horizontalAlignment="left" textWrap="true"
-                               class="left-right-margin-list bot-margin-list"
-                               text="{{'Půjčovací cena: ' + (item.RentPrice ? item.RentPrice.slice(0, item.RentPrice.length - 2) + ' Kč' : '\u2014')}}"></Label>
-                        <Label row="3" verticalAlignment="center" horizontalAlignment="left" textWrap="true"
-                               class="left-right-margin-list bot-margin-list"
-                               text="{{'Poznámka k půjčení: ' + (item.RentNote ? item.RentNote : '\u2014')}}"
-                               textWrap="true"></Label>
-                    </GridLayout>
-                </GridLayout>
-            </ng-template>
-        </RadListView>
-        <ActivityIndicator row="3" col="0" colSpan="3" class="scout-blue-color" [busy]="isLoading" height="50"
-                           width="50"></ActivityIndicator>
-        <GridLayout row="0" col="0" rowSpan="4" colSpan="3" [visibility]="popover.visibility" (tap)="onDismissPopover()"
-                    class="popover-image-container">
-            <Image *ngIf="!popover.calendarMode" [src]="popover.photo" verticalAlignment="center"
-                   horizontalAlignment="center" class="popover-inner"></Image>
-            <GridLayout *ngIf="popover.calendarMode" rows="auto, auto, *, auto, *, auto" columns="*, *"
-                        backgroundColor="white" class="popover-inner" (tap)="ignore()">
-                <Label row="0" col="0" colSpan="2" #ReserveItemName horizontalAlignment="center"
-                       textAlignment="center" text="{{popover.item.DisplayName.toUpperCase()}}"
-                       class="scout-blue-color reservation-item-name-popover" textWrap="true"></Label>
-                <Label *ngIf="!errorOccurred" row="1" col="0" colSpan="2" horizontalAlignment="center"
-                       textAlignment="center" text="OD" class="popover-text-big"></Label>
-                <DatePicker *ngIf="!errorOccurred" id="fromPicker" row="2" col="0" colSpan="2"
-                            horizontalAlignment="center" (dateChange)="onDateChanged()"
-                            verticalAlignment="center" (loaded)="onPickerLoaded($event)"></DatePicker>
-                <Label *ngIf="!errorOccurred" row="3" col="0" colSpan="2" horizontalAlignment="center"
-                       textAlignment="center" text="DO" class="popover-text-big"></Label>
-                <DatePicker *ngIf="!errorOccurred" id="toPicker" row="4" col="0" colSpan="2"
-                            horizontalAlignment="center" (dateChange)="onDateChanged()"
-                            verticalAlignment="center" (loaded)="onPickerLoaded($event)"></DatePicker>
-                <Label *ngIf="errorOccurred" row="1" col="0" colSpan="2" rowSpan="4" horizontalAlignment="center"
-                       textAlignment="center" verticalAlignment="center" text="Nepodařilo se načíct detail položky"
-                       textWrap="true" class="popover-text-big"></Label>
-                <Button row="5" col="0" text="ZRUŠIT" class="generic-text-component"
-                        (tap)="onDismissPopover()"></Button>
-                <Button row="5" col="1" text="REZERVOVAT" class="generic-text-component"
-                        (tap)="onReserveConfirmTap()"></Button>
+<GridLayout rows="auto, 60, auto, *" columns="*, auto, *">
+    <GridLayout row="0" col="0" colSpan="3" backgroundColor="{{errorOccurred ? 'red' : '#008836'}}"
+                class="status-bar-container-size" [visibility]="statusBar.visibility">
+        <Label class="failed-action-panel" verticalAlignment="center" textAlignment="center"
+               [text]="statusBar.message"></Label>
+    </GridLayout>
+    <GridLayout row="1" col="0" colSpan="3" columns="*, auto, *" class="layout-bottom-border layout-colored">
+        <Button col="0" text="ZPĚT" horizontalAlignment="left" class="header-text-component generic-text-component"
+                (tap)="back()" ios:style="margin-left: 15"></Button>
+        <Label col="1" #reservation text="REZERVACE" horizontalAlignment="center" verticalAlignment="center"
+               class="header-text-component generic-text-component"></Label>
+        <Button col="2" text="ODHLÁSIT" horizontalAlignment="right"
+                class="header-text-component generic-text-component"
+                (tap)="logout()" ios:style="margin-right: 15"></Button>
+    </GridLayout>
+    <SearchBar row="2" col="0" colSpan="3" id="searchBar" hint="Hledaný předmět" (loaded)="onLoaded()"
+               (submit)="onSearchSubmit($event)" (clear)="onSearchClear()"></SearchBar>
+    <Label *ngIf="listLoaded" row="3" col="0" colSpan="3" [text]="pageMessage" textWrap="true"
+           verticalAlignment="center" textAlignment="center" marginLeft="15" marginRight="15"
+           horizontalAlignment="center"
+           visibility="{{items.length > 0 ? 'hidden' : 'visible'}}"></Label>
+    <RadListView *ngIf="listLoaded" #list row="3" col="0" colSpan="3" [items]="items" (itemTap)="onItemTap($event)"
+                 visibility="{{items.length > 0 ? 'visible' : 'hidden'}}" [itemTemplateSelector]="templateSelector">
+        <ng-template let-item="item">
+            <GridLayout rows="70" columns="*, auto, *" backgroundColor="{{item.expanded ? '#BDD4DF' : 'white' }}">
+                <Label col="0" verticalAlignment="center" width="60" height="60" backgroundColor="white"
+                       horizontalAlignment="left" [text]="icons.photo" class="image-like-circular-label"
+                       visibility="{{item.photo ? 'hidden' : 'visible'}}"></Label>
+                <Image col="0" verticalAlignment="center" width="60" class="circular-list-image"
+                       height="60" horizontalAlignment="left" [src]="item.photo" (tap)="onImageTap($event)"
+                       backgroundColor="white" visibility="{{item.photo ? 'visible' : 'hidden'}}"></Image>
+                <Label col="1" [text]="item.DisplayName" class="reservation-item-name"
+                       textWrap="true"
+                       horizontalAlignment="center" verticalAlignmnet="center"></Label>
+                <Label col="2" text="{{icons.check}}"
+                       verticalAlignment="center" horizontalAlignment="right"
+                       class="icon icon-item-left" (tap)="onReserveTap($event)"></Label>
+                <Label col="2" text="{{item.expanded ? icons.caretDown : icons.caretLeft}}"
+                       verticalAlignment="center" horizontalAlignment="right"
+                       class="icon icon-item-rightmost"></Label>
             </GridLayout>
+        </ng-template>
+        <ng-template tkTemplateKey="expanded" let-item="item">
+            <GridLayout rows="70, *" columns="*, auto, *" backgroundColor="{{item.expanded ? '#BDD4DF' : 'white' }}">
+                <Label row="0" col="0" verticalAlignment="center" width="60" height="60" backgroundColor="white"
+                       horizontalAlignment="left" [text]="icons.photo" class="image-like-circular-label"
+                       visibility="{{item.photo ? 'hidden' : 'visible'}}"></Label>
+                <Image row="0" col="0" verticalAlignment="center" width="60" class="circular-list-image"
+                       height="60" horizontalAlignment="left" [src]="item.photo" (tap)="onImageTap($event)"
+                       backgroundColor="white" visibility="{{item.photo ? 'visible' : 'hidden'}}"></Image>
+                <Label row="0" col="1" [text]="item.DisplayName" class="reservation-item-name"
+                       textWrap="true"
+                       horizontalAlignment="center" verticalAlignmnet="center"></Label>
+                <Label row="0" col="2" text="{{icons.check}}"
+                       verticalAlignment="center" horizontalAlignment="right"
+                       class="icon icon-item-left" (tap)="onReserveTap($event)"></Label>
+                <Label row="0" col="2" text="{{item.expanded ? icons.caretDown : icons.caretLeft}}"
+                       verticalAlignment="center" horizontalAlignment="right"
+                       class="icon icon-item-rightmost"></Label>
+                <GridLayout row="1" col="0" colSpan="3" rows="*, *, *, *" backgroundColor="white"
+                            visibility="{{item.expanded ? 'visible' : 'collapse'}}">
+                    <Label row="0" verticalAlignment="center" horizontalAlignment="left" textWrap="true"
+                           class="left-right-margin-list top-bot-margin-list"
+                           text="{{'Město: ' + (item.City ? item.City : '\u2014')}}"></Label>
+                    <Label row="1" verticalAlignment="center" horizontalAlignment="left" textWrap="true"
+                           class="left-right-margin-list bot-margin-list"
+                           text="{{'Jednotka: ' + (item.UnitWithRegistrationNumber ? item.UnitWithRegistrationNumber : '\u2014')}}"></Label>
+                    <Label row="2" verticalAlignment="center" horizontalAlignment="left" textWrap="true"
+                           class="left-right-margin-list bot-margin-list"
+                           text="{{'Půjčovací cena: ' + (item.RentPrice ? item.RentPrice.slice(0, item.RentPrice.length - 2) + ' Kč' : '\u2014')}}"></Label>
+                    <Label row="3" verticalAlignment="center" horizontalAlignment="left" textWrap="true"
+                           class="left-right-margin-list bot-margin-list"
+                           text="{{'Poznámka k půjčení: ' + (item.RentNote ? item.RentNote : '\u2014')}}"
+                           textWrap="true"></Label>
+                </GridLayout>
+            </GridLayout>
+        </ng-template>
+    </RadListView>
+    <ActivityIndicator row="3" col="0" colSpan="3" class="scout-blue-color" [busy]="isLoading" height="50"
+                       width="50"></ActivityIndicator>
+    <GridLayout row="0" col="0" rowSpan="4" colSpan="3" [visibility]="popover.visibility" (tap)="onDismissPopover()"
+                class="popover-image-container">
+        <Image *ngIf="!popover.calendarMode" [src]="popover.photo" verticalAlignment="center"
+               horizontalAlignment="center" class="popover-inner"></Image>
+        <GridLayout *ngIf="popover.calendarMode" rows="auto, auto, *, auto, *, auto" columns="*, *"
+                    backgroundColor="white" class="popover-inner" (tap)="ignore()">
+            <Label row="0" col="0" colSpan="2" #ReserveItemName horizontalAlignment="center"
+                   textAlignment="center" text="{{popover.item.DisplayName.toUpperCase()}}"
+                   class="scout-blue-color reservation-item-name-popover" textWrap="true"></Label>
+            <Label *ngIf="!errorOccurred" row="1" col="0" colSpan="2" horizontalAlignment="center"
+                   textAlignment="center" text="OD" class="popover-text-big"></Label>
+            <DatePicker *ngIf="!errorOccurred" id="fromPicker" row="2" col="0" colSpan="2"
+                        horizontalAlignment="center" (dateChange)="onDateChanged()"
+                        verticalAlignment="center" (loaded)="onPickerLoaded($event)"></DatePicker>
+            <Label *ngIf="!errorOccurred" row="3" col="0" colSpan="2" horizontalAlignment="center"
+                   textAlignment="center" text="DO" class="popover-text-big"></Label>
+            <DatePicker *ngIf="!errorOccurred" id="toPicker" row="4" col="0" colSpan="2"
+                        horizontalAlignment="center" (dateChange)="onDateChanged()"
+                        verticalAlignment="center" (loaded)="onPickerLoaded($event)"></DatePicker>
+            <Label *ngIf="errorOccurred" row="1" col="0" colSpan="2" rowSpan="4" horizontalAlignment="center"
+                   textAlignment="center" verticalAlignment="center" text="Nepodařilo se načíct detail položky"
+                   textWrap="true" class="popover-text-big"></Label>
+            <Button row="5" col="0" text="ZRUŠIT" class="generic-text-component"
+                    (tap)="onDismissPopover()"></Button>
+            <Button row="5" col="1" text="REZERVOVAT" class="generic-text-component"
+                    (tap)="onReserveConfirmTap()"></Button>
         </GridLayout>
     </GridLayout>
-</Page>
+</GridLayout>

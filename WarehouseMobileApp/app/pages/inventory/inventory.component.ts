@@ -106,6 +106,10 @@ export class InventoryComponent implements OnInit {
         console.log("warehouse ID: " + this.warehouseId);
     }
 
+    templateSelector(item: any, index: number, items: any): string {
+        return item.expanded ? "expanded" : "default";
+    }
+
     private showStatusBar(message?: string): void {
         if (message) {
             this.statusBar.message = message;
@@ -121,6 +125,8 @@ export class InventoryComponent implements OnInit {
     onItemTap(eventData): void {
         const dataItem = eventData.view.bindingContext;
         dataItem.expanded = !dataItem.expanded;
+        // slice is required to make lists update properly on iOS
+        this.items = this.items.slice()
     }
 
     onUninventorizedItemTap(eventData): void {
@@ -286,28 +292,26 @@ export class InventoryComponent implements OnInit {
 
     onTakeImageTap(eventData): void {
         const dataItem = eventData.view.bindingContext;
-        if (!dataItem.photo) {
-            if (Camera.isAvailable()) {
-                Camera.requestPermissions();
-                Camera.takePicture({width: 300, height: 300, keepAspectRatio: true, saveToGallery: false})
-                    .then(imageAsset => {
-                        ImageSource.fromAsset(imageAsset).then(imageSource => {
-                            dataItem.photo = imageSource;
-                            dataItem.PhotoContent = imageSource.toBase64String("jpeg", 90);
-                            this.database.updateItemPhoto(dataItem);
-                            // this.userService.insertPhotoTempFile(new TempFileInsert("jpeg",
-                            //     new Uint8Array(10)))
-                            //     .subscribe((resp) => {
-                            //             console.log("winwin");
-                            //             console.log(resp);
-                            //         },
-                            //         err => {
-                            //             console.log(err.error);
-                            //             console.log(err.message)
-                            //         })
-                        })
+        if (Camera.isAvailable()) {
+            Camera.requestPermissions();
+            Camera.takePicture({width: 300, height: 300, keepAspectRatio: true, saveToGallery: false})
+                .then(imageAsset => {
+                    ImageSource.fromAsset(imageAsset).then(imageSource => {
+                        dataItem.photo = imageSource;
+                        dataItem.PhotoContent = imageSource.toBase64String("jpeg", 90);
+                        this.database.updateItemPhoto(dataItem);
+                        // this.userService.insertPhotoTempFile(new TempFileInsert("jpeg",
+                        //     new Uint8Array(10)))
+                        //     .subscribe((resp) => {
+                        //             console.log("winwin");
+                        //             console.log(resp);
+                        //         },
+                        //         err => {
+                        //             console.log(err.error);
+                        //             console.log(err.message)
+                        //         })
                     })
-            }
+                })
         }
     }
 

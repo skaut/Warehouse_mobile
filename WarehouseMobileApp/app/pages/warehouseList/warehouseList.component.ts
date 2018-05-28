@@ -12,7 +12,7 @@ import * as AppSettings from "application-settings";
 @Component({
     selector: "warehouseList-component",
     templateUrl: "./pages/warehouseList/warehouseList.html",
-    styleUrls: ["./pages/warehouseList/warehouseList.common.css"],
+    styleUrls: ["./pages/warehouseList/warehouseList.common.css", "./pages/warehouseList/warehouseList.css"],
     providers: [WarehouseService]
 })
 
@@ -27,14 +27,12 @@ export class WarehouseListComponent implements OnInit {
 
     ngOnInit(): void {
         this.page.actionBarHidden = true;
-    }
-
-    onLoaded() {
         this.warehouses = this.database.selectAvailableWarehouses(AppSettings.getString(USER_UNIT_ID))
             .then((warehouses) => {
                 this.warehouses = warehouses;
             })
     }
+
 
     back(): void {
         this.routerExtensions.backToPreviousPage()

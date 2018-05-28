@@ -29,7 +29,7 @@ import {WarehouseItemDetailPhotoResult} from "../../soap/results/warehouseItemDe
     providers: [],
     selector: "select-role",
     templateUrl: "./pages/selectRole/selectRole.html",
-    styleUrls: ["pages/selectRole/selectRole.common.css"],
+    styleUrls: ["./pages/selectRole/selectRole.common.css"],
 })
 
 export class SelectRoleComponent implements OnInit {

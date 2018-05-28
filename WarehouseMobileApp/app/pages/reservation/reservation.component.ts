@@ -22,7 +22,7 @@ import * as ImageSource from "tns-core-modules/image-source";
 @Component({
     selector: "warehouseList-component",
     templateUrl: "./pages/reservation/reservation.html",
-    styleUrls: ["./pages/reservation/reservation.common.css"],
+    styleUrls: ["./pages/reservation/reservation.common.css", "./pages/reservation/reservation.css"],
     providers: [ItemService]
 })
 
@@ -142,9 +142,15 @@ export class ReservationComponent implements OnInit {
         }
     }
 
+    templateSelector(item: any, index: number, items: any): string {
+        return item.expanded ? "expanded" : "default";
+    }
+
     onItemTap(eventData): void {
         const dataItem = eventData.view.bindingContext;
         dataItem.expanded = !dataItem.expanded;
+        // slice is required to make lists update properly on iOS
+        this.items = this.items.slice();
     }
 
     onImageTap(eventData): void {
