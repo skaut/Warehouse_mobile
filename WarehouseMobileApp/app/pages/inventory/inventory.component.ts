@@ -16,6 +16,7 @@ import { trimArrayElements } from "../../utils/functions";
 import { WarehouseItemAllStockTaking } from "../../soap/requests/warehouseItemAllStockTaking";
 import { WarehouseItemAllStockTakingResult } from "../../soap/results/warehouseItemAllStockTakingResult";
 import { StockTakingWarehouseItemInsert } from "../../soap/requests/stockTakingWarehouseItemInsert";
+import { isIOS } from "tns-core-modules/platform";
 import * as Connectivity  from "tns-core-modules/connectivity";
 import * as Dialogs from "ui/dialogs"
 import * as ImageSource from "tns-core-modules/image-source";
@@ -126,7 +127,9 @@ export class InventoryComponent implements OnInit {
         const dataItem = eventData.view.bindingContext;
         dataItem.expanded = !dataItem.expanded;
         // slice is required to make lists update properly on iOS
-        this.items = this.items.slice()
+        if (isIOS) {
+            this.items = this.items.slice()
+        }
     }
 
     onUninventorizedItemTap(eventData): void {

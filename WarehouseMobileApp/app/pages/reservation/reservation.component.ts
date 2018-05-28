@@ -4,7 +4,7 @@ import { Page } from "ui/page";
 import { RouterExtensions } from "nativescript-angular";
 import { DatePicker } from "tns-core-modules/ui/date-picker";
 import { SearchBar } from "tns-core-modules/ui/search-bar";
-import { isAndroid } from "tns-core-modules/platform";
+import { isAndroid, isIOS } from "tns-core-modules/platform";
 import { Item } from "../../entities/item/item";
 import { ItemService } from "../../entities/item/item.service";
 import { WarehouseItemAllBorrowable } from "../../soap/requests/warehouseItemAllBorrowable";
@@ -150,7 +150,9 @@ export class ReservationComponent implements OnInit {
         const dataItem = eventData.view.bindingContext;
         dataItem.expanded = !dataItem.expanded;
         // slice is required to make lists update properly on iOS
-        this.items = this.items.slice();
+        if (isIOS) {
+            this.items = this.items.slice();
+        }
     }
 
     onImageTap(eventData): void {
