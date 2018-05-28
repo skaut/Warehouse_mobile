@@ -145,6 +145,9 @@ export class InventoryComponent implements OnInit {
                 dataItem.synced = false;
                 dataItem.lastInventoryId = this.currentInventory.ID;
                 dataItem.expanded = false;
+                if (isIOS) {
+                    this.items = this.items.slice();
+                }
             }
             else {
                 this.errorOccurred = true;
@@ -163,6 +166,9 @@ export class InventoryComponent implements OnInit {
             dataItem.synced = true;
             dataItem.lastInventoryId = null;
             dataItem.expanded = false;
+            if (isIOS) {
+                this.items = this.items.slice();
+            }
         }
         else {
             this.errorOccurred = true;
