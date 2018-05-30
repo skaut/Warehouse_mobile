@@ -1,6 +1,7 @@
 import { Injectable } from "@angular/core";
 import { WarehouseItem } from "../entities/warehouseItem/warehouseItem";
 import { Warehouse } from "../entities/warehouse/warehouse";
+import { Inventory } from "../entities/inventory/inventory";
 const Sqlite = require("nativescript-sqlite");
 
 
@@ -27,8 +28,7 @@ export class Database {
                 id TEXT PRIMARY KEY,
                 name TEXT,
                 id_parent TEXT,
-                id_unit TEXT
-                )`)
+                id_unit TEXT)`)
             .then(() => {
                 // console.log("success creating warehouse table");
                 this.db.execSQL(`
@@ -45,10 +45,20 @@ export class Database {
                         photo_content BLOB,
                         synced INTEGER,
                         last_inventory_id TEXT,
-                        FOREIGN KEY(id_warehouse) REFERENCES warehouse(id)
-                    )`)
+                        FOREIGN KEY(id_warehouse) REFERENCES warehouse(id))`)
                     .then(() => {
-                            // console.log("success creating item table")
+                            this.db.execSQL(`
+                                CREATE TABLE IF NOT EXISTS inventory (
+                                    id TEXT PRIMARY KEY,
+                                    name TEXT,
+                                    date TEXT,
+                                    warehouses TEXT)`)
+                                .then(() => {
+                                        console.log("All tables creates successfully")
+                                    },
+                                    error => {
+                                        console.log("create table inventory error", error)
+                                    })
                         },
                         error => {
                             console.log("create table item error", error)
@@ -78,6 +88,23 @@ export class Database {
                         )
                 }
             )
+    }
+
+
+    /**
+     * Method to insert row into inventory table
+     *
+     * @param {Inventory} inventory - inventory entity to insert
+     */
+    insertInventory(inventory: Inventory) {
+        return this.db.execSQL(`INSERT OR IGNORE INTO inventory (id, name, date, warehouses)
+            VALUES (?, ?, ?, ?)`,
+            [inventory.ID, inventory.DisplayName, inventory.Date, inventory.Warehouses.toString()])
+            .then(id => {
+                },
+                error => {
+                    console.log("error inserting into inventory", error);
+                })
     }
 
     /**
@@ -135,12 +162,22 @@ export class Database {
     }
 
     updateItemLastInventoryId(item: WarehouseItem) {
-        return this.db.execSQL(`UPDATE item SET last_inventory_id = '${item.lastInventoryId}' WHERE id = ${item.ID}`)
+        const inventoryId = item.lastInventoryId ? item.lastInventoryId : "-1";
+        return this.db.execSQL(`UPDATE item SET last_inventory_id = '${inventoryId}' WHERE id = ${item.ID}`)
             .then(() => {
-                    console.log("success updating item lastInventoryId")
                 },
                 error => {
                     console.log("error updating lastInventoryId: " + error);
+                })
+    }
+
+    updateItemSynced(item: WarehouseItem) {
+        const synced = item.synced ? 1 : 0;
+        return this.db.execSQL(`UPDATE item SET synced = '${synced}' WHERE id = ${item.ID}`)
+            .then(() => {
+                },
+                error => {
+                    console.log("error updating item synced: " + error);
                 })
     }
 
@@ -196,6 +233,18 @@ export class Database {
             })
     }
 
+    selectAvailableInventories() {
+        let result = [];
+        return this.db.each(`SELECT * FROM inventory`, (err, row) => {
+            result.push(this.createInventoryObject(new Inventory(), row))
+        })
+            .then(() => {
+                return new Promise((resolve, reject) => {
+                    resolve(result);
+                })
+            })
+    }
+
     /**
      * Method to select current warehouse from db.
      *
@@ -219,6 +268,14 @@ export class Database {
         warehouse.ID_WarehouseMain = dbRow[2];
         warehouse.ID_Unit = dbRow[3];
         return warehouse
+    }
+
+    private createInventoryObject(inventory: Inventory, dbRow: Array<any>): Inventory {
+        inventory.ID = dbRow[0];
+        inventory.DisplayName = dbRow[1];
+        inventory.Date = dbRow[2];
+        inventory.Warehouses = dbRow[3];
+        return inventory
     }
 
     /**
@@ -252,7 +309,7 @@ export class Database {
         }
         item.PhotoContent = dbRow[9];
         item.synced = dbRow[10] === 1;
-        item.lastInventoryId = dbRow[11];
+        item.lastInventoryId = (dbRow[11] === "-1") ? null : dbRow[11];
         item.setImageSource();
         return item
     }

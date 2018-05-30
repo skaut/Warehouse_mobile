@@ -20,13 +20,19 @@ import { WarehouseItemAllResult } from "../../soap/results/warehouseItemAllResul
 import { Database } from "../../utils/database";
 import { Button } from "tns-core-modules/ui/button";
 import { disableButton, enableButton } from "../../utils/functions";
+import { WarehouseItemDetailPhoto } from "../../soap/requests/warehouseItemDetailPhoto";
+import { WarehouseItemDetailPhotoResult } from "../../soap/results/warehouseItemDetailPhotoResult";
+import { InventoryService } from "../../entities/inventory/inventory.service";
+import { StockTakingAll } from "../../soap/requests/stockTakingAll";
+import { Inventory } from "../../entities/inventory/inventory";
+import { StockTakingAllResult } from "../../soap/results/stockTakingAllResult";
+import { WarehouseItemAllStockTakingResult } from "../../soap/results/warehouseItemAllStockTakingResult";
+import { WarehouseItemAllStockTaking } from "../../soap/requests/warehouseItemAllStockTaking";
 import * as AppSettings from "application-settings"
-import {WarehouseItemDetailPhoto} from "../../soap/requests/warehouseItemDetailPhoto";
-import {WarehouseItemDetailPhotoResult} from "../../soap/results/warehouseItemDetailPhotoResult";
 
 
 @Component({
-    providers: [],
+    providers: [InventoryService],
     selector: "select-role",
     templateUrl: "./pages/selectRole/selectRole.html",
     styleUrls: ["./pages/selectRole/selectRole.common.css"],
@@ -36,6 +42,7 @@ export class SelectRoleComponent implements OnInit {
     selectedRoleIndex: number;
     selectedRole: UserRole;
     isLoading: boolean = false;
+    currentInventory: Inventory;
     failedActionPanel: {
         message: string;
         visibility: string;
@@ -47,7 +54,11 @@ export class SelectRoleComponent implements OnInit {
         private userRoleAllResult: UserRoleAllResult,
         private userService: UserService,
         private warehouseService: WarehouseService,
-        private database: Database) {}
+        private inventoryService: InventoryService,
+        private database: Database)
+    {
+        this.currentInventory = null;
+    }
 
     /**
      * Event handler that is called on component initialization.
@@ -116,7 +127,10 @@ export class SelectRoleComponent implements OnInit {
                 .subscribe(resp => {
                         const loginUpdateResult = parseSoapResponse(resp, new LoginUpdateResult());
                         loginUpdateResult.saveData();
-                        this.getWarehouses(button);
+                        this.getInventories(button);
+                        setTimeout(() => {
+                            this.getWarehouses(button);
+                        }, 100)
                     },
                     () => {
                         this.showErrorBar();
@@ -133,7 +147,6 @@ export class SelectRoleComponent implements OnInit {
      * Method performs WarehouseAll request. If successful it saves data to db.
      * After that it calls getWarehouseItems for all relevant units (warehouseItemAll request is unit based).
      * If all was successful navigates to warehouseList page (with delay to ensure data was loaded
-     * if warehouse count is > 0).
      *
      * @param {Button} button - select role button to enable after requests or in case of error.
      */
@@ -145,13 +158,13 @@ export class SelectRoleComponent implements OnInit {
                         () => new Warehouse())["Warehouses"];
                     warehouses.map(warehouse => {
                         this.database.insertWarehouse(warehouse, this.selectedRole.ID_Unit);
-                        this.getWarehouseItems(warehouse.ID_Unit, button);
+                        this.getWarehouseItems(warehouse.ID_Unit, warehouse.ID, button);
                     });
                     if (warehouses.length > 0) {
                         setTimeout(() => {
                             this.enableButton(button);
                             this.routerExtensions.navigate(["/warehouseList"])
-                        }, 600);
+                        }, 1000);
                     }
                     else {
                         this.enableButton(button);
@@ -168,10 +181,14 @@ export class SelectRoleComponent implements OnInit {
 
     /**
      * Method performs warehouseItemAll request and if successful saves data to db.
+     * After the call it gets photo for each item and finally it calls soap service to receive data about
+     * already inventorized items in current warehouse.
      *
-     * @param {string} unitId - id of unit to request data from.
+     * @param {string} unitId - current unit id
+     * @param {string} warehouseId - warehouse id to get inventorized items
+     * @param {Button} button - select role button to enable after requests or in case of error.
      */
-    private getWarehouseItems(unitId: string, button: Button): void {
+    private getWarehouseItems(unitId: string, warehouseId: string, button: Button): void {
         this.warehouseService.getWarehouseItemAll(new WarehouseItemAll(unitId))
             .subscribe(
                 resp => {
@@ -191,13 +208,73 @@ export class SelectRoleComponent implements OnInit {
                                 }
                             );
                     });
+                    this.getAlreadyInventorizedItems(warehouseId, items, button);
                 },
                 () => {
                     this.showErrorBar();
                     this.enableButton(button);
-                    // todo - handle errors, should provide offline functionality
                 }
             )
+    }
+
+    /**
+     * Method performs soap call to get list of all inventories. From these it filters only active ones.
+     * Newest active inventory is then assigned as the current inventory to which items will be inventorized.
+     *
+     * @param {Button} button - select role button to enable after requests or in case of error.
+     */
+    private getInventories(button: Button): void {
+        this.inventoryService.getStockTakingAll(new StockTakingAll())
+            .subscribe(
+                resp => {
+                    const inventories = parseSoapResponse(resp, new StockTakingAllResult(),
+                        () => new Inventory())["Inventorys"]
+                        .filter(inventory => {
+                            return inventory.ID_StockTakingState === "new";
+                        });
+                    this.currentInventory = inventories[inventories.length - 1];
+                    this.database.insertInventory(this.currentInventory);
+                },
+                () => {
+                    console.log("ERROR LOADING INVENTORIES");
+                    this.showErrorBar();
+                    this.enableButton(button)
+                }
+            )
+    }
+
+    /**
+     * Method to get already inventorized items. It updates information in db.
+     *
+     * @param {string} warehouseId - warehouse id to get info about
+     * @param {Array<WarehouseItem>} items - array of warehouse items to update
+     * @param {Button} button - select role button to enable after requests or in case of error.
+     */
+    private getAlreadyInventorizedItems(warehouseId: string, items: Array<WarehouseItem>, button: Button): void {
+        if (this.currentInventory.ID) {
+            this.inventoryService.getInventorizedItems(new WarehouseItemAllStockTaking(this.currentInventory.ID,
+                warehouseId))
+                .subscribe(
+                    resp => {
+                        const inventorizedItems = parseSoapResponse(resp, new WarehouseItemAllStockTakingResult(),
+                            () => new WarehouseItem())["WarehouseItems"];
+                        inventorizedItems.map(inventorizedItem => {
+                            const matchingItem = items.find(item => {
+                                return item.ID === inventorizedItem.ID;
+                            });
+                            if (matchingItem) {
+                                matchingItem.lastInventoryId = this.currentInventory.ID;
+                                this.database.updateItemLastInventoryId(matchingItem);
+                            }
+                        })
+                    },
+                    error => {
+                        console.log("ERROR LOADING ALREADY INVENTORIZED ITEMS");
+                        this.showErrorBar();
+                        this.enableButton(button)
+                    }
+                )
+        }
     }
 
     private enableButton(button) {

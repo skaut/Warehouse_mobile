@@ -1,5 +1,5 @@
 import { Component, ElementRef, OnInit, ViewChild } from "@angular/core";
-import { logout } from "../../utils/functions"
+import {logout, refreshLogin} from "../../utils/functions"
 import { Page } from "ui/page";
 import { RouterExtensions } from "nativescript-angular";
 import { ActivatedRoute } from "@angular/router";
@@ -7,16 +7,12 @@ import { Database } from "../../utils/database";
 import { WarehouseItem } from "../../entities/warehouseItem/warehouseItem";
 import { BarcodeScanner } from "nativescript-barcodescanner";
 import { InventoryService } from "../../entities/inventory/inventory.service";
-import { StockTakingAll } from "../../soap/requests/stockTakingAll";
-import { parseSoapResponse } from "../../soap/responseParsers/responseParsers";
-import { StockTakingAllResult } from "../../soap/results/stockTakingAllResult";
 import { Inventory } from "../../entities/inventory/inventory";
 import { Warehouse } from "../../entities/warehouse/warehouse";
 import { trimArrayElements } from "../../utils/functions";
-import { WarehouseItemAllStockTaking } from "../../soap/requests/warehouseItemAllStockTaking";
-import { WarehouseItemAllStockTakingResult } from "../../soap/results/warehouseItemAllStockTakingResult";
 import { StockTakingWarehouseItemInsert } from "../../soap/requests/stockTakingWarehouseItemInsert";
 import { isIOS } from "tns-core-modules/platform";
+import { UserService } from "../../entities/user/user.service";
 import * as Connectivity  from "tns-core-modules/connectivity";
 import * as Dialogs from "ui/dialogs"
 import * as ImageSource from "tns-core-modules/image-source";
@@ -57,7 +53,8 @@ export class InventoryComponent implements OnInit {
         private route: ActivatedRoute,
         private database: Database,
         private barcodeScanner: BarcodeScanner,
-        private inventoryService: InventoryService)
+        private inventoryService: InventoryService,
+        private userService: UserService)
     {
         this.listLoaded = false;
         this.errorOccurred = false;
@@ -95,7 +92,10 @@ export class InventoryComponent implements OnInit {
                 setTimeout(() => {
                     console.log("loading items from db - inventory page");
                     this.items = items;
-                    this.getInventories();
+                    this.currentInventory = this.database.selectAvailableInventories()
+                        .then(inventories => {
+                            this.currentInventory = inventories[0];
+                        });
                     this.database.selectSingleWarehouse(this.warehouseId)
                         .then(warehouse => {
                             this.currentWarehouse = warehouse;
@@ -134,7 +134,7 @@ export class InventoryComponent implements OnInit {
 
     onUninventorizedItemTap(eventData): void {
         if (this.currentInventory) {
-            const dataItem = eventData.view.bindingContext;
+            const dataItem: WarehouseItem = eventData.view.bindingContext;
             if (dataItem.lastInventoryId === this.currentInventory.ID) {
                 this.errorOccurred = true;
                 this.showStatusBar("Předmět už byl inventarizován.");
@@ -144,6 +144,8 @@ export class InventoryComponent implements OnInit {
             if (warehouses.indexOf(this.currentWarehouse.DisplayName.trim()) !== -1) {
                 dataItem.synced = false;
                 dataItem.lastInventoryId = this.currentInventory.ID;
+                this.database.updateItemLastInventoryId(dataItem);
+                this.database.updateItemSynced(dataItem);
                 dataItem.expanded = false;
                 if (isIOS) {
                     this.items = this.items.slice();
@@ -161,10 +163,12 @@ export class InventoryComponent implements OnInit {
     }
 
     onInventorizedItemTap(eventData): void {
-        const dataItem = eventData.view.bindingContext;
+        const dataItem: WarehouseItem = eventData.view.bindingContext;
         if (!dataItem.synced) {
             dataItem.synced = true;
             dataItem.lastInventoryId = null;
+            this.database.updateItemLastInventoryId(dataItem);
+            this.database.updateItemSynced(dataItem);
             dataItem.expanded = false;
             if (isIOS) {
                 this.items = this.items.slice();
@@ -253,40 +257,6 @@ export class InventoryComponent implements OnInit {
         }
     }
 
-    onSubmitInventory(): void {
-        const connectionType = Connectivity.getConnectionType();
-        if (connectionType !== Connectivity.connectionType.none) {
-            if (this.currentInventory) {
-                const warehouses = trimArrayElements(this.currentInventory.Warehouses.split(","));
-                if (warehouses.indexOf(this.currentWarehouse.DisplayName.trim()) !== -1) {
-                    const toInventorize = this.items.filter((item) => {
-                        return item.synced === false;
-                    });
-                    if (toInventorize.length > 0) {
-                        this.submitInventorizedItems(toInventorize);
-                        this.showStatusBar("Předměty úspěšně zainventarizovány.");
-                    }
-                    else {
-                        this.errorOccurred = true;
-                        this.showStatusBar("K inventarizaci nebyly vybrány žádné nové předměty.")
-                    }
-                }
-                else {
-                    this.errorOccurred = true;
-                    this.showStatusBar("Pro tento sklad není založena žádná inventura.");
-                }
-            }
-            else {
-                this.errorOccurred = true;
-                this.showStatusBar("Tato jednotka nemá založenou žádnou inventuru.");
-            }
-        }
-        else {
-            this.errorOccurred = true;
-            this.showStatusBar("Zkontrolujte připojení k internetu.");
-        }
-    }
-
     onDismissPopover(): void {
         this.popover.visibility = 'hidden';
     }
@@ -325,56 +295,50 @@ export class InventoryComponent implements OnInit {
     }
 
     /**
-     * Method performs soap call to get list of all inventories. From these it filters only active ones.
-     * Newest active inventory is then assigned as the current inventory to which items will be inventorized.
+     * Method to submit inventory if there is internet connection and existing inventory.
+     * Displays various error messages for different situations.
      */
-    private getInventories(): void {
-        this.inventoryService.getStockTakingAll(new StockTakingAll())
-            .subscribe(
-                resp => {
-                    const inventories = parseSoapResponse(resp, new StockTakingAllResult(),
-                        () => new Inventory())["Inventorys"]
-                        .filter(inventory => {
-                            return inventory.ID_StockTakingState === "new";
-                        });
-                    this.currentInventory = inventories[inventories.length - 1];
-                    this.getAlreadyInventorizedItems()
-                },
-                () => {
-                    console.log("ERROR LOADING INVENTORIES");
-                    this.errorOccurred = true;
-                    this.showStatusBar();
-                }
-            )
-    }
-
-    private getAlreadyInventorizedItems(): void {
-        if (this.currentInventory.ID) {
-            this.inventoryService.getInventorizedItems(new WarehouseItemAllStockTaking(this.currentInventory.ID,
-                this.warehouseId))
-                .subscribe(
-                    resp => {
-                        const inventorizedItems = parseSoapResponse(resp, new WarehouseItemAllStockTakingResult(),
-                            () => new WarehouseItem())["WarehouseItems"];
-                        inventorizedItems.map(inventorizedItem => {
-                            const matchingItem = this.items.find(item => {
-                                return item.ID === inventorizedItem.ID;
-                            });
-                            if (matchingItem) {
-                                matchingItem.lastInventoryId = this.currentInventory.ID;
-                                this.database.updateItemLastInventoryId(matchingItem);
-                            }
-                        })
-                    },
-                    error => {
-                        console.log("ERROR LOADING ALREADY INVENTORIZED ITEMS");
+    onSubmitInventory(): void {
+        const connectionType = Connectivity.getConnectionType();
+        if (connectionType !== Connectivity.connectionType.none) {
+            if (this.currentInventory) {
+                const warehouses = trimArrayElements(this.currentInventory.Warehouses.split(","));
+                if (warehouses.indexOf(this.currentWarehouse.DisplayName.trim()) !== -1) {
+                    const toInventorize: Array<WarehouseItem> = this.items.filter((item) => {
+                        return item.synced === false;
+                    });
+                    if (toInventorize.length > 0) {
+                        this.submitInventorizedItems(toInventorize);
+                        this.showStatusBar("Předměty úspěšně zainventarizovány.");
                     }
-                )
+                    else {
+                        this.errorOccurred = true;
+                        this.showStatusBar("K inventarizaci nebyly vybrány žádné nové předměty.")
+                    }
+                }
+                else {
+                    this.errorOccurred = true;
+                    this.showStatusBar("Pro tento sklad není založena žádná inventura.");
+                }
+            }
+            else {
+                this.errorOccurred = true;
+                this.showStatusBar("Tato jednotka nemá založenou žádnou inventuru.");
+            }
+        }
+        else {
+            this.errorOccurred = true;
+            this.showStatusBar("Zkontrolujte připojení k internetu.");
         }
     }
 
-
-    private submitInventorizedItems(toInventorize): void {
+    /**
+     * Method performs soap call to inventorize items.
+     *
+     * @param {Array<WarehouseItem>} toInventorize - array of items to inventorize
+     */
+    private submitInventorizedItems(toInventorize: Array<WarehouseItem>): void {
+        refreshLogin(this.userService);
         toInventorize.map(item => {
             this.inventoryService.inventorizeItem(new StockTakingWarehouseItemInsert(
                 this.currentInventory.ID, item.ID))
@@ -384,7 +348,7 @@ export class InventoryComponent implements OnInit {
                         this.database.updateItemLastInventoryId(item);
                     },
                     () => {
-                        console.log("ERROR INSERTING INVENTORIZED ITEM");
+                        console.log("ERROR INSERTING INVENTORIZED ITEM", item.toString());
                     }
                 )
         })

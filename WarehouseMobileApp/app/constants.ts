@@ -18,6 +18,7 @@ export const USER_PERSON_ID = "userPersonId";
 export const USER_PERSON_NAME = "userPersonName";
 export const USER_ROLE = "userRole";
 export const USER_NAME = "userName";
+export const USER_PASS = "userPass";
 
 export const ALLOWED_ROLES = ["18", "22", "25", "44", "50", "51", "61", "103", "104"];
 

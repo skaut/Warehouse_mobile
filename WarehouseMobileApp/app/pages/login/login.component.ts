@@ -10,7 +10,7 @@ import { UserRoleAll } from "../../soap/requests/userRoleAll";
 import { UserRoleAllResult } from "../../soap/results/userRoleAllResult";
 import { UserRole } from "../../entities/userRole/userRole";
 import { Status } from "../../utils/enums";
-import { ALLOWED_ROLES, USER_NAME } from "../../constants";
+import { ALLOWED_ROLES, USER_NAME, USER_PASS } from "../../constants";
 import { disableButton, enableButton } from "../../utils/functions";
 import { Button } from "tns-core-modules/ui/button";
 import * as AppSettings from "application-settings";
@@ -69,6 +69,7 @@ export class LoginComponent implements OnInit {
      */
     login(args) {
         AppSettings.setString(USER_NAME, this.user.name);
+        AppSettings.setString(USER_PASS, this.user.password);
         let button = <Button>args.object;
         disableButton(button);
         this.isLoading = true;
