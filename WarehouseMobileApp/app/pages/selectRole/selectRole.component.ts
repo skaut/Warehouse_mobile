@@ -1,6 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { Page } from "ui/page";
-import { logout } from "../../utils/functions";
+import {logout, refreshLogin} from "../../utils/functions";
 import { RouterExtensions } from "nativescript-angular";
 import { UserRoleAllResult } from "../../soap/results/userRoleAllResult";
 import { USER_ROLE_ID } from "../../constants";
@@ -120,6 +120,7 @@ export class SelectRoleComponent implements OnInit {
      */
     roleSelected(args): void {
         if (this.selectedRole) {
+            refreshLogin(this.userService);
             let button = <Button>args.object;
             disableButton(button);
             this.isLoading = true;

@@ -1,12 +1,14 @@
-import {HttpHeaders, HttpParams} from "@angular/common/http";
+const TEST_IS = false;
 
-const TEST_IS = true;
-
-export const SERVER_URL = TEST_IS ? "https://test-is.skaut.cz/" : "https://is.skaut.cz/";
-export const BASE_SERVICE_URL = SERVER_URL + "JunakWebservice/"
+export const SERVER_URL = TEST_IS
+    ? "https://test-is.skaut.cz/"
+    : "https://is.skaut.cz/";
+export const BASE_SERVICE_URL = SERVER_URL + "JunakWebservice/";
 
 // todo - fill in appid for production once received
-export const APPLICATION_ID = TEST_IS ? "cd5f12c7-4fde-481a-9fbb-b167b1d33152" : "";
+export const APPLICATION_ID = TEST_IS
+    ? "cd5f12c7-4fde-481a-9fbb-b167b1d33152"
+    : "38c9057a-a97d-4ad0-96ae-d5a7ac4956e9";
 
 export const BUTTON_LOGIN = "Přihlásit se";
 
